@@ -35,3 +35,6 @@
   GitHub: [DrProfDavis](https://github.com/DrProfDavis)
   Email: [smd031@gmail.com](mailto:smd031@gmail.com)
 
+  GitHub: [DrProfDavis](https://github.com/rockojoe2)
+  Email: [smd031@gmail.com](mailto:lee.d.joey@gmail.com)
+
