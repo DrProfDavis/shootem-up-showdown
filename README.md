@@ -1,9 +1,11 @@
 # Shootem Up Showdown
 
-  ## DESCRIPTION
+## DESCRIPTION
+
   na
 
-  ## TABLE OF CONTENTS
+## TABLE OF CONTENTS
+
   -- [Installation](#installation)
 
   -- [Usage](#usage)
@@ -16,25 +18,34 @@
 
   -- [Contacts](#contacts)
 
-  ## INSTALLATION
+## INSTALLATION
+
   na
 
-  ## USAGE
+## USAGE
+
   na
 
-  ## CONTRIBUTIONS
+## CONTRIBUTIONS
+
   na
 
-  ## TESTS
+## TESTS
+
   na
 
-  ## LICENSE 
+## LICENSE
+
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-  ## CONTACTS
+## CONTACTS
+
   GitHub: [DrProfDavis](https://github.com/DrProfDavis)
   Email: [smd031@gmail.com](mailto:smd031@gmail.com)
 
   GitHub: [Rockojoe2](https://github.com/rockojoe2)
   Email: [lee.d.joey@gmail.com](mailto:lee.d.joey@gmail.com)
 
+  GitHub: [JunoAndIce](https://github.com/JunoAndIce)
+  Email: [ekwere.edi@gmail.com](mailto:ekwere.edi@gmail.com)
+  
