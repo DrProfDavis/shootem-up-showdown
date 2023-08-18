@@ -65,13 +65,82 @@ function drawGrid(width, height) {
             // Create object for each tile
             drawHexagon(x, y);
             // Creates a reference to the coords in an array
-            mapTilesCoords[counter] = [x, y];
+            // mapTilesCoords[counter] = [x, y];
+            mapTilesCoords[counter] = { x: x, y: y };
             // Sees names of array that is created
             // TODO I noticed at the end of each row of hexagons it maps 'undefined' in the console - Shawn
             console.log('created mapTilesCoords['+counter+'] as: ' + mapTilesCoords[j])
             counter++
         }
     }
+}
+
+//JOEY NOTE - Me and Edi had to use ChatGPT for this for help, but basically what this function does is that it makes it so that the hexagons, when you click them, currently console.log the tile that is clicked, and the adjacent tiles to the tile that you clicked. clickedTileIndex variable is set as 0 (or can be any negative number) just so that the if statement will always be true because our tiles start at 1, therefore it's impossible to click a tile at 0, or a tile at a negative number.
+canvas.addEventListener("click", function (event) {
+    const rect = canvas.getBoundingClientRect();
+    const mouseX = event.clientX - rect.left;
+    const mouseY = event.clientY - rect.top;
+
+    let clickedTileIndex = 0;
+
+    // Find the clicked tile
+    for (let i = 1; i < mapTilesCoords.length; i++) {
+        const tile = mapTilesCoords[i];
+        if (tile) {
+            const distance = Math.sqrt(
+                (mouseX - tile.x) ** 2 + (mouseY - tile.y) ** 2
+            );
+            if (distance <= r) {
+                clickedTileIndex = i;
+                break; // No need to continue checking
+            }
+        }
+    }
+
+    if (clickedTileIndex !== 0) {
+        const adjacentTileIndices = getAdjacentTiles(clickedTileIndex);
+        console.log("Clicked tile:", clickedTileIndex);
+        console.log("Adjacent tiles:", adjacentTileIndices);
+        // Perform actions for the clicked tile and its adjacent tiles here
+    }
+});
+
+//JOEY NOTE - function to get adjacent tiles of the tile that you click. This helps you pick an area on the hexagon map and then shows you the adjacent tiles around it and puts it in an array for us to use later when we want to randomly pick a tile in that section to use. We were thinking about hard coding an area, but then if we change the map size and stuff, hard coding it would be bad cause tiles would change.
+
+function getAdjacentTiles(tileIndex) {
+    // Calculate the coordinates of the clicked tile
+    const clickedTile = mapTilesCoords[tileIndex];
+    const clickedX = clickedTile.x;
+    const clickedY = clickedTile.y;
+
+    // JOEY NOTE - Calculate the coordinates of the six potential adjacent tiles. ALOT of math here that I didn't reallllly bother to check.... but it works haha
+    const potentialAdjacents = [
+        [clickedX + r * (1 + Math.cos(a)), clickedY + r * Math.sin(a)],
+        [clickedX + r * (1 + Math.cos(a)), clickedY - r * Math.sin(a)],
+        [clickedX, clickedY - 2 * r * Math.sin(a)],
+        [clickedX - r * (1 + Math.cos(a)), clickedY - r * Math.sin(a)],
+        [clickedX - r * (1 + Math.cos(a)), clickedY + r * Math.sin(a)],
+        [clickedX, clickedY + 2 * r * Math.sin(a)]
+    ];
+
+    const adjacentTileIndices = [];
+
+    // Check which potential adjacent tiles are valid and find their indices
+    for (let i = 1; i < mapTilesCoords.length; i++) {
+        const tile = mapTilesCoords[i];
+        for (let j = 0; j < potentialAdjacents.length; j++) {
+            const potentialAdjacent = potentialAdjacents[j];
+            const distance = Math.sqrt(
+                (potentialAdjacent[0] - tile.x) ** 2 + (potentialAdjacent[1] - tile.y) ** 2
+            );
+            if (distance <= r && i !== tileIndex) {
+                adjacentTileIndices.push(i);
+                break; // No need to continue checking this potential adjacent
+            }
+        }
+    }
+
+    return adjacentTileIndices;
 }
 
 // Function that draws each Hexagon Tile
@@ -111,19 +180,40 @@ class TileSprite {
 function init() {
     // calls drawTileMap
     drawGrid(canvas.width, canvas.height)
-    // creates our playerOne object using the PlayerSprite class
+
+    
+    //JOEY NOTE - Player one can spawn in the tiles that are given in the array that we set in our function getAdjacentTiles. It makes the array based off of which tiles are touching the tile you put as the parameter, and then we randomly choose a number in that array. We then take that number, and then get the x,y coordinates of it, and then pass it onto playerOne = new PlayerSprite to set the spawn and draw the location of spawn
+
+    const playerOneSpawnLocations = getAdjacentTiles(22); //Can be changed to wherever the area you want to spawn player one at.
+
+    const playerOneRandomSpawn = Math.floor(Math.random() * playerOneSpawnLocations.length);
+
+    //spawnPlayerOneIndex gets the tile that the player is spawning on
+    const spawnPlayerOneIndex = playerOneSpawnLocations[playerOneRandomSpawn];
+    //spawnPlayerOne gets the coordinates for us to pass it later
+    const spawnPlayerOne = mapTilesCoords[spawnPlayerOneIndex];
+
+    const playerTwoSpawnLocations = getAdjacentTiles(94);
+    const playerTwoRandomSpawn = Math.floor(Math.random() * playerTwoSpawnLocations.length);
+    const spawnPlayerTwoIndex = playerTwoSpawnLocations[playerTwoRandomSpawn];
+    const spawnPlayerTwo = mapTilesCoords[spawnPlayerTwoIndex];
+
+
     const playerOne = new PlayerSprite({
         // which tile will playerOne spawn at
-        x: mapTilesCoords[84][0],
-        y: mapTilesCoords[84][1]
-    }, console.log('playerOne Created at :' + this.mapTilesCoords[2])
+        x: spawnPlayerOne.x,
+        y: spawnPlayerOne.y
+    }, 
+    console.log("Player One Spawning at: " + spawnPlayerOneIndex)
+    // console.log('playerOne Created at :' + this.mapTilesCoords[2])
     )
     // creates our playerTwo object using the PlayerSprite class
     const playerTwo = new PlayerSprite({
         // which tile will playerOne spawn at
-        x: mapTilesCoords[97][0],
-        y: mapTilesCoords[97][1]
-    }, console.log('playerTwo Created at :' + this.mapTilesCoords[70])
+        x: spawnPlayerTwo.x,
+        y: spawnPlayerTwo.y
+    },  console.log("Player Two Spawning at: " + spawnPlayerTwoIndex)
+    // console.log('playerTwo Created at :' + this.mapTilesCoords[70])
     )
     // selects playerOne and calls draw method
     playerOne.draw()
@@ -132,3 +222,5 @@ function init() {
 }
 
 init()
+
+//ToDO make clickable tiles
