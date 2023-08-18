@@ -45,22 +45,6 @@ class PlayerSprite {
     }
 }
 
-// creates our playerOne object using the PlayerSprite class
-const playerOne = new PlayerSprite({
-    // which tile will playerOne spawn at
-    // TODO CURRENTLY NOT WORKING. Trying to get player to spawn onto a tile thru referencing the array
-    x: mapTilesCoords[2],
-    y: mapTilesCoords[2]
-},console.log('playerOne Created at :'+mapTilesCoords[2])
-)
-
-// creates our playerTwo object using the PlayerSprite class
-const playerTwo = new PlayerSprite({
-    // which tile will playerOne spawn at
-    x: 1250,
-    y: 485
-})
-
 // controls animation
 function animate() {
     // calls itself each frame
@@ -73,6 +57,7 @@ const r = 50;
 const offset = r*.9;
 
 // Creates a grid that fits the specified x and y and calls drawHexagon for each fittable Hex
+// Taken from: https://eperezcosano.github.io/hex-grid/
 function drawGrid(width, height) {
     let counter = 1
     for (let y = r; y + r * Math.sin(a) < height; y += 2*r * Math.sin(a)) {
@@ -90,7 +75,6 @@ function drawGrid(width, height) {
 }
 
 // Function that draws each Hexagon Tile
-// Taken from: https://eperezcosano.github.io/hex-grid/
 function drawHexagon(x, y) {
     ctx.fillStyle = 'white';
     ctx.beginPath();
@@ -127,6 +111,20 @@ class TileSprite {
 function init() {
     // calls drawTileMap
     drawGrid(canvas.width, canvas.height)
+    // creates our playerOne object using the PlayerSprite class
+    const playerOne = new PlayerSprite({
+        // which tile will playerOne spawn at
+        x: mapTilesCoords[84][0],
+        y: mapTilesCoords[84][1]
+    }, console.log('playerOne Created at :' + this.mapTilesCoords[2])
+    )
+    // creates our playerTwo object using the PlayerSprite class
+    const playerTwo = new PlayerSprite({
+        // which tile will playerOne spawn at
+        x: mapTilesCoords[97][0],
+        y: mapTilesCoords[97][1]
+    }, console.log('playerTwo Created at :' + this.mapTilesCoords[70])
+    )
     // selects playerOne and calls draw method
     playerOne.draw()
     // selects playerTwo and calls draw method
