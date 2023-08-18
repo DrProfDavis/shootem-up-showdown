@@ -15,10 +15,13 @@ const center = {x: resolution.x / 2, y: (resolution.y*1.1) / 2}
 
 // calls our canvas context to create a rectangle background for our game
 // fillRect takes four arguments (x-position, y-position, width, height)
-ctx.fillRect(0, 0, canvas.width, canvas.height)
+ctx.fillStyle = 'grey';
+ctx.fillRect(0, 0, canvas.width, canvas.height);
+ctx.fill();
+
 
 // empty array to fill mapTiles into
-var mapTilesArray = [];
+var mapTilesCoords = [];
 
 // in order to create an object, we create a class that acts as the blueprint of the object before we create the object itself
 class PlayerSprite {
@@ -32,7 +35,7 @@ class PlayerSprite {
     // arbitrarily named named but this draws out our sprite
     draw() {
         // sets color of circle
-        ctx.fillStyle = 'blue';
+        ctx.fillStyle = 'red';
         // begins drawing the shape to be filled (circle)
         ctx.beginPath();
         // creates arc in the center of x and x coords (x-coord, y-coord, radius, starting-angle, total-angle)
@@ -44,12 +47,16 @@ class PlayerSprite {
 
 // creates our playerOne object using the PlayerSprite class
 const playerOne = new PlayerSprite({
-    x: 350,
-    y: 485
-})
+    // which tile will playerOne spawn at
+    // TODO CURRENTLY NOT WORKING. Trying to get player to spawn onto a tile thru referencing the array
+    x: mapTilesCoords[2],
+    y: mapTilesCoords[2]
+},console.log('playerOne Created at :'+mapTilesCoords[2])
+)
 
 // creates our playerTwo object using the PlayerSprite class
 const playerTwo = new PlayerSprite({
+    // which tile will playerOne spawn at
     x: 1250,
     y: 485
 })
@@ -63,7 +70,7 @@ function animate() {
 // Information to be used by the drawHexagon
 const a = 2 * Math.PI / 6;
 const r = 50;
-const offset = r*.95;
+const offset = r*.9;
 
 // Creates a grid that fits the specified x and y and calls drawHexagon for each fittable Hex
 function drawGrid(width, height) {
@@ -73,8 +80,10 @@ function drawGrid(width, height) {
             // Create object for each tile
             drawHexagon(x, y);
             // Creates a reference to the coords in an array
-            mapTilesArray[j] = [x, y];
-            console.log('created mapTilesArray['+counter+'] as: ' + mapTilesArray[j])
+            mapTilesCoords[counter] = [x, y];
+            // Sees names of array that is created
+            // TODO I noticed at the end of each row of hexagons it maps 'undefined' in the console - Shawn
+            console.log('created mapTilesCoords['+counter+'] as: ' + mapTilesCoords[j])
             counter++
         }
     }
@@ -83,7 +92,7 @@ function drawGrid(width, height) {
 // Function that draws each Hexagon Tile
 // Taken from: https://eperezcosano.github.io/hex-grid/
 function drawHexagon(x, y) {
-    ctx.fillStyle = 'grey';
+    ctx.fillStyle = 'white';
     ctx.beginPath();
     for (let i = 0; i < 6; i++) {
         ctx.lineTo(x + offset * Math.cos(a * i), y + offset * Math.sin(a * i));
@@ -94,7 +103,6 @@ function drawHexagon(x, y) {
 }
 
 // in order to create an object, we create a class that acts as the blueprint of the object before we create the object itself
-// TODO Currently not being used
 class TileSprite {
     // when you create a class, you need a constructor method, which is basically a function within the class and will be called every time we create a new object using the Sprite class
     // using braces makes it to where you do you not need to call position and velocity for every sprite
