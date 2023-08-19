@@ -12,7 +12,6 @@
 
   -- [Contributions](#contributions)
   https://eperezcosano.github.io/hex-grid/
-  https://www.youtube.com/watch?v=vyqbNFMDRGQ&ab_channel=ChrisCourses
 
   -- [Tests](#tests)
 
