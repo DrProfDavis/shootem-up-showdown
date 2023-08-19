@@ -19,9 +19,11 @@ ctx.fillStyle = 'grey';
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.fill();
 
-
 // empty array to fill mapTiles into
 var mapTilesCoords = [];
+
+// for showing details on clicked stuff
+const detailsDiv = document.getElementById("details");
 
 // in order to create an object, we create a class that acts as the blueprint of the object before we create the object itself
 class PlayerSprite {
@@ -39,22 +41,16 @@ class PlayerSprite {
         // begins drawing the shape to be filled (circle)
         ctx.beginPath();
         // creates arc in the center of x and x coords (x-coord, y-coord, radius, starting-angle, total-angle)
-        ctx.arc(this.position.x, this.position.y, 35, 0, Math.PI * 2);
+        ctx.arc(this.position.x, this.position.y, 25, 0, Math.PI * 2);
         // fills path with color
         ctx.fill();
     }
 }
 
-// controls animation
-function animate() {
-    // calls itself each frame
-    window.requestAnimationFrame(animate)
-}
-
 // Information to be used by the drawHexagon
 const a = 2 * Math.PI / 6;
 const r = 50;
-const offset = r*.9;
+const tileOffset = r*.9;
 
 // Creates a grid that fits the specified x and y and calls drawHexagon for each fittable Hex
 // Taken from: https://eperezcosano.github.io/hex-grid/
@@ -67,9 +63,6 @@ function drawGrid(width, height) {
             // Creates a reference to the coords in an array
             // mapTilesCoords[counter] = [x, y];
             mapTilesCoords[counter] = { x: x, y: y };
-            // Sees names of array that is created
-            // TODO I noticed at the end of each row of hexagons it maps 'undefined' in the console - Shawn
-            console.log('created mapTilesCoords['+counter+'] as: ' + mapTilesCoords[j])
             counter++
         }
     }
@@ -102,6 +95,7 @@ canvas.addEventListener("click", function (event) {
         console.log("Clicked tile:", clickedTileIndex);
         console.log("Adjacent tiles:", adjacentTileIndices);
         // Perform actions for the clicked tile and its adjacent tiles here
+        
     }
 });
 
@@ -148,7 +142,7 @@ function drawHexagon(x, y) {
     ctx.fillStyle = 'white';
     ctx.beginPath();
     for (let i = 0; i < 6; i++) {
-        ctx.lineTo(x + offset * Math.cos(a * i), y + offset * Math.sin(a * i));
+        ctx.lineTo(x + tileOffset * Math.cos(a * i), y + tileOffset * Math.sin(a * i));
     }
     ctx.closePath();
     ctx.stroke();
@@ -169,7 +163,7 @@ class TileSprite {
         ctx.fillStyle = 'grey';
         ctx.beginPath();
         for (let i = 0; i < 6; i++) {
-            ctx.lineTo(x + offset * Math.cos(a * i), y + offset * Math.sin(a * i));
+            ctx.lineTo(x + tileOffset * Math.cos(a * i), y + tileOffset * Math.sin(a * i));
         }
         ctx.closePath();
         ctx.stroke();
@@ -179,12 +173,12 @@ class TileSprite {
 
 function init() {
     // calls drawTileMap
-    drawGrid(canvas.width, canvas.height)
+    drawGrid(canvas.width*.8, canvas.height*.9)
 
     
     //JOEY NOTE - Player one can spawn in the tiles that are given in the array that we set in our function getAdjacentTiles. It makes the array based off of which tiles are touching the tile you put as the parameter, and then we randomly choose a number in that array. We then take that number, and then get the x,y coordinates of it, and then pass it onto playerOne = new PlayerSprite to set the spawn and draw the location of spawn
 
-    const playerOneSpawnLocations = getAdjacentTiles(22); //Can be changed to wherever the area you want to spawn player one at.
+    const playerOneSpawnLocations = getAdjacentTiles(44); //Can be changed to wherever the area you want to spawn player one at.
 
     const playerOneRandomSpawn = Math.floor(Math.random() * playerOneSpawnLocations.length);
 
@@ -193,7 +187,7 @@ function init() {
     //spawnPlayerOne gets the coordinates for us to pass it later
     const spawnPlayerOne = mapTilesCoords[spawnPlayerOneIndex];
 
-    const playerTwoSpawnLocations = getAdjacentTiles(94);
+    const playerTwoSpawnLocations = getAdjacentTiles(85);
     const playerTwoRandomSpawn = Math.floor(Math.random() * playerTwoSpawnLocations.length);
     const spawnPlayerTwoIndex = playerTwoSpawnLocations[playerTwoRandomSpawn];
     const spawnPlayerTwo = mapTilesCoords[spawnPlayerTwoIndex];
