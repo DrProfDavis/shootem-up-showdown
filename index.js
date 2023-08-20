@@ -52,8 +52,8 @@ const tileOffset = r * .9;
 // Taken from: https://eperezcosano.github.io/hex-grid/
 function drawGrid(width, height) {
     let counter = 1
-    for (let y = r; y + r * Math.sin(a) < height; y += 2 * r * Math.sin(a)) {
-        for (let x = r, j = 0; x + r * (1 + Math.cos(a)) < width; x += r * (1 + Math.cos(a)), y += (-1) ** j++ * r * Math.sin(a)) {
+    for (let y = r+50; y + r * Math.sin(a) < height; y += 2 * r * Math.sin(a)) {
+        for (let x = r+187.5, j = 0; x + r * (1 + Math.cos(a)) < width+187.5; x += r * (1 + Math.cos(a)), y += (-1) ** j++ * r * Math.sin(a)) {
             // Create object for each tile
             drawHexagon(x, y, counter);
             counter++
