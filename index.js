@@ -50,15 +50,28 @@ const tileOffset = r * .9;
 
 // Creates a grid that fits the specified x and y and calls drawHexagon for each fittable Hex
 // Taken from: https://eperezcosano.github.io/hex-grid/
-function drawGrid(width, height) {
+async function drawGrid(width, height) {
     let counter = 1
     for (let y = r+50; y + r * Math.sin(a) < height; y += 2 * r * Math.sin(a)) {
         for (let x = r+187.5, j = 0; x + r * (1 + Math.cos(a)) < width+187.5; x += r * (1 + Math.cos(a)), y += (-1) ** j++ * r * Math.sin(a)) {
             // Create object for each tile
+            // let gridPromise = new Promise(function (resolve) {
+            //     setTimeout(function () { resolve(drawHexagon(x, y, counter)); }, 3000);
+            // });
             drawHexagon(x, y, counter);
             counter++
+            // TODO Await function
+            // waitToDraw(x, y, counter)
         }
     }
+}
+
+// TODO setTimeout 
+async function myDisplay() {
+    let myPromise = new Promise(function (resolve) {
+        setTimeout(function () { resolve("I love You !!"); }, 3000);
+    });
+    document.getElementById("demo").innerHTML = await myPromise;
 }
 
 // TODO Removes unneeded tiles --Shawn Does not currently work. Giving weird error when uncommented
@@ -159,6 +172,12 @@ function drawHexagon(x, y, counter) {
     ctx.fill();
     // Creates a reference to the coords in an array
     mapTilesCoords[counter] = { x: x, y: y };
+    // Puts numbers inside the tiles
+    ctx.fillStyle = 'black';
+    ctx.font = '25px Trebuchet MS';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(counter, x, y);
 }
 
 function init() {
