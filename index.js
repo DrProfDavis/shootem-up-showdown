@@ -54,41 +54,40 @@ async function drawGrid(width, height) {
     let counter = 1
     for (let y = r+50; y + r * Math.sin(a) < height; y += 2 * r * Math.sin(a)) {
         for (let x = r+187.5, j = 0; x + r * (1 + Math.cos(a)) < width+187.5; x += r * (1 + Math.cos(a)), y += (-1) ** j++ * r * Math.sin(a)) {
-            // Create object for each tile
-            // let gridPromise = new Promise(function (resolve) {
-            //     setTimeout(function () { resolve(drawHexagon(x, y, counter)); }, 3000);
-            // });
             drawHexagon(x, y, counter);
             counter++
-            // TODO Await function
-            // waitToDraw(x, y, counter)
+            await waitforme(10);
         }
     }
+    afterGrid();
 }
 
-// TODO setTimeout 
-async function myDisplay() {
-    let myPromise = new Promise(function (resolve) {
-        setTimeout(function () { resolve("I love You !!"); }, 3000);
-    });
-    document.getElementById("demo").innerHTML = await myPromise;
+function waitforme(millisec) {
+    return new Promise(resolve => {
+        setTimeout(() => { resolve('') }, millisec);
+    })
 }
 
-// TODO Removes unneeded tiles --Shawn Does not currently work. Giving weird error when uncommented
-function removeTiles() {
-    console.log(mapTilesCoords)
-    console.log(mapTilesCoords[1])
-    // removeObjectWithId(mapTilesCoords, 2);
-}
-
-// removes one object within an array
-function removeObjectWithId(arr, id) {
-    console.log('Removing: ' + arr[id])
-    const objWithIdIndex = arr.findIndex((obj) => obj.id === id);
-    if (objWithIdIndex > -1) {
-        arr.splice(objWithIdIndex, 1);
+// Function that draws each Hexagon Tile
+function drawHexagon(x, y, counter) {
+    ctx.fillStyle = 'white';
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 8;
+    ctx.beginPath();
+    for (let i = 0; i < 6; i++) {
+        ctx.lineTo(x + tileOffset * Math.cos(a * i), y + tileOffset * Math.sin(a * i));
     }
-    return arr;
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+    // Creates a reference to the coords in an array
+    mapTilesCoords[counter] = { x: x, y: y };
+    // Puts numbers inside the tiles
+    ctx.fillStyle = 'black';
+    ctx.font = '25px Trebuchet MS';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(counter, x, y);
 }
 
 //JOEY NOTE - Me and Edi had to use ChatGPT for this for help, but basically what this function does is that it makes it so that the hexagons, when you click them, currently console.log the tile that is clicked, and the adjacent tiles to the tile that you clicked. clickedTileIndex variable is set as 0 (or can be any negative number) just so that the if statement will always be true because our tiles start at 1, therefore it's impossible to click a tile at 0, or a tile at a negative number.
@@ -160,50 +159,24 @@ function getAdjacentTiles(tileIndex) {
     return adjacentTileIndices;
 }
 
-// Function that draws each Hexagon Tile
-function drawHexagon(x, y, counter) {
-    ctx.fillStyle = 'white';
-    ctx.beginPath();
-    for (let i = 0; i < 6; i++) {
-        ctx.lineTo(x + tileOffset * Math.cos(a * i), y + tileOffset * Math.sin(a * i));
-    }
-    ctx.closePath();
-    ctx.stroke();
-    ctx.fill();
-    // Creates a reference to the coords in an array
-    mapTilesCoords[counter] = { x: x, y: y };
-    // Puts numbers inside the tiles
-    ctx.fillStyle = 'black';
-    ctx.font = '25px Trebuchet MS';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(counter, x, y);
-}
-
-function init() {
-    // calls drawTileMap
-    drawGrid(canvas.width * .8, canvas.height * .9)
-
-    // erase unneeded tiles
-    removeTiles();
-
+function afterGrid() {
     //JOEY NOTE - Player one can spawn in the tiles that are given in the array that we set in our function getAdjacentTiles. It makes the array based off of which tiles are touching the tile you put as the parameter, and then we randomly choose a number in that array. We then take that number, and then get the x,y coordinates of it, and then pass it onto playerOne = new PlayerSprite to set the spawn and draw the location of spawn
-
+    
     const playerOneSpawnLocations = getAdjacentTiles(44); //Can be changed to wherever the area you want to spawn player one at.
-
+    
     const playerOneRandomSpawn = Math.floor(Math.random() * playerOneSpawnLocations.length);
-
+    
     //spawnPlayerOneIndex gets the tile that the player is spawning on
     const spawnPlayerOneIndex = playerOneSpawnLocations[playerOneRandomSpawn];
     //spawnPlayerOne gets the coordinates for us to pass it later
     const spawnPlayerOne = mapTilesCoords[spawnPlayerOneIndex];
-
+    
     const playerTwoSpawnLocations = getAdjacentTiles(85);
     const playerTwoRandomSpawn = Math.floor(Math.random() * playerTwoSpawnLocations.length);
     const spawnPlayerTwoIndex = playerTwoSpawnLocations[playerTwoRandomSpawn];
     const spawnPlayerTwo = mapTilesCoords[spawnPlayerTwoIndex];
-
-
+    
+    
     const playerOne = new PlayerSprite({
         // which tile will playerOne spawn at
         x: spawnPlayerOne.x,
@@ -224,6 +197,13 @@ function init() {
     playerOne.draw()
     // selects playerTwo and calls draw method
     playerTwo.draw()
+
+}
+
+async function init() {
+    // calls drawTileMap
+    drawGrid(canvas.width * .8, canvas.height * .9)
+
 }
 
 init()
