@@ -14,7 +14,7 @@ class HexagonCanvas {
 
         this.drawHexagon();
     }
-
+    
 
 
     drawHexagon() {
@@ -39,11 +39,18 @@ class HexagonCanvas {
 
         this.ctx.fill();
         this.ctx.stroke();
+        
     }
 }
 
 
-function createHexagons(numberOfHexagons)
+function waitforme(millisec) {
+    return new Promise(resolve => {
+        setTimeout(() => { resolve('') }, millisec);
+    })
+}
+
+async function createHexagons(numberOfHexagons)
 {
     //Creating an array to store each hexagon that we make that will be in a different canvas.
     const canvasIds = [];
@@ -63,10 +70,13 @@ function createHexagons(numberOfHexagons)
         //Push the canvasId in our array list and redraw our canvas with the updated hexagons
         canvasIds.push(canvasId);
         const hexagon = new HexagonCanvas(canvasId);
+
+        await waitforme(100);
     }
 
     return canvasIds;
 }
 
 
-const canvasIds = createHexagons(7);
+
+const canvasIds = createHexagons(3);
