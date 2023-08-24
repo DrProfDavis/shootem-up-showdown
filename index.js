@@ -47,19 +47,26 @@ class PlayerSprite {
 const a = 2 * Math.PI / 6;
 const r = 50;
 const tileOffset = r * .9;
+var tiles = []
+let firstTime = true;
 
 // Creates a grid that fits the specified x and y and calls drawHexagon for each fittable Hex
 // Taken from: https://eperezcosano.github.io/hex-grid/
 async function drawGrid(width, height) {
     let counter = 1
-    for (let y = r+50; y + r * Math.sin(a) < height; y += 2 * r * Math.sin(a)) {
-        for (let x = r+187.5, j = 0; x + r * (1 + Math.cos(a)) < width+187.5; x += r * (1 + Math.cos(a)), y += (-1) ** j++ * r * Math.sin(a)) {
-            drawHexagon(x, y, counter);
+    for (let y = r + 50; y + r * Math.sin(a) < height; y += 2 * r * Math.sin(a)) {
+        for (let x = r + 187.5, j = 0; x + r * (1 + Math.cos(a)) < width + 187.5; x += r * (1 + Math.cos(a)), y += (-1) ** j++ * r * Math.sin(a)) {
+            const tile = new drawTile(x, y, counter);
+            tiles[counter] = tile
             counter++
-            await waitforme(10);
+            if (firstTime == true) {
+                await waitforme(25);
+            }
         }
     }
+    console.log(tiles)
     afterGrid();
+    firstTime = false
 }
 
 function waitforme(millisec) {
@@ -69,7 +76,17 @@ function waitforme(millisec) {
 }
 
 // Function that draws each Hexagon Tile
-function drawHexagon(x, y, counter) {
+class drawTile {
+    constructor(x, y, counter) {
+        drawHexagon(x, y);
+        // Creates a reference to the coords in an array
+        mapTilesCoords[counter] = { x: x, y: y };
+        // Puts numbers inside the tiles
+        drawLetters(x, y, counter);
+    }
+}
+
+function drawHexagon(x, y) {
     ctx.fillStyle = 'white';
     ctx.strokeStyle = 'black';
     ctx.lineWidth = 8;
@@ -80,9 +97,9 @@ function drawHexagon(x, y, counter) {
     ctx.closePath();
     ctx.stroke();
     ctx.fill();
-    // Creates a reference to the coords in an array
-    mapTilesCoords[counter] = { x: x, y: y };
-    // Puts numbers inside the tiles
+}
+
+function drawLetters(x, y, counter) {
     ctx.fillStyle = 'black';
     ctx.font = '25px Trebuchet MS';
     ctx.textAlign = 'center';
@@ -100,10 +117,10 @@ canvas.addEventListener("click", function (event) {
 
     // Find the clicked tile
     for (let i = 1; i < mapTilesCoords.length; i++) {
-        const tile = mapTilesCoords[i];
-        if (tile) {
+        const tileCoord = mapTilesCoords[i];
+        if (tileCoord) {
             const distance = Math.sqrt(
-                (mouseX - tile.x) ** 2 + (mouseY - tile.y) ** 2
+                (mouseX - tileCoord.x) ** 2 + (mouseY - tileCoord.y) ** 2
             );
             if (distance <= r) {
                 clickedTileIndex = i;
@@ -117,7 +134,8 @@ canvas.addEventListener("click", function (event) {
         console.log("Clicked tile:", clickedTileIndex);
         console.log("Adjacent tiles:", adjacentTileIndices);
         // Perform actions for the clicked tile and its adjacent tiles here
-
+        tiles.splice(0, 1); // first element removed
+        console.log(tiles)
     }
 });
 
@@ -161,22 +179,22 @@ function getAdjacentTiles(tileIndex) {
 
 function afterGrid() {
     //JOEY NOTE - Player one can spawn in the tiles that are given in the array that we set in our function getAdjacentTiles. It makes the array based off of which tiles are touching the tile you put as the parameter, and then we randomly choose a number in that array. We then take that number, and then get the x,y coordinates of it, and then pass it onto playerOne = new PlayerSprite to set the spawn and draw the location of spawn
-    
+
     const playerOneSpawnLocations = getAdjacentTiles(44); //Can be changed to wherever the area you want to spawn player one at.
-    
+
     const playerOneRandomSpawn = Math.floor(Math.random() * playerOneSpawnLocations.length);
-    
+
     //spawnPlayerOneIndex gets the tile that the player is spawning on
     const spawnPlayerOneIndex = playerOneSpawnLocations[playerOneRandomSpawn];
     //spawnPlayerOne gets the coordinates for us to pass it later
     const spawnPlayerOne = mapTilesCoords[spawnPlayerOneIndex];
-    
+
     const playerTwoSpawnLocations = getAdjacentTiles(85);
     const playerTwoRandomSpawn = Math.floor(Math.random() * playerTwoSpawnLocations.length);
     const spawnPlayerTwoIndex = playerTwoSpawnLocations[playerTwoRandomSpawn];
     const spawnPlayerTwo = mapTilesCoords[spawnPlayerTwoIndex];
-    
-    
+
+
     const playerOne = new PlayerSprite({
         // which tile will playerOne spawn at
         x: spawnPlayerOne.x,
@@ -197,7 +215,6 @@ function afterGrid() {
     playerOne.draw()
     // selects playerTwo and calls draw method
     playerTwo.draw()
-
 }
 
 async function init() {
@@ -207,5 +224,3 @@ async function init() {
 }
 
 init()
-
-//ToDO make clickable tiles
