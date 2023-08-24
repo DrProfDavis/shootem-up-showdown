@@ -134,8 +134,9 @@ canvas.addEventListener("click", function (event) {
         console.log("Clicked tile:", clickedTileIndex);
         console.log("Adjacent tiles:", adjacentTileIndices);
         // Perform actions for the clicked tile and its adjacent tiles here
-        tiles.splice(0, 1); // first element removed
-        console.log(tiles)
+        // // first element removed
+        // tiles.splice(0, 1);
+        // console.log(tiles)
     }
 });
 
