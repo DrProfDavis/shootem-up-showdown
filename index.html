@@ -6,30 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .mainCanvas {
+        canvas {
             border: 8px solid black;
             border-radius: 50px;
         }
-        .hexagonContainer {
-            opacity: 0;
-            animation: fadeIn 2s forwards;
-        }
         #details {
             margin-top: 10px;
-        }
-        @keyframes fadeIn {
-            to {
-                opacity: 1; /* Gradually increase opacity to 1 */
-            }
         }
     </style>
 </head>
 
 <body>
     <!-- canvas renders everything onto the page -->
-    <canvas class="mainCanvas" style="position:relative">
-        <div id="hexagonContainer" style="position:absolute"></div>
-    </canvas>
+    <canvas></canvas>
     <!-- references our javascript file to be used in the html -->
     <script src="index.js"></script>
 </body>

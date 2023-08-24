@@ -1,21 +1,21 @@
 // document.querySelector('canvas') selects the element 'canvas' from our index.html
 // 'const canvas will' store that for us to use here
-const mainCanvas = document.querySelector('canvas')
+const canvas = document.querySelector('canvas')
 
 // selects our canvas context
 // this is responsible for drawing out shapes and sprites onto our game
 // the reason its named ctx is because we are going to use it a lot and we want to save time
-const ctx = mainCanvas.getContext('2d')
+const ctx = canvas.getContext('2d')
 
 // resizes our canvas to fit the computer screen
 const resolution = { x: 1600, y: 900 }
-mainCanvas.width = resolution.x
-mainCanvas.height = resolution.y
+canvas.width = resolution.x
+canvas.height = resolution.y
 
 // calls our canvas context to create a rectangle background for our game
 // fillRect takes four arguments (x-position, y-position, width, height)
 ctx.fillStyle = 'grey';
-ctx.fillRect(0, 0, mainCanvas.width, mainCanvas.height);
+ctx.fillRect(0, 0, canvas.width, canvas.height);
 ctx.fill();
 
 // empty array to fill mapTiles into
@@ -47,74 +47,69 @@ class PlayerSprite {
 const a = 2 * Math.PI / 6;
 const r = 50;
 const tileOffset = r * .9;
+var tiles = []
+let firstTime = true;
 
 // Creates a grid that fits the specified x and y and calls drawHexagon for each fittable Hex
 // Taken from: https://eperezcosano.github.io/hex-grid/
 async function drawGrid(width, height) {
-    //Creating an array to store each hexagon that we make that will be in a different canvas.
-    const canvasIds = [];
-    //Going to put them in the hexagonContainer div
-    const hexagonContainer = document.getElementById("hexagonContainer");
     let counter = 1
     for (let y = r + 50; y + r * Math.sin(a) < height; y += 2 * r * Math.sin(a)) {
         for (let x = r + 187.5, j = 0; x + r * (1 + Math.cos(a)) < width + 187.5; x += r * (1 + Math.cos(a)), y += (-1) ** j++ * r * Math.sin(a)) {
-            const canvasId = `hexagonCanvas${counter}`;
-            const canvas = document.createElement("canvas");
-            canvas.id = canvasId;
-            hexagonContainer.appendChild(canvas);
-            canvasIds.push(canvasId);
-            const hexagon = new HexagonCanvas(x, y, canvasId, counter);
+            const tile = new drawTile(x, y, counter);
+            tiles[counter] = tile
             counter++
-            // await tileDelay(25);
+            if (firstTime == true) {
+                await waitforme(25);
+            }
         }
     }
+    console.log(tiles)
     afterGrid();
+    firstTime = false
 }
 
-function tileDelay(millisec) {
+function waitforme(millisec) {
     return new Promise(resolve => {
         setTimeout(() => { resolve('') }, millisec);
     })
 }
 
-class HexagonCanvas {
-    // constructor(canvasId, radius, color) {
-    constructor(x, y, canvasId, counter) {
-        this.canvas = document.getElementById(canvasId);
-        this.ctx = this.canvas.getContext("2d");
-
-        this.canvas.width = r;
-        this.canvas.height = r;
-
-        this.drawHexagon(x, y, counter);
-    }
-
-    drawHexagon(x, y, counter) {
-        ctx.fillStyle = 'white';
-        ctx.strokeStyle = 'black';
-        ctx.lineWidth = 8;
-        ctx.beginPath();
-        for (let i = 0; i < 6; i++) {
-            ctx.lineTo(x + tileOffset * Math.cos(a * i), y + tileOffset * Math.sin(a * i));
-        }
-        ctx.closePath();
-        ctx.stroke();
-        ctx.fill();
+// Function that draws each Hexagon Tile
+class drawTile {
+    constructor(x, y, counter) {
+        drawHexagon(x, y);
         // Creates a reference to the coords in an array
         mapTilesCoords[counter] = { x: x, y: y };
         // Puts numbers inside the tiles
-        ctx.fillStyle = 'black';
-        ctx.font = '25px Trebuchet MS';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(counter, x, y);
+        drawLetters(x, y, counter);
     }
 }
 
+function drawHexagon(x, y) {
+    ctx.fillStyle = 'white';
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 8;
+    ctx.beginPath();
+    for (let i = 0; i < 6; i++) {
+        ctx.lineTo(x + tileOffset * Math.cos(a * i), y + tileOffset * Math.sin(a * i));
+    }
+    ctx.closePath();
+    ctx.stroke();
+    ctx.fill();
+}
+
+function drawLetters(x, y, counter) {
+    ctx.fillStyle = 'black';
+    ctx.font = '25px Trebuchet MS';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(counter, x, y);
+}
+
 //JOEY NOTE - Me and Edi had to use ChatGPT for this for help, but basically what this function does is that it makes it so that the hexagons, when you click them, currently console.log the tile that is clicked, and the adjacent tiles to the tile that you clicked. clickedTileIndex variable is set as 0 (or can be any negative number) just so that the if statement will always be true because our tiles start at 1, therefore it's impossible to click a tile at 0, or a tile at a negative number.
-// TODO Replace naimCanvas with tiles canvas
-mainCanvas.addEventListener("click", function (event) {
-    const rect = mainCanvas.getBoundingClientRect();
+canvas.addEventListener("click", function (event) {
+    const rect = canvas.getBoundingClientRect();
     const mouseX = event.clientX - rect.left;
     const mouseY = event.clientY - rect.top;
 
@@ -122,10 +117,10 @@ mainCanvas.addEventListener("click", function (event) {
 
     // Find the clicked tile
     for (let i = 1; i < mapTilesCoords.length; i++) {
-        const tile = mapTilesCoords[i];
-        if (tile) {
+        const tileCoord = mapTilesCoords[i];
+        if (tileCoord) {
             const distance = Math.sqrt(
-                (mouseX - tile.x) ** 2 + (mouseY - tile.y) ** 2
+                (mouseX - tileCoord.x) ** 2 + (mouseY - tileCoord.y) ** 2
             );
             if (distance <= r) {
                 clickedTileIndex = i;
@@ -139,8 +134,9 @@ mainCanvas.addEventListener("click", function (event) {
         console.log("Clicked tile:", clickedTileIndex);
         console.log("Adjacent tiles:", adjacentTileIndices);
         // Perform actions for the clicked tile and its adjacent tiles here
-        // TODO Warning, tis line of code will cause your mouse clicks to delete the entire canvas
-        // canvas.style.display = "none";
+        // // first element removed
+        // tiles.splice(0, 1);
+        // console.log(tiles)
     }
 });
 
@@ -220,15 +216,12 @@ function afterGrid() {
     playerOne.draw()
     // selects playerTwo and calls draw method
     playerTwo.draw()
-
 }
 
 async function init() {
     // calls drawTileMap
-    drawGrid(mainCanvas.width * .8, mainCanvas.height * .9)
+    drawGrid(canvas.width * .8, canvas.height * .9)
 
 }
 
 init()
-
-//ToDO make clickable tiles
