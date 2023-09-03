@@ -1,0 +1,81 @@
+.app {
+    /* TODO Needs to be center no matter what size of screen */
+    width: 1600px;
+    height: 900px;
+    margin: 5px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: solid 8px black;
+    border-radius: 50px;
+    background: grey;
+}
+
+.gameboard {
+    width: 1200px;
+    height: 675px;
+    /* display: flex;
+    flex-wrap: wrap; */
+    border: solid 1px black;
+    background: rgba(255, 255, 255, 0.221);
+}
+
+.hexagon {
+    width: 100px;
+    height: 100px;
+    border: solid 2px black;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    fill: white;
+    color: black;
+}
+
+svg {}
+
+/*
+Russian blue pattern:
+#7be3f6
+#4499a9
+#276a76
+#133b43
+#03090a
+*/
+svg g {
+    fill: #4499a9;
+    fill-opacity: 0.6;
+}
+
+svg g:hover {
+    fill: #7be3f6;
+    fill-opacity: 0.7;
+}
+
+svg g:hover text {
+    fill-opacity: 1;
+}
+
+svg g polygon {
+    stroke: #000000;
+    stroke-width: 0.2;
+    transition: fill-opacity .5s;
+}
+
+svg g text {
+    font-size: 0.22em;
+    fill: rgb(0, 0, 0);
+    fill-opacity: 0.7;
+    transition: fill-opacity .5s;
+}
+
+svg path {
+    fill: none;
+    stroke: #7be3f6;
+    stroke-width: 0.2em;
+    stroke-opacity: 0.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
