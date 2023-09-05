@@ -18,18 +18,17 @@ const Grid = () => {
     return (
         <div className="app">
             <div className='gameboard'>
-                <HexGrid width={1200} height={675}>
+                <HexGrid width={1280} height={720}>
                     <Layout spacing={1.05} size={{ x: 6, y: 6 }} origin={{ x: 0, y: 0 }}>
                         {gridArrayState.map((coord, i) => {
                             const [q,r] = coord
                             return (
-                                <Cell q={q} r={r} />
+                                <Cell key={i} q={q} r={r} i={i}/>
                             )
                         })}
                     </Layout>
                 </HexGrid>
             </div>
-            <p></p>
         </div>
     );
 }
