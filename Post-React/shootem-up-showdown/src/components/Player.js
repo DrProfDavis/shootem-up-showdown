@@ -1,7 +1,8 @@
 import React from "react";
 import playerImage from "../images/cowboy.png"; 
+import playerImage2 from "../images/cowboy2.png"; 
 
-const Player = () => {
+const Player1 = () => {
   return (
   
       <image className ="player" href={playerImage} width="10" height="10" />
@@ -9,4 +10,12 @@ const Player = () => {
   );
 };
 
-export default Player;
+const Player2 = () => {
+  return (
+  
+      <image className ="player" href={playerImage2} width="10" height="10" />
+
+  );
+};
+
+export {Player1, Player2};
