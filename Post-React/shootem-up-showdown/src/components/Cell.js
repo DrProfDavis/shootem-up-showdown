@@ -20,7 +20,7 @@ const Cell = ({ q, r, i}) => {
             
             
             {<Text>
-                {i} {q} {r}
+                {i}
             </Text>}
             {/* {isPlayerCell ? <Player /> : null} */}
             {randomPlace1.i === i ? <Player1 /> : null}
