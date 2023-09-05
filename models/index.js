@@ -1,3 +1,4 @@
 const User = require('./User');
+const Leaderboard = require('./Leaderboard');
 
-module.exports = { User, Thought };
+module.exports = { User, Leaderboard };
