@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { HexGrid, Layout, Hexagon, Text, Pattern, Path, Hex } from 'react-hexgrid';
 import Cell from './Cell'
+import Player from './Player'; // Import the Player component
 
 const gridArray = [
     [-8, 1], [-7, 0], [-6, 0], [-5, -1], [-4, -1], [-3, -2], [-2, -2], [-1, -3], [0, -3], [1, -4], [2, -4], [3, -5], [4, -5], [5, -6], [6, -6], [7, -7], [8, -7],
@@ -13,23 +14,33 @@ const gridArray = [
     [-7, 7], [-5, 6], [-3, 5], [-1, 4], [1, 3], [3, 2], [5, 1], [7, 0]
 ]
 
+
 const Grid = () => {
-    const [gridArrayState , useGridArrayState] = useState(gridArray)
+    const [gridArrayState, useGridArrayState] = useState(gridArray)
+
+    const [playerPosition, setPlayerPosition] = useState({ q: 5, r: 1 }); // Initialize player position
+
+  // Function to update the player's position
+    const movePlayer = (q, r) => {
+        setPlayerPosition({ q, r });
+    };
+
     return (
         <div className="app">
             <div className='gameboard'>
                 <HexGrid width={1200} height={675}>
                     <Layout spacing={1.05} size={{ x: 6, y: 6 }} origin={{ x: 0, y: 0 }}>
                         {gridArrayState.map((coord, i) => {
-                            const [q,r] = coord
+                            const [q, r] = coord
                             return (
-                                <Cell q={q} r={r} />
+                                <Cell key={i} q={q} r={r} i={i}/>
                             )
                         })}
                     </Layout>
                 </HexGrid>
+                    {/* Render the Player component with the player's position */}
+                    <Player q={playerPosition.q} r={playerPosition.r} />
             </div>
-            <p></p>
         </div>
     );
 }
