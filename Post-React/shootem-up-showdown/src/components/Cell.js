@@ -65,13 +65,36 @@ const places = [
     {i: 35},
 ];
 
+const places2 = [
+    {i: 80},
+    {i: 63},
+    {i: 81},
+    {i: 98},
+    {i: 97},
+    {i: 96},
+    {i: 79},
+];
+
 const getRandomPlace = () => {
     const randomIndex = Math.floor(Math.random() * places.length);
+    console.log(`Player 1 Spawned on: ${places[randomIndex].i}`);
     return places[randomIndex];
+    
+};
+
+// Dirty Player 2 For Now
+const getRandomPlace2 = () => {
+    const randomIndex = Math.floor(Math.random() * places2.length);
+    console.log(`Player 1 Spawned on: ${places[randomIndex].i}`);
+    return places2[randomIndex];
+    
 };
 
 
+
 const randomPlace = getRandomPlace();
+// Dirty Player 2 For Now
+const randomPlace2 = getRandomPlace2();
 
 
 const Cell = ({ q, r, i}) => {
@@ -89,7 +112,8 @@ const Cell = ({ q, r, i}) => {
                 {i} {q} {r}
             </Text>} */}
             {/* {isPlayerCell ? <Player /> : null} */}
-            {randomPlace.i === i ? <Player /> : null}
+            {randomPlace.i === i ? <Player playerNumber={1}/> : null}
+            {randomPlace2.i === i ? <Player playerNumber={2}/> : null}
         </Hexagon>
     )
 }
