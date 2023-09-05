@@ -14,36 +14,19 @@
 }
 
 .gameboard {
-    width: 1200px;
-    height: 675px;
+    width: 1280px;
+    height: 720px;
     /* display: flex;
     flex-wrap: wrap; */
     border: solid 1px black;
     background: rgba(255, 255, 255, 0.221);
+    border-radius: 50px;
 }
 
 .hexagon {
-    width: 100px;
-    height: 100px;
-    border: solid 2px black;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     fill: white;
-    color: black;
 }
 
-svg {}
-
-/*
-Russian blue pattern:
-#7be3f6
-#4499a9
-#276a76
-#133b43
-#03090a
-*/
 svg g {
     fill: #4499a9;
     fill-opacity: 0.6;

@@ -1,10 +1,17 @@
+import React from 'react';
 import { Hexagon, Text } from 'react-hexgrid'
 
-const Cell = ({ q, r }) => {
+let handleClick = (i) => {
+    // Your click event logic goes here
+    alert(i);
+    console.log(i)
+}
+
+const Cell = ({ q, r, i }) => {
     return (
-        <Hexagon key={`${q}:${r}`} q={q} r={r}>
+        <Hexagon onClick={()=>handleClick(i)} key={i} q={q} r={r}>
             <Text>
-                {`${q}:${r}`}
+                {i}
             </Text>
         </Hexagon>
     )
