@@ -1,5 +1,7 @@
-const { connect, connection } = require('mongoose');
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-connect('mongodb+srv://root:root@cluster0.plz2cr8.mongodb.net/showdownDB');
 
-module.exports = connection;
+mongoose.connect(process.env.MONGODB_URI);
+
+module.exports = mongoose.connection;
