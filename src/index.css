@@ -1,3 +1,17 @@
+
+body {
+    margin: 0;
+    background: #151616;
+    font-family: roboto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
 .app {
     /* TODO Needs to be center no matter what size of screen */
     width: 1600px;
@@ -7,7 +21,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     border: solid 8px black;
     border-radius: 50px;
     background: grey;
@@ -69,4 +83,38 @@ svg path {
 
 .player {
     transform: translate(-5%, -5%);
+}
+
+:root {
+    --bg: #242526;
+    --bg-accent: #484a4d;
+    --text-color: #dadce1;
+    --nav-size: 60px;
+    --border: 1px solid #474a4d;
+    --border-radius: 8px;
+    --speed: 500ms;
+}
+
+.dropdown {
+    transform: translateX(-45%);
+    background-color: var(--bg);
+    border: var(--border);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    overflow: hidden;
+}
+
+.menu-item {
+    height: 8px;
+    display: flex;
+    align-items: center;
+    border-radius: var(--border-radius);
+    transition: background var(--speed);
+    padding: 1.6em;
+    text-decoration: none;
+    color: white;
+}
+
+.menu-item:hover {
+    background-color: #525357;
 }

@@ -6,6 +6,7 @@ import {PlayerSpawn1, PlayerSpawn2} from './PlayerSpawn'
 
 
 
+
 const randomPlace1 = PlayerSpawn1();
 const randomPlace2 = PlayerSpawn2();
 const handleClick = HandleClick;
