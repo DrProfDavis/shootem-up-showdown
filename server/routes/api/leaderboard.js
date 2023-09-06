@@ -4,7 +4,7 @@ const {
   getSingleLeaderboard,
   createLeaderboard,
   deleteSingleLeaderboard,
-} = require('../../controllers/appController');
+} = require('../../server/controllers/appController');
 
 // /api/leaderboards
 router.route('/')
