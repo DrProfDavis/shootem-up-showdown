@@ -39,6 +39,7 @@ const Cell = ({ q, r, i }) => {
                     console.log(`Player ${clickedPlayer.playerNumber} moved to i: ${newPosition.i} q: ${newPosition.q}, r: ${newPosition.r}`);
 
                     setPlayer1Location(newPosition.i);
+                    console.log(player1Location);
 
                 });
             }
