@@ -8,6 +8,7 @@ import { AdjacentTiles } from './AdjacentTiles';
 import { movePlayerToRandomAdjacentTile, movePlayerToAdjacentTile } from './PlayerMovement';
 
 
+
 const randomPlace1 = PlayerSpawn1();
 const randomPlace2 = PlayerSpawn2();
 
