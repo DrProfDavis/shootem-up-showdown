@@ -11,8 +11,7 @@
   -- [Usage](#usage)
 
   -- [Contributions](#contributions)
-  https://eperezcosano.github.io/hex-grid/
-
+  
   -- [Tests](#tests)
 
   -- [License](#license)
@@ -29,7 +28,7 @@
 
 ## CONTRIBUTIONS
 
-  na
+  https://eperezcosano.github.io/hex-grid/
 
 ## TESTS
 
