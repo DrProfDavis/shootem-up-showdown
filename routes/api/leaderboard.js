@@ -3,22 +3,23 @@ const {
   getLeaderboards,
   getSingleLeaderboard,
   createLeaderboard,
-  deleteLeaderboard,
+  deleteSingleLeaderboard,
 } = require('../../controllers/appController');
 
 // /api/leaderboards
-router.route('/').get(getLeaderboards).post(createLeaderboard);
+router.route('/')
+// GET all leadboard scores
+.get(getLeaderboards)
+// CREATE new leaderboard score
+.post(createLeaderboard);
 
 // /api/leaderboards/:leaderboardId
 router
   .route('/:leaderboardId')
+  // GET a singtle leaderboard score
   .get(getSingleLeaderboard)
-  .delete(deleteLeaderboard);
+  // DELETE a single leaderboard score
+  .delete(deleteSingleLeaderboard);
 
-// /api/leaderboards/:leaderboardId/tags
-router.route('/:leaderboardId/tags').post(addTag);
-
-// /api/leaderboards/:leaderboardId/tags/:tagId
-router.route('/:leaderboardId/tags/:tagId').delete(removeTag);
 
 module.exports = router;

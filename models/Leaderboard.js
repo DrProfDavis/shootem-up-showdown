@@ -12,8 +12,6 @@ const leaderboardSchema = new Schema(
     username: { 
       type: String,
       required: true,
-      unique: true,
-      trim: true
     },
     score: { 
       type: Number,
