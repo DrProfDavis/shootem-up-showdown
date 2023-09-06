@@ -4,7 +4,7 @@ const {
   createUser,
   getSingleUser,
   deleteSingleUser
-} = require('../../controllers/userController');
+} = require('../../server/controllers/userController');
 
 // /api/users
 router
