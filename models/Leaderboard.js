@@ -3,13 +3,22 @@ const { Schema, model } = require('mongoose');
 // Schema to create leaderboard model
 const leaderboardSchema = new Schema(
   {
+    // ID for game scores
+    leaderboardId: {
+      type: Schema.Types.ObjectId,
+      default: () => new Types.ObjectId(),
+    },
+    // ? replace as reference key
     username: { 
       type: String,
       required: true,
       unique: true,
       trim: true
     },
-    // ? score
+    score: { 
+      type: Number,
+      required: true
+    },
   },
   {
     // Mongoose supports two Schema options to transform Objects after querying MongoDb: toJSON and toObject.
