@@ -20,7 +20,8 @@ const userSchema = new Schema(
     },
     password: { 
       type: String,
-      required: true,
+      required: true,      
+      // must match a valid password
       match: [/^(?=.*[a-z])(?=.*[A-Z]).{8,}$/, 'Passwords must have at least 8 characters, 1 uppercase letter, and 1 lowercase letter']
     },    
     leaderboard: [
@@ -41,7 +42,12 @@ const userSchema = new Schema(
 );
 
 
-// ? SET VIRTUAL
+//virtual called leaderboardCount that retrieves the length of the user's leaderboard (game scores) array field on query 
+userSchema
+  .virtual('leaderboardCount')
+  .get(function () {
+    return this.leaderboard.length;
+  });
 
 // Initialize our User model
 const User = model('user', userSchema);
