@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const bcrypt = require('bcrypt');
 
 // Schema to create User model
 const userSchema = new Schema(
@@ -12,7 +13,7 @@ const userSchema = new Schema(
     },
     email: { 
       type: String,
-      required: true,
+      required: false,
       unique: true,
       required: true,
       // must match a valid email address
@@ -27,7 +28,7 @@ const userSchema = new Schema(
     leaderboard: [
       {
         type: Schema.Types.ObjectId,
-        ref: 'Leaderboard',
+        ref: 'leaderboard',
       },
     ],
   },
@@ -41,6 +42,18 @@ const userSchema = new Schema(
   }
 );
 
+userSchema.pre('save', async function (next) {
+  if (this.isNew || this.isModified('password')) {
+    const saltRounds = 10;
+    this.password = await bcrypt.hash(this.password, saltRounds);
+  }
+
+  next();
+});
+
+userSchema.methods.isCorrectPassword = async function (password) {
+  return bcrypt.compare(password, this.password);
+};
 
 //virtual called leaderboardCount that retrieves the length of the user's leaderboard (game scores) array field on query 
 userSchema

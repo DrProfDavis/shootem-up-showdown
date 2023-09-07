@@ -38,6 +38,13 @@
 
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## ASSETS
+  The provided video and link offer a demonstration of how to use GraphQL with the associated schema.
+
+  ![The logged-in user's profile page displays thoughts they've created and a form to create more thoughts.](./assets/Walk%20Through%20Demo.mp4)
+
+  https://watch.screencastify.com/v/EJ0HL48XEIQeJpaRSTmv 
+
 ## CONTACTS
 
   GitHub: [DrProfDavis](https://github.com/DrProfDavis)
