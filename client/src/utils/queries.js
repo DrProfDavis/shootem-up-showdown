@@ -6,39 +6,28 @@ export const QUERY_USER = gql`
       _id
       username
       email
-      thoughts {
+      leaderboard {
         _id
-        thoughtText
-        createdAt
+        score
       }
     }
   }
 `;
 
-export const QUERY_THOUGHTS = gql`
-  query getThoughts {
-    thoughts {
+export const QUERY_LEADERBOARDS = gql`
+  query getLeaderboard {
+    leaderboard {
       _id
-      thoughtText
-      thoughtAuthor
-      createdAt
+      score
     }
   }
 `;
 
-export const QUERY_SINGLE_THOUGHT = gql`
-  query getSingleThought($thoughtId: ID!) {
-    thought(thoughtId: $thoughtId) {
+export const QUERY_SINGLE_LEADERBOARD = gql`
+  query getSingleLeaderboard($leaderboardId: ID!) {
+    leaderboard(leaderboardId: $leaderboardId) {
       _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-        commentAuthor
-        createdAt
-      }
+      score
     }
   }
 `;
@@ -49,11 +38,9 @@ export const QUERY_ME = gql`
       _id
       username
       email
-      thoughts {
+      leaderboard {
         _id
-        thoughtText
-        thoughtAuthor
-        createdAt
+        score
       }
     }
   }
