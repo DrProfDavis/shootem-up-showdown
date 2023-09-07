@@ -1,9 +1,10 @@
 // import{ useState } from "react"
 import React from 'react';
 import Grid from './components/Grid'
-import Home from './pages/Home';
+import Game from './pages/Game';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
+import Home from './pages/Home';
 
 import {
   ApolloClient,
@@ -46,6 +47,10 @@ const App = () => {
           <Routes>
               <Route 
                 path="/"
+                element={<Game />}
+              />
+              <Route 
+                path="/home" 
                 element={<Home />}
               />
               <Route 
