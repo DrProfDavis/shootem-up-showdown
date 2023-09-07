@@ -29,8 +29,8 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
-    addLeaderboard(products: [ID]!): Leaderboard
-    login(email: String!, password: String!): Auth
+    addLeaderboard(score: Int!): Leaderboard
+    login(email: String!, username:String!, password: String!): Auth
   }
 `;
 

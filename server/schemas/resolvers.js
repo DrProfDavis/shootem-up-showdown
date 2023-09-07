@@ -20,7 +20,7 @@ const resolvers = {
       return await Leaderboard.find();
     },
     leaderboard: async (parent, { leaderboardId }) => {
-      return TLeaderboard.findOne({ _id: leaderboardId });
+      return Leaderboard.findOne({ _id: leaderboardId });
     },
   },
 
@@ -37,7 +37,10 @@ const resolvers = {
           score,
           leaderboardUser:context.user.username});
 
-        await User.findByIdAndUpdate(context.user._id, { $push: { leaderboards: leaderboard._id } });
+          await User.findOneAndUpdate(
+            { _id: context.user._id },
+            { $addToSet: { leaderboard: leaderboard._id } }
+          );
 
         return leaderboard;
       }
