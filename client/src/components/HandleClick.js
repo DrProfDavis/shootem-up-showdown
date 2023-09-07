@@ -2,7 +2,7 @@ import { React, useState, useEffect } from 'react';
 import { AdjacentTiles } from './AdjacentTiles';
 
 
-const HandleClick = (q, r, i, setClickedPlayer, randomPlace1, randomPlace2) => {
+const HandleClick = (q, r, i, setClickedPlayer, randomPlace1, randomPlace2, ) => {
 
 
     const adjacentTiles = AdjacentTiles(q, r);
@@ -25,5 +25,31 @@ const HandleClick = (q, r, i, setClickedPlayer, randomPlace1, randomPlace2) => {
 
 }
 
+const MovePlayer1 = (q, r, i, setClickedPlayer, player1Location, setPlayer1Location, randomPlace1, randomPlace2) => {
+    HandleClick(q, r, i, setClickedPlayer, randomPlace1, randomPlace2);
 
-export { HandleClick};
+    // Update player1Location.i to the new hexagon's i
+    const adjacentCells = AdjacentTiles(q, r);
+    if (adjacentCells.includes(player1Location.i)) {
+    setPlayer1Location({ i });
+    }
+    else{
+        console.log("Not adding a player to cell index: ", i);
+    }
+};
+
+const MovePlayer2 = (q, r, i, setClickedPlayer, player2Location, setPlayer2Location, randomPlace1, randomPlace2) => {
+    HandleClick(q, r, i, setClickedPlayer, randomPlace1, randomPlace2);
+
+    // Update player1Location.i to the new hexagon's i
+    const adjacentCells = AdjacentTiles(q, r);
+
+    if (adjacentCells.includes(player2Location.i)) {
+    setPlayer2Location({ i });
+    }
+    else{
+        console.log("Not adding a player to cell index: ", i);
+    }
+};
+
+export { HandleClick, MovePlayer1, MovePlayer2};
