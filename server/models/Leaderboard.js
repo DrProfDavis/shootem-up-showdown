@@ -3,19 +3,19 @@ const { Schema, model } = require('mongoose');
 // Schema to create leaderboard model
 const leaderboardSchema = new Schema(
   {
-    // ID for game scores
-    leaderboardId: {
-      type: Schema.Types.ObjectId,
-      default: () => new Types.ObjectId(),
-    },
-    // ? replace as reference key
-    username: { 
-      type: String,
-      required: true,
-    },
+    // // ID for game scores
+    // leaderboardId: {
+    //   type: Schema.Types.ObjectId,
+    //   default: () => new Types.ObjectId(),
+    // },
     score: { 
       type: Number,
       required: true
+    },
+    leaderboardUser: { 
+      type: String,
+      required: true,
+      trim:true
     },
   },
   {
@@ -28,8 +28,6 @@ const leaderboardSchema = new Schema(
   }
 );
 
-
-// ? SET VIRTUAL
 
 // Initialize our Leaderboard model
 const Leaderboard = model('leaderboard', leaderboardSchema);
