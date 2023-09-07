@@ -23,6 +23,9 @@ const Cell = ({ q, r, i }) => {
         i: randomPlace2.i,
     });
 
+    
+
+
     //Force component to re render when we set new location, probably don't even need useeffect. 
 
     // useEffect(() => {
@@ -50,15 +53,19 @@ const Cell = ({ q, r, i }) => {
     // }, [clickedPlayer]);
 
 
+    const handleHexagonClick = () => {
+        HandleClick(q, r, i, setClickedPlayer, randomPlace1, randomPlace2, player1Location);
+    
+        MovePlayer1(q, r, i, setClickedPlayer, player1Location, setPlayer1Location, randomPlace1, randomPlace2);
+    
+        MovePlayer2(q, r, i, setClickedPlayer, player2Location, setPlayer2Location, randomPlace1, randomPlace2);
+      };
+
+    
+
+
     return (
-        <Hexagon onClick={() => {
-            HandleClick(q, r, i, setClickedPlayer, randomPlace1, randomPlace2, player1Location,);
-
-            MovePlayer1(q, r, i, setClickedPlayer, player1Location, setPlayer1Location, randomPlace1, randomPlace2);
-
-            MovePlayer2(q, r, i, setClickedPlayer, player2Location, setPlayer2Location, randomPlace1, randomPlace2)
-            
-        }} key={i} q={q} r={r}>
+        <Hexagon onClick={() => {handleHexagonClick()}} key={i} q={q} r={r}>
             {<Text>{i} {q} {r}</Text>}
             {/* {isPlayerCell ? <Player /> : null} */}
             {/* {randomPlace1.i === i ? <Player playerNumber={1} /> : null} */}
