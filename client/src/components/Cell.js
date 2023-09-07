@@ -1,9 +1,8 @@
 import { React, useState, useEffect } from 'react';
 import { Hexagon, Text } from 'react-hexgrid'
 import { Player } from './Player' // Import the Player component
-import { HandleClick} from './HandleClick'
+import { HandleClick, MovePlayer1, MovePlayer2 } from './HandleClick'
 import { PlayerSpawn1, PlayerSpawn2 } from './PlayerSpawn'
-
 import { AdjacentTiles } from './AdjacentTiles';
 import { movePlayerToRandomAdjacentTile, movePlayerToAdjacentTile } from './PlayerMovement';
 
@@ -19,41 +18,53 @@ const Cell = ({ q, r, i }) => {
     const [player1Location, setPlayer1Location] = useState({
         i: randomPlace1.i,
     });
-   
+
+    const [player2Location, setPlayer2Location] = useState({
+        i: randomPlace2.i,
+    });
 
     //Force component to re render when we set new location, probably don't even need useeffect. 
 
-    
-    useEffect(() => {
-        if (clickedPlayer !== null) {
-            console.log("Clicked Player ", clickedPlayer);
-            
-            if (clickedPlayer) {
+    // useEffect(() => {
+    //     if (clickedPlayer !== null) {
+    //         console.log("Clicked Player ", clickedPlayer);
 
-                const adjacentCells = AdjacentTiles(q, r, i);
+    //         if (clickedPlayer) {
 
-                console.log("These are the adjacent Cells ", adjacentCells);
-                console.log("This is player 1's location of : ", player1Location.i);
+    //             const adjacentCells = AdjacentTiles(q, r, i);
 
-                movePlayerToRandomAdjacentTile(q, r, i, clickedPlayer.playerNumber, newPosition => {
-                    console.log(`Player ${clickedPlayer.playerNumber} moved to i: ${newPosition.i} q: ${newPosition.q}, r: ${newPosition.r}`);
+    //             console.log("These are the adjacent Cells ", adjacentCells);
+    //             console.log("This is player 1's location of : ", player1Location.i);
 
-                    setPlayer1Location(newPosition.i);
-                    console.log(player1Location);
+    //             movePlayerToRandomAdjacentTile(q, r, i, clickedPlayer.playerNumber, newPosition => {
+    //                 console.log(`Player ${clickedPlayer.playerNumber} moved to i: ${newPosition.i} q: ${newPosition.q}, r: ${newPosition.r}`);
 
-                });
-            }
-        }
-    }, [clickedPlayer]);
+    //                 setPlayer1Location({
+    //                     i: newPosition.i,
+    //                 });
+    //                 console.log(player1Location);
+
+    //             });
+    //         }
+    //     }
+    // }, [clickedPlayer]);
+
 
     return (
-        <Hexagon onClick={() => { HandleClick(q, r, i, setClickedPlayer, randomPlace1, randomPlace2) }} key={i} q={q} r={r}>
+        <Hexagon onClick={() => {
+            HandleClick(q, r, i, setClickedPlayer, randomPlace1, randomPlace2, player1Location,);
+
+            MovePlayer1(q, r, i, setClickedPlayer, player1Location, setPlayer1Location, randomPlace1, randomPlace2);
+
+            MovePlayer2(q, r, i, setClickedPlayer, player2Location, setPlayer2Location, randomPlace1, randomPlace2)
+            
+        }} key={i} q={q} r={r}>
             {<Text>{i} {q} {r}</Text>}
             {/* {isPlayerCell ? <Player /> : null} */}
             {/* {randomPlace1.i === i ? <Player playerNumber={1} /> : null} */}
             {player1Location.i === i ? <Player playerNumber={1} /> : null}
-            {randomPlace2.i === i ? <Player playerNumber={2} /> : null}
-            
+            {player2Location.i === i ? <Player playerNumber={2} /> : null}
+
 
         </Hexagon>
     )
