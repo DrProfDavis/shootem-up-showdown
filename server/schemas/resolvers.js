@@ -4,47 +4,45 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    user: async (parent, args, context) => {
-      if (context.user) {
-        const user = await User.findById(context.user._id).populate('leaderboard');
-
-        user.leaderboard.sort((a, b) => b.score - a.score);
-
-
-        return user;
-      }
-
-      throw new AuthenticationError('Not logged in!');
+    users: async () => {
+      return User.find().populate('leaderboard');
     },
-    leaderboard: async () => {
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('leaderboard');
+    },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('leaderboard');
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    leaderboards: async () => {
       return await Leaderboard.find();
     },
+    leaderboard: async (parent, { leaderboardId }) => {
+      return TLeaderboard.findOne({ _id: leaderboardId });
+    },
   },
+
   Mutation: {
-    addUser: async (parent, args) => {
-      const user = await User.create(args);
+    addUser: async (parent, {username, email, password}) => {
+      const user = await User.create({username, email, password});
       const token = signToken(user);
 
       return { token, user };
     },
-    addLeaderboard: async (parent, args) => {
-      console.log(context);
+    addLeaderboard: async (parent, { score }, context) => {
       if (context.user) {
-        const leaderboard = await Leaderboard.create(args);
+        const leaderboard = await Leaderboard.create({
+          score,
+          leaderboardUser:context.user.username});
 
-        await User.findByIdAndUpdate(context.user._id, { $push: { leaderboards: leaderboard } });
+        await User.findByIdAndUpdate(context.user._id, { $push: { leaderboards: leaderboard._id } });
 
         return leaderboard;
       }
 
       throw new AuthenticationError('Not logged in!');
-    // },
-    // updateUser: async (parent, args, context) => {
-    //   if (context.user) {
-    //     return await User.findByIdAndUpdate(context.user._id, args, { new: true });
-    //   }
-
-    //   throw new AuthenticationError('Not logged in!');
     },
     login: async (parent, { username, password }) => {
       const user = await User.findOne({ username });

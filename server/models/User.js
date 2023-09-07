@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const bcrypt = require('bcrypt');
 
 // Schema to create User model
 const userSchema = new Schema(
@@ -12,7 +13,7 @@ const userSchema = new Schema(
     },
     email: { 
       type: String,
-      required: true,
+      required: false,
       unique: true,
       required: true,
       // must match a valid email address
