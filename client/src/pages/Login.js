@@ -5,14 +5,14 @@ import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
 
 function Login(props) {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ username: '', password: '' });
   const [login, { error }] = useMutation(LOGIN);
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     try {
       const mutationResponse = await login({
-        variables: { email: formState.email, password: formState.password },
+        variables: { username: formState.username, password: formState.password },
       });
       const token = mutationResponse.data.login.token;
       Auth.login(token);
@@ -31,24 +31,24 @@ function Login(props) {
 
   return (
     <div className="container my-1">
-      <Link to="/signup">← Go to Signup</Link>
+      <Link to="/signup">← Signup Instead</Link>
 
       <h2>Login</h2>
       <form onSubmit={handleFormSubmit}>
         <div className="flex-row space-between my-2">
-          <label htmlFor="email">Email address:</label>
+          <label htmlFor="username">Username: </label>
           <input
-            placeholder="youremail@test.com"
-            name="email"
-            type="email"
-            id="email"
+            placeholder="enter username here"
+            name="username"
+            type="username"
+            id="username"
             onChange={handleChange}
           />
         </div>
         <div className="flex-row space-between my-2">
-          <label htmlFor="pwd">Password:</label>
+          <label htmlFor="pwd">Password: </label>
           <input
-            placeholder="******"
+            placeholder="enter password here"
             name="password"
             type="password"
             id="pwd"
