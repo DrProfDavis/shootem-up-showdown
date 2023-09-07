@@ -1,37 +1,64 @@
-const { gql } = require('apollo-server-express');
+const { AuthenticationError } = require('apollo-server-express');
+const { User, Leaderboard } = require('../models');
+const { signToken } = require('../utils/auth');
 
-const typeDefs = gql`
-  type User {
-    _id: ID
-    userame: String
-    email: String
-    leaderboard: [Leaderboard]
+const resolvers = {
+  Query: {
+    user: async (parent, args, context) => {
+      if (context.user) {
+        const user = await User.findById(context.user._id).populate({
+          path: 'leaderboard',
+          populate: 'score'
+        });
+
+        user.leaderboard.sort((a, b) => b.score - a.score);
+
+
+        return user;
+      }
+
+      throw new AuthenticationError('Not logged in!');
+    },
+    leaderboards: async () => {
+      return await Leaderboard.find();
+    },
+    addLeaderboard: async (parent, { products }, context) => {
+      console.log(context);
+      if (context.user) {
+        const leaderboard = new Leaderboard({ products });
+
+        await User.findByIdAndUpdate(context.user._id, { $push: { leaderboards: leaderboard } });
+
+        return leaderboard;
+      }
+
+      throw new AuthenticationError('Not logged in!');
+    },
+    updateUser: async (parent, args, context) => {
+      if (context.user) {
+        return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+      }
+
+      throw new AuthenticationError('Not logged in!');
+    },
+    login: async (parent, { username, password }) => {
+      const user = await User.findOne({ username });
+
+      if (!user) {
+        throw new AuthenticationError('Incorrect username!');
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect password!');
+      }
+
+      const token = signToken(user);
+
+      return { token, user };
+    }
   }
+};
 
-  type Leaderboard {
-    _id: ID
-    score: Int
-  }
-
-  type Checkout {
-    session: ID
-  }
-
-  type Auth {
-    token: ID
-    user: User
-  }
-
-  type Query {
-    user: User
-    leaderboard(_id: ID!): Leaderboard
-  }
-
-  type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
-    addLeaderboard(products: [ID]!): Leaderboard
-    login(email: String!, password: String!): Auth
-  }
-`;
-
-module.exports = typeDefs;
+module.exports = resolvers;
