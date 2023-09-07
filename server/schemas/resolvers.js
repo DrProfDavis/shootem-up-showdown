@@ -6,10 +6,7 @@ const resolvers = {
   Query: {
     user: async (parent, args, context) => {
       if (context.user) {
-        const user = await User.findById(context.user._id).populate({
-          path: 'leaderboard',
-          populate: 'score'
-        });
+        const user = await User.findById(context.user._id).populate('leaderboard');
 
         user.leaderboard.sort((a, b) => b.score - a.score);
 
@@ -19,13 +16,21 @@ const resolvers = {
 
       throw new AuthenticationError('Not logged in!');
     },
-    leaderboards: async () => {
+    leaderboard: async () => {
       return await Leaderboard.find();
     },
-    addLeaderboard: async (parent, { products }, context) => {
+  },
+  Mutation: {
+    addUser: async (parent, args) => {
+      const user = await User.create(args);
+      const token = signToken(user);
+
+      return { token, user };
+    },
+    addLeaderboard: async (parent, args) => {
       console.log(context);
       if (context.user) {
-        const leaderboard = new Leaderboard({ products });
+        const leaderboard = await Leaderboard.create(args);
 
         await User.findByIdAndUpdate(context.user._id, { $push: { leaderboards: leaderboard } });
 
