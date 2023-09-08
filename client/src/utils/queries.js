@@ -18,6 +18,7 @@ export const QUERY_LEADERBOARDS = gql`
 query getLeaderboard {
   leaderboards {
     _id
+    leaderboardUser
     score
   }
 }
