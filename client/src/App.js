@@ -1,6 +1,5 @@
 // import{ useState } from "react"
 import React from 'react';
-import Grid from './components/Grid'
 import Game from './pages/Game';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
