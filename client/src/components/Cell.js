@@ -12,7 +12,12 @@ const randomPlace1 = PlayerSpawn1();
 const randomPlace2 = PlayerSpawn2();
 
 
+
 const Cell = ({ q, r, i }) => {
+
+    const adjacentTiles = AdjacentTiles(q, r);
+
+
     const [clickedPlayer, setClickedPlayer] = useState(null);
 
     const [player1Location, setPlayer1Location] = useState({
@@ -23,45 +28,27 @@ const Cell = ({ q, r, i }) => {
         i: randomPlace2.i,
     });
 
-    
+    const [isPlayerClicked, setIsPlayerClicked] = useState(false);
+    const [isTileClicked, setIsTileClicked] = useState(false);
 
 
-    //Force component to re render when we set new location, probably don't even need useeffect. 
+    const [playerAdjacentTiles, setPlayerAdjacentTiles] = useState([]);
 
-    // useEffect(() => {
-    //     if (clickedPlayer !== null) {
-    //         console.log("Clicked Player ", clickedPlayer);
-
-    //         if (clickedPlayer) {
-
-    //             const adjacentCells = AdjacentTiles(q, r, i);
-
-    //             console.log("These are the adjacent Cells ", adjacentCells);
-    //             console.log("This is player 1's location of : ", player1Location.i);
-
-    //             movePlayerToRandomAdjacentTile(q, r, i, clickedPlayer.playerNumber, newPosition => {
-    //                 console.log(`Player ${clickedPlayer.playerNumber} moved to i: ${newPosition.i} q: ${newPosition.q}, r: ${newPosition.r}`);
-
-    //                 setPlayer1Location({
-    //                     i: newPosition.i,
-    //                 });
-    //                 console.log(player1Location);
-
-    //             });
-    //         }
-    //     }
-    // }, [clickedPlayer]);
+    useEffect(() => {
+        console.log("PLAYER IS CLICKED? ", isPlayerClicked);
+        setPlayerAdjacentTiles(adjacentTiles);
+    }, [isPlayerClicked, isTileClicked] );
 
 
     const handleHexagonClick = () => {
-        HandleClick(q, r, i, setClickedPlayer, randomPlace1, randomPlace2, player1Location);
+        const clickedPlayer = HandleClick(q, r, i, randomPlace1, randomPlace2, isPlayerClicked, setIsPlayerClicked, isTileClicked, setIsTileClicked) ;
     
-        MovePlayer1(q, r, i, setClickedPlayer, player1Location, setPlayer1Location, randomPlace1, randomPlace2);
-    
-        MovePlayer2(q, r, i, setClickedPlayer, player2Location, setPlayer2Location, randomPlace1, randomPlace2);
-      };
-
-    
+        if (clickedPlayer?.playerNumber === 1) {
+            MovePlayer1(q, r, i, player1Location, setPlayer1Location, randomPlace1, randomPlace2, isPlayerClicked, setIsPlayerClicked, playerAdjacentTiles, setPlayerAdjacentTiles, isTileClicked, setIsTileClicked);
+        } else if (clickedPlayer?.playerNumber === 2) {
+            MovePlayer2(q, r, i, player2Location, setPlayer2Location, randomPlace1, randomPlace2);
+        }
+    };
 
 
     return (
