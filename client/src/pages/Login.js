@@ -71,10 +71,10 @@ const Login = (props) => {
   };
 
   return (
-    <Container className="text-center positioned-div">
-    <div >
+    <Container className="text-center">
+    <div className='positioned-div'>
       <div className="card">
-        <Link to="/signup">← SIGN UP INSTEAD</Link>
+        
         <h4 className="card-header p-2">Login</h4>
         <div className="card-body">
             
@@ -122,6 +122,13 @@ const Login = (props) => {
                   >
                     Submit
                   </Button>
+                </div>
+                <div>
+                  <Link to="/signup"
+                  className="btn btn-block btn-secondary"
+                  >
+                    Sign Up
+                  </Link>
                 </div>
               </form>
             )}
