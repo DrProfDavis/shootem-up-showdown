@@ -1,17 +1,24 @@
 import React from 'react';
+import { useQuery } from '@apollo/client';
 
 import { Link } from 'react-router-dom';
 
+import { QUERY_LEADERBOARDS } from '../utils/queries';
+
 const Home = () => {
+
+  const { loading, data } = useQuery(QUERY_LEADERBOARDS);
+  console.log("THIS IS THE LEADERBOARD DATA", data);
+
 
   return (
     <main>
-      <h1>LEADERBOARD</h1>
-      <h2>SCORES: </h2>
+      <h2>SCORES:</h2>
       <ul>
-        <li>Username: 3000pts</li>
-        <li>Username1: 2000pts</li>
-        <li>Username2: 1000pts</li>
+        {data?.leaderboards.map((user) => (
+          <li key={user._id}>
+            {user._id} - {user.score}</li>
+        ))}
       </ul>
     </main>
   );
