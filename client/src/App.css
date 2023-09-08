@@ -1,0 +1,8 @@
+.positioned-div {
+  position: absolute;
+  top: 10%; /* Adjust the top value to position it as needed */
+  left: 50%;
+  /* width: 100%; */
+  transform: translate(-50%,0%);
+  /* background-color: #f0f0f0; Background color for visibility */
+}
