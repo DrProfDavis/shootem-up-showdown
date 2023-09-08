@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react';
 import { AdjacentTiles } from './AdjacentTiles';
 
 
+const HandleClick = (q, r, i, setClickedPlayer, randomPlace1, randomPlace2,) => {
 
 const HandleClick = (q, r, i, randomPlace1, randomPlace2, isPlayerClicked, setIsPlayerClicked, isTileClicked, setIsTileClicked) => {
     const adjacentTiles = AdjacentTiles(q, r);
@@ -29,63 +30,36 @@ const HandleClick = (q, r, i, randomPlace1, randomPlace2, isPlayerClicked, setIs
     
 }
 
-const MovePlayer1 = (q, r, i, player1Location, setPlayer1Location, randomPlace1, randomPlace2, isPlayerClicked, setIsPlayerClicked, playerAdjacentTiles, setPlayerAdjacentTiles, isTileClicked, setIsTileClicked) => {
+const MovePlayer = (playerNumber, q, r, i, setClickedPlayer, playerLocations, setPlayerLocations, randomPlace1, randomPlace2) => {
+    // Function logic here, using 'playerNumber' to determine which player to move
+    switch (playerNumber) {
+        case 1:
+            console.log('Player 1 Moves!')
 
-    let clickedPlayer = HandleClick(q, r, i, randomPlace1, randomPlace2, isPlayerClicked, setIsPlayerClicked, isTileClicked, setIsTileClicked)
-    let clickedTiles = HandleClick(q, r, i, randomPlace1, randomPlace2, isPlayerClicked, setIsPlayerClicked, isTileClicked, setIsTileClicked)
-    let adjacentCells = AdjacentTiles(q, r);
+            // Remove Player
+            setPlayerLocations(prevLocations => ({
+                ...prevLocations,
+                [`player${playerNumber}`]: null,
+            }));
 
+            setTimeout(() => {
+            const adjacentCells = AdjacentTiles(q, r);
+            if (adjacentCells.includes(playerLocations.player1)) {
 
-    // if (clickedPlayer?.playerNumber === 1) {
-    //     if (!isPlayerClicked) {
-    //         // First click
-    //         console.log("CLICKED PLAYER IS ", clickedPlayer);
-    //         setIsPlayerClicked(true);
-    //         console.log("ADJACENT TILES ARE ", adjacentCells);
-    //         console.log("PLAYER ADJACENT TILES ARE ", playerAdjacentTiles);
-    //     } else {
-    //         // Second click
-    //         console.log("PLAYER IS CURRENTLY TRUE");
-    //         if (isPlayerClicked === true && playerAdjacentTiles.includes(i)) {
-    //             console.log("THIS RAN CORRECTLY");
-    //             setPlayer1Location(prevState => ({ ...prevState, i: i }));
-    //         } else {
-    //             console.log("Not moving player 1 to cell index: ", i);
-    //         }
-    //         // console.log("PLAYER ADJACENT TILES ARE ", playerAdjacentTiles);
-    //         setIsPlayerClicked(false);  // Reset for the next move
-    //     }
-    // }
+                // Add player to new location
+                setPlayerLocations(prevLocations => ({
+                    ...prevLocations,
+                    [`player${playerNumber}`]: i,
+                }));
 
-    if (isPlayerClicked === false && clickedPlayer?.playerNumber === 1) {
-
-        // First click
-        console.log("CLICKED PLAYER IS ", clickedPlayer);
-        console.log("ADJACENT TILES ARE ", adjacentCells);
-        console.log("PLAYER ADJACENT TILES ARE ", playerAdjacentTiles);
-    }
-
-    if (clickedTiles != null)
-    {
-        console.log("LOOK AT ME");
-        setIsTileClicked(true);
-        console.log("The tile clicked i value is: ", clickedTiles);
-    }
-
-};
-
-const MovePlayer2 = (q, r, i, player2Location, setPlayer2Location, randomPlace1, randomPlace2) => {
-    const clickedPlayer = HandleClick(q, r, i, randomPlace1, randomPlace2);
-
-    if (clickedPlayer?.playerNumber === 2) {
-        const adjacentCells = AdjacentTiles(q, r);
-        if (adjacentCells.includes(player2Location.i)) {
-            setPlayer2Location(prevState => ({ ...prevState, i: i }));
-        }
-        else {
-            console.log("Not moving player 2 to cell index: ", i);
-        }
+                console.log("Added a player to cell index: ", i);
+            }
+            else {
+                console.log("Not adding a player to cell index: ", i);
+            }
+        }, 0);
+            break;
     }
 };
 
-export { HandleClick, MovePlayer1, MovePlayer2 };
+export { HandleClick, MovePlayer1, MovePlayer2};
