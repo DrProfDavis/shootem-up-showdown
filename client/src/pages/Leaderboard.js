@@ -19,7 +19,7 @@ const Home = () => {
 
   return (
     <main>
-      <h2>SCORES:</h2>
+      <h2>LEADERBOARD :</h2>
       <ul>
         {sortedLeaderboards?.map((user) => (
           <li key={user._id}>

@@ -4,6 +4,7 @@ import Game from './pages/Game';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Home from './pages/Home';
+import HowToPlay from './pages/HowToPlay';
 import Leaderboard from './pages/Leaderboard';
 
 import {
@@ -64,6 +65,10 @@ const App = () => {
               <Route 
                 path="/leaderboard" 
                 element={<Leaderboard />}
+              />
+              <Route 
+                path="/howtoplay" 
+                element={<HowToPlay />}
               />
           </Routes>
         </Router>
