@@ -11,14 +11,14 @@ const userSchema = new Schema(
       trim: true,
       maxLength: 30,
     },
-    email: { 
-      type: String,
-      required: false,
-      unique: true,
-      required: true,
-      // must match a valid email address
-      match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, 'Please enter a valid email address']
-    },
+    // email: { 
+    //   type: String,
+    //   required: false,
+    //   unique: true,
+    //   required: true,
+    //   // must match a valid email address
+    //   match: [/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, 'Please enter a valid email address']
+    // },
     password: { 
       type: String,
       required: true,      

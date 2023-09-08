@@ -30,7 +30,8 @@ import Auth from '../utils/auth';
 //   };
 
 const Login = (props) => {
-  const [formState, setFormState] = useState({ email: '', username: '', password: '' });
+  // removed email
+  const [formState, setFormState] = useState({username: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN);
 
   // update state based on form input changes
@@ -59,7 +60,7 @@ const Login = (props) => {
 
     // clear form values
     setFormState({
-      email: '',
+      // email: '',
       username: '',
       password: '',
     });
@@ -81,14 +82,14 @@ const Login = (props) => {
             ) : (
               
               <form onSubmit={handleFormSubmit}>
-                <input
+                {/* <input
                   className="form-input"
                   placeholder="Your email"
                   name="email"
                   type="email"
                   value={formState.email}
                   onChange={handleChange}
-                />
+                /> */}
                 <input
                   className="form-input"
                   placeholder="Your username"

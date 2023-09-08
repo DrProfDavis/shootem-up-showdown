@@ -1,10 +1,10 @@
 const { gql } = require('apollo-server-express');
 
+// removed email from addUser and log in mutation and type User
 const typeDefs = gql`
   type User {
     _id: ID
     username: String
-    email: String
     password: String
     leaderboard: [Leaderboard]
   }
@@ -28,9 +28,9 @@ const typeDefs = gql`
   }
 
   type Mutation {
-    addUser(username: String!, email: String!, password: String!): Auth
+    addUser(username: String!, password: String!): Auth
     addLeaderboard(score: Int!): Leaderboard
-    login(email: String!, username:String!, password: String!): Auth
+    login(username:String!, password: String!): Auth
   }
 `;
 
