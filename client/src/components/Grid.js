@@ -18,7 +18,7 @@ const Grid = () => {
                         {gridArrayState.map((coord, i) => {
                             const [q, r] = coord
                             return (
-                                <Cell key={i} q={q} r={r} i={i} />
+                                <Cell key={`${i}-${q}-${r}`} q={q} r={r} i={i} />
                             )
                         })}
                     </Layout>
