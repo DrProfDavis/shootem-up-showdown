@@ -9,34 +9,24 @@ const findIndexByCoordinates = (q, r) => {
 const AdjacentTiles = (q, r, i) => {
     if (i !== -1) {
         const adjacentTiles = [];
+        const directions = [
+            {dq: 0, dr: -1}, // Top
+            {dq: 1, dr: -1}, // Top Right
+            {dq: 1, dr: 0},  // Bottom Right
+            {dq: 0, dr: 1},  // Bottom
+            {dq: -1, dr: 1}, // Bottom Left
+            {dq: -1, dr: 0}  // Top Left
+        ];
 
-        //Top
-        if (findIndexByCoordinates(q, r - 1) >= 0) {
-            adjacentTiles.push(findIndexByCoordinates(q, r - 1));
-        }
-        //Top Right
-        if (findIndexByCoordinates(q + 1, r - 1) >= 0) {
-            adjacentTiles.push(findIndexByCoordinates(q + 1, r - 1));
-        }
-        //Bottom Right
-        if (findIndexByCoordinates(q + 1, r) >= 0) {
-            adjacentTiles.push(findIndexByCoordinates(q + 1, r));
-        }
-        //Bottom
-        if (findIndexByCoordinates(q, r + 1) >= 0) {
-            adjacentTiles.push(findIndexByCoordinates(q, r + 1));
-        }
-        //Bottom Left
-        if (findIndexByCoordinates(q - 1, r + 1) >= 0) {
-            adjacentTiles.push(findIndexByCoordinates(q - 1, r + 1));
-        }
-        //Top Left
-        if (findIndexByCoordinates(q - 1, r) >= 0) {
-            adjacentTiles.push(findIndexByCoordinates(q - 1, r));
+        for (const {dq, dr} of directions) {
+            const index = findIndexByCoordinates(q + dq, r + dr);
+            if (index >= 0) {
+                adjacentTiles.push(index);
+            }
         }
 
         return adjacentTiles;
     }
 }
 
-export {AdjacentTiles };
+export { AdjacentTiles };
