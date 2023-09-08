@@ -1,15 +1,22 @@
-import React from "react";
-import ProductList from "../components/ProductList";
-import CategoryMenu from "../components/CategoryMenu";
-import Cart from "../components/Cart";
+import React from 'react';
+
+import { Link } from 'react-router-dom';
 
 const Home = () => {
+
   return (
-    <div className="container">
-      <CategoryMenu />
-      <ProductList />
-      <Cart />
-    </div>
+    <main>
+      <h1>HOMEPAGE</h1>
+      <button><Link to="/login">LOG IN</Link></button>
+
+      <br></br>
+      <br></br>
+
+      <button><Link to="/signup">SIGN UP</Link></button>
+      <br></br>
+      <br></br>
+      <button><Link to="/leaderboard">LEADERBOARD</Link></button>
+    </main>
   );
 };
 
