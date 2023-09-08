@@ -59,3 +59,6 @@
   GitHub: [MayPhamX](https://github.com/MayPhamX)
   Email: [maypham@utexas.edu](mailto:maypham@utexas.edu)
   
+  GitHub: [katyn-sh](https://github.com/katyn-sh)
+  Email: [tanhung.huynh@protonmail.ch](mailto:tanhung.huynh@protonmail.ch)
+  
