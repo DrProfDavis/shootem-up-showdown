@@ -12,12 +12,7 @@ const randomPlace1 = PlayerSpawn1();
 const randomPlace2 = PlayerSpawn2();
 
 
-
 const Cell = ({ q, r, i }) => {
-
-    const adjacentTiles = AdjacentTiles(q, r);
-
-
     const [clickedPlayer, setClickedPlayer] = useState(null);
 
     const [playerLocations, setPlayerLocations] = useState({
@@ -28,12 +23,15 @@ const Cell = ({ q, r, i }) => {
 
     return (
         <Hexagon onClick={() => {
-            HandleClick(q, r, i, setClickedPlayer, randomPlace1, randomPlace2, player1Location,);
+            HandleClick(q, r, i, setClickedPlayer, randomPlace1, randomPlace2, playerLocations,);
 
-            MovePlayer1(q, r, i, setClickedPlayer, player1Location, setPlayer1Location, randomPlace1, randomPlace2);
-
-            MovePlayer2(q, r, i, setClickedPlayer, player2Location, setPlayer2Location, randomPlace1, randomPlace2)
+            console.log(playerLocations);
             
+            MovePlayer(1, q, r, i, setClickedPlayer, playerLocations, setPlayerLocations, randomPlace1, randomPlace2);
+            
+
+            // MovePlayer(2, q, r, i, setClickedPlayer, playerLocations, setPlayerLocations, randomPlace1, randomPlace2);
+
         }} key={i} q={q} r={r}>
             {<Text>{i} {q} {r}</Text>}
             {playerLocations.player1 === i ? <Player playerNumber={1} /> : null}
