@@ -34,8 +34,8 @@ const Cell = ({ q, r, i }) => {
 
         }} key={i} q={q} r={r}>
             {<Text>{i} {q} {r}</Text>}
-            {playerLocations.player1 === i ? <Player playerNumber={1} /> : "another"}
-            {playerLocations.player2 === i ? <Player playerNumber={2} /> : "something"}
+            {playerLocations.player1 === i ? <Player playerNumber={1} /> : null}
+            {playerLocations.player2 === i ? <Player playerNumber={2} /> : null}
 
 
         </Hexagon>
