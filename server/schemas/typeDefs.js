@@ -11,6 +11,7 @@ const typeDefs = gql`
 
   type Leaderboard {
     _id: ID
+    leaderboardUser: String
     score: Int
   }
 
