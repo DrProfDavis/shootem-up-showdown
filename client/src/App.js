@@ -5,6 +5,7 @@ import Game from './pages/Game';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import Home from './pages/Home';
+import Leaderboard from './pages/Leaderboard';
 
 import {
   ApolloClient,
@@ -60,6 +61,10 @@ const App = () => {
               <Route 
                 path="/signup" 
                 element={<Signup />}
+              />
+              <Route 
+                path="/leaderboard" 
+                element={<Leaderboard />}
               />
           </Routes>
         </Router>

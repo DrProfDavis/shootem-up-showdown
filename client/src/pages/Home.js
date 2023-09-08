@@ -6,13 +6,16 @@ const Home = () => {
 
   return (
     <main>
-      <h1>THIS IS THE HOMEPAGE</h1>
+      <h1>HOMEPAGE</h1>
       <button><Link to="/login">LOG IN</Link></button>
 
       <br></br>
       <br></br>
 
       <button><Link to="/signup">SIGN UP</Link></button>
+      <br></br>
+      <br></br>
+      <button><Link to="/leaderboard">LEADERBOARD</Link></button>
     </main>
   );
 };
