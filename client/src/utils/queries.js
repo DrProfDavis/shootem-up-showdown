@@ -15,12 +15,12 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_LEADERBOARDS = gql`
-  query getLeaderboard {
-    leaderboard {
-      _id
-      score
-    }
+query getLeaderboard {
+  leaderboards {
+    _id
+    score
   }
+}
 `;
 
 export const QUERY_SINGLE_LEADERBOARD = gql`
