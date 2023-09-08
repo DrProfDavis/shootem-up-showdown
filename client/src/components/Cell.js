@@ -3,8 +3,8 @@ import { Hexagon, Text } from 'react-hexgrid'
 import { Player } from './Player' // Import the Player component
 import { HandleClick, MovePlayer1, MovePlayer2, MovePlayer } from './HandleClick'
 import { PlayerSpawn1, PlayerSpawn2 } from './PlayerSpawn'
-import { AdjacentTiles } from './AdjacentTiles';
-import { movePlayerToRandomAdjacentTile, movePlayerToAdjacentTile } from './PlayerMovement';
+// import { AdjacentTiles } from './AdjacentTiles';
+// import { movePlayerToRandomAdjacentTile, movePlayerToAdjacentTile } from './PlayerMovement';
 
 
 
@@ -13,7 +13,7 @@ const randomPlace2 = PlayerSpawn2();
 
 
 const Cell = ({ q, r, i }) => {
-    const [clickedPlayer, setClickedPlayer] = useState(null);
+    const [clickedPlayer, setClickedPlayer] = useState(0);
 
     const [playerLocations, setPlayerLocations] = useState({
         player1: randomPlace1.i,
@@ -34,8 +34,8 @@ const Cell = ({ q, r, i }) => {
 
         }} key={i} q={q} r={r}>
             {<Text>{i} {q} {r}</Text>}
-            {playerLocations.player1 === i ? <Player playerNumber={1} /> : null}
-            {playerLocations.player2 === i ? <Player playerNumber={2} /> : null}
+            {playerLocations.player1 === i ? <Player playerNumber={1} /> : "another"}
+            {playerLocations.player2 === i ? <Player playerNumber={2} /> : "something"}
 
 
         </Hexagon>
