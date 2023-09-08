@@ -3,6 +3,10 @@ import { useMutation } from '@apollo/client';
 import { Link } from 'react-router-dom';
 import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
+import '../App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Button, Container, Row, Col } from 'react-bootstrap';
+
 
 // function Login(props) {
 //   const [formState, setFormState] = useState({ username: '', password: '' });
@@ -67,12 +71,12 @@ const Login = (props) => {
   };
 
   return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <Link to="/signup">← SIGN UP INSTEAD</Link>
-          <h4 className="card-header bg-dark text-light p-2">Login</h4>
-          <div className="card-body">
+    <Container className="text-center positioned-div">
+    <div >
+      <div className="card">
+        <Link to="/signup">← SIGN UP INSTEAD</Link>
+        <h4 className="card-header p-2">Login</h4>
+        <div className="card-body">
             
             {data ? (
               <p>
@@ -90,29 +94,35 @@ const Login = (props) => {
                   value={formState.email}
                   onChange={handleChange}
                 /> */}
-                <input
-                  className="form-input"
-                  placeholder="Your username"
-                  name="username"
-                  type="username"
-                  value={formState.username}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                <button
-                  className="btn btn-block btn-primary"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Submit
-                </button>
+                <div className="flex-row space-between my-2"> 
+                  <input
+                    className="form-input"
+                    placeholder="Your username"
+                    name="username"
+                    type="username"
+                    value={formState.username}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex-row space-between my-2">
+                  <input
+                    className="form-input"
+                    placeholder="******"
+                    name="password"
+                    type="password"
+                    value={formState.password}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="flex-row space-between my-2">
+                  <Button
+                    className="btn btn-block btn-primary"
+                    style={{ cursor: 'pointer' }}
+                    type="submit"
+                  >
+                    Submit
+                  </Button>
+                </div>
               </form>
             )}
 
@@ -124,7 +134,7 @@ const Login = (props) => {
           </div>
         </div>
       </div>
-    </main>
+    </Container>
   );
 }
 

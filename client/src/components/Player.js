@@ -6,7 +6,7 @@ const Player = ({ playerNumber }) => {
 
   const playerImage = playerNumber === 1 ? playerImage1 :
                       playerNumber === 2 ? playerImage2 :
-                      null;
+                      "doggfart";
 
                       
   return (
