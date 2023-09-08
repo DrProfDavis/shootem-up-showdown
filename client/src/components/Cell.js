@@ -2,9 +2,9 @@ import { React, useState, useEffect } from 'react';
 import { Hexagon, Text } from 'react-hexgrid'
 import { Player } from './Player' // Import the Player component
 import { HandleClick } from './HandleClick'
-import { MovePlayer1, MovePlayer2, MovePlayer } from './PlayerHandleClick'
+import { MovePlayer } from './PlayerHandleClick'
 import { PlayerSpawn1, PlayerSpawn2 } from './PlayerSpawn'
-// import { AdjacentTiles } from './AdjacentTiles';
+import { AdjacentTiles } from './AdjacentTiles';
 // import { movePlayerToRandomAdjacentTile, movePlayerToAdjacentTile } from './PlayerMovement';
 
 
