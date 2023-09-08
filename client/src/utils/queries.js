@@ -1,11 +1,11 @@
 import { gql } from '@apollo/client';
 
+// removed email from query
 export const QUERY_USER = gql`
   query user($username: String!) {
     user(username: $username) {
       _id
       username
-      email
       leaderboard {
         _id
         score
@@ -32,12 +32,12 @@ export const QUERY_SINGLE_LEADERBOARD = gql`
   }
 `;
 
+// removed email from query
 export const QUERY_ME = gql`
   query me {
     me {
       _id
       username
-      email
       leaderboard {
         _id
         score
