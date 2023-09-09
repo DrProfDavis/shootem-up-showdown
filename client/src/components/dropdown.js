@@ -1,24 +1,11 @@
 import React from "react";
+import RevolverImage from "../images/revolver.png"
 
 function DropdownMenu() {
-  
-
-  function DropdownItem( props ) {
-    return (
-      <a href="#" className="menu-item">
-        <span className="icon-left">{props.leftIcon}</span>
-        {props.children}
-        <span className="icon-right">{props.rightIcon}</span>
-      </a>
-    );
-  }
 
   return (
-    <div className="dropdown">
-      <DropdownItem> Move </DropdownItem>
-      <DropdownItem> Dash </DropdownItem>
-      <DropdownItem> Shoot </DropdownItem>
-      <DropdownItem> Rest </DropdownItem>
+    <div className="dashboard">
+      <img className="revolver" src={RevolverImage}></img>
     </div>
   )
 }

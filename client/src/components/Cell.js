@@ -18,7 +18,7 @@ const randomFriendlyPlace = FriendlySpawn1();
 const randomFriendlyPlace2 = FriendlySpawn2();
 
 
-const Cell = ({ q, r, i }) => {
+const Cell = ({ q, r, i, setScore, score }) => {
     // const [clickedPlayer, setClickedPlayer] = useState(0);
 
     const [playerLocations, setPlayerLocations] = useState({
@@ -36,7 +36,7 @@ const Cell = ({ q, r, i }) => {
     });
     
 
-    const [score, setScore] = useState(0);
+
 
 
     useEffect(() => {
@@ -47,9 +47,6 @@ const Cell = ({ q, r, i }) => {
         console.log("These are friendly locations: ", friendlyLocations);
       }, [friendlyLocations]);
 
-      useEffect(() => {
-        console.log("Score has been updated: ", score);
-      }, [score]);
 
 
     return (
