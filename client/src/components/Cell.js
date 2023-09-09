@@ -5,13 +5,9 @@ import { Enemy } from './Enemy' // Import the Enemy component
 import { Friendly } from './Friendly' // Import the Friendly component
 import { EnemyShot } from './EnemyShot';
 import { FriendlyShot } from './FriendlyShot';
-import { HandleClick } from './HandleClick'
-import { MovePlayer } from './PlayerHandleClick'
 import { PlayerSpawn } from './PlayerSpawn'
 import { EnemySpawn1, EnemySpawn2 } from './EnemySpawn';
 import { FriendlySpawn1, FriendlySpawn2 } from './FriendlySpawn';
-import { AdjacentTiles } from './AdjacentTiles';
-// import { movePlayerToRandomAdjacentTile, movePlayerToAdjacentTile } from './PlayerMovement';
 
 
 
@@ -40,6 +36,9 @@ const Cell = ({ q, r, i }) => {
     });
     
 
+    const [score, setScore] = useState(0);
+
+
     useEffect(() => {
         console.log("These are enemy locations: ", enemyLocations);
       }, [enemyLocations]);
@@ -48,6 +47,10 @@ const Cell = ({ q, r, i }) => {
         console.log("These are friendly locations: ", friendlyLocations);
       }, [friendlyLocations]);
 
+      useEffect(() => {
+        console.log("Score has been updated: ", score);
+      }, [score]);
+
 
     return (
         <Hexagon onClick={() => {
@@ -55,7 +58,7 @@ const Cell = ({ q, r, i }) => {
 
             console.log("These are player locations: ", playerLocations);
 
-            EnemyShot(i, enemyLocations, setEnemyLocation);
+            EnemyShot(i, enemyLocations, setEnemyLocation, score, setScore);
             FriendlyShot(i, friendlyLocations, setFriendlyLocation);
 
 

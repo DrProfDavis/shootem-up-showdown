@@ -23,6 +23,7 @@ const Grid = () => {
                         })}
                     </Layout>
                 </HexGrid>
+                
             </div>
         </div>
     );
