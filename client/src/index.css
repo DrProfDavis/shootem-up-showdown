@@ -25,6 +25,7 @@ code {
     border: solid 8px black;
     border-radius: 50px;
     background: grey;
+    gap: 30px
 }
 
 
@@ -103,9 +104,11 @@ svg path {
     --speed: 500ms;
 }
 
-.dropdown {
-    transform: translateX(-45%);
-    background-color: var(--bg);
+.dashboard {
+    height: 80%;
+    margin-left: 20px;
+    /* transform: translateX(-45%); */
+    /* background-color: var(--bg); */
     border: var(--border);
     border-radius: var(--border-radius);
     padding: 1rem;
@@ -125,4 +128,9 @@ svg path {
 
 .menu-item:hover {
     background-color: #525357;
+}
+
+.revolver {
+    height: 50%;
+    width: 100%;
 }
