@@ -85,6 +85,10 @@ svg path {
     transform: translate(-5%, -5%);
 }
 
+.friendly {
+    transform: translate(-5%, -5%);
+}
+
 .player {
     transform: translate(-5%, -5%);
 }
