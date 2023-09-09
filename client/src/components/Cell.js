@@ -13,6 +13,8 @@ const randomPlace1 = PlayerSpawn1();
 const randomPlace2 = PlayerSpawn2();
 
 
+
+
 const Cell = ({ q, r, i }) => {
     const [clickedPlayer, setClickedPlayer] = useState(0);
 
@@ -21,12 +23,11 @@ const Cell = ({ q, r, i }) => {
         player2: randomPlace2.i,
     });
 
-
     return (
         <Hexagon onClick={() => {
             HandleClick(q, r, i, setClickedPlayer, randomPlace1, randomPlace2, playerLocations,);
 
-            console.log(playerLocations);
+            // console.log(playerLocations);
             
             MovePlayer(1, q, r, i, setClickedPlayer, playerLocations, setPlayerLocations, randomPlace1, randomPlace2);
             
