@@ -81,6 +81,10 @@ svg path {
     stroke-linejoin: round;
 }
 
+.enemy {
+    transform: translate(-5%, -5%);
+}
+
 .player {
     transform: translate(-5%, -5%);
 }
