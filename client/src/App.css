@@ -2,7 +2,24 @@
   position: absolute;
   top: 10%; /* Adjust the top value to position it as needed */
   left: 50%;
-  /* width: 100%; */
+  min-width: 25%;
+  transform: translate(-50%,0%);
+  /* background-color: #f0f0f0; Background color for visibility */
+}
+
+.card-size {
+  max-width: 25%;
+  /* position: absolute;
+  top: 10%;
+  left: 60%;
+  transform: translate (-60%,0%); */
+}
+
+.home-div {
+  position: absolute;
+  top: 40%; /* Adjust the top value to position it as needed */
+  left: 50%;
+  min-width: 25%;
   transform: translate(-50%,0%);
   /* background-color: #f0f0f0; Background color for visibility */
 }

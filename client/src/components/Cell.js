@@ -1,44 +1,75 @@
 import { React, useState, useEffect } from 'react';
 import { Hexagon, Text } from 'react-hexgrid'
 import { Player } from './Player' // Import the Player component
-import { HandleClick } from './HandleClick'
-import { MovePlayer } from './PlayerHandleClick'
-import { PlayerSpawn1, PlayerSpawn2 } from './PlayerSpawn'
-import { AdjacentTiles } from './AdjacentTiles';
-// import { movePlayerToRandomAdjacentTile, movePlayerToAdjacentTile } from './PlayerMovement';
+import { Enemy } from './Enemy' // Import the Enemy component
+import { Friendly } from './Friendly' // Import the Friendly component
+import { EnemyShot } from './EnemyShot';
+import { FriendlyShot } from './FriendlyShot';
+import { PlayerSpawn } from './PlayerSpawn'
+import { EnemySpawn1, EnemySpawn2 } from './EnemySpawn';
+import { FriendlySpawn1, FriendlySpawn2 } from './FriendlySpawn';
 
 
-// import player spawn location
-const randomPlace1 = PlayerSpawn1();
-const randomPlace2 = PlayerSpawn2();
+
+const randomPlayerPlace = PlayerSpawn();
+const randomEnemyPlace = EnemySpawn1();
+const randomEnemyPlace2 = EnemySpawn2();
+const randomFriendlyPlace = FriendlySpawn1();
+const randomFriendlyPlace2 = FriendlySpawn2();
 
 
 const Cell = ({ q, r, i }) => {
-    const [clickedPlayer, setClickedPlayer] = useState(0);
+    // const [clickedPlayer, setClickedPlayer] = useState(0);
 
     const [playerLocations, setPlayerLocations] = useState({
-        player1: randomPlace1.i,
-        player2: randomPlace2.i,
+        player: randomPlayerPlace.i,
     });
+
+    const [enemyLocations, setEnemyLocation] = useState({
+        enemy1: randomEnemyPlace.i,
+        enemy2: randomEnemyPlace2.i,
+    });
+
+    const [friendlyLocations, setFriendlyLocation] = useState({
+        friendly1: randomFriendlyPlace.i,
+        friendly2: randomFriendlyPlace2.i,
+    });
+    
+
+    const [score, setScore] = useState(0);
+
+
+    useEffect(() => {
+        console.log("These are enemy locations: ", enemyLocations);
+      }, [enemyLocations]);
+
+      useEffect(() => {
+        console.log("These are friendly locations: ", friendlyLocations);
+      }, [friendlyLocations]);
+
+      useEffect(() => {
+        console.log("Score has been updated: ", score);
+      }, [score]);
 
 
     return (
         <Hexagon onClick={() => {
-            HandleClick(q, r, i, setClickedPlayer, randomPlace1, randomPlace2, playerLocations,);
+            // HandleClick(q, r, i);
 
-            console.log(playerLocations);
-            
-            MovePlayer(1, q, r, i, setClickedPlayer, playerLocations, setPlayerLocations, randomPlace1, randomPlace2);
-            
+            console.log("These are player locations: ", playerLocations);
 
-            // MovePlayer(2, q, r, i, setClickedPlayer, playerLocations, setPlayerLocations, randomPlace1, randomPlace2);
+            EnemyShot(i, enemyLocations, setEnemyLocation, score, setScore);
+            FriendlyShot(i, friendlyLocations, setFriendlyLocation);
+
+
 
         }} key={`${i}-${q}-${r}`} q={q} r={r}>
-            {<Text>{i} {q} {r}</Text>}
-            {playerLocations.player1 === i ? <Player playerNumber={1} /> : null}
-            {playerLocations.player2 === i ? <Player playerNumber={2} /> : null}
-
-
+            {/* {<Text>{i} {q} {r}</Text>} */}
+            {playerLocations.player === i ? <Player/> : null}
+            {enemyLocations.enemy1 === i ? <Enemy/> : null}
+            {enemyLocations.enemy2 === i ? <Enemy/> : null}
+            {friendlyLocations.friendly1 === i ? <Friendly/> : null}
+            {friendlyLocations.friendly2 === i ? <Friendly/> : null}
         </Hexagon>
     )
 }
