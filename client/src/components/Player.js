@@ -1,6 +1,5 @@
 import React from "react";
 import playerImage from "../images/cowboy.png"; 
-import playerImage2 from "../images/cowboy2.png"; 
 
 const Player = () => {
 
