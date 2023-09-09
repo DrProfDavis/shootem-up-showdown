@@ -1,7 +1,7 @@
 import React from "react";
 import Cell from './Cell'
 
-
+// player1 spawns in 1 of each location
 const places1 = [
     {i: 0},
     {i: 1},
