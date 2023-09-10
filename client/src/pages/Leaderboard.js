@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom';
 
 import { QUERY_LEADERBOARDS } from '../utils/queries';
 
+import '../App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Button, Container, Row, Col } from 'react-bootstrap';
+
 const Home = () => {
 
   //Gets the data from our query "QUERY_LEADERBOARDS" that is made from our GraphQL
@@ -15,18 +19,20 @@ const Home = () => {
     ? [...data.leaderboards].sort((a, b) => b.score - a.score)
     : [];
 
-
-
   return (
-    <main>
-      <h2>SCORES:</h2>
-      <ul>
-        {sortedLeaderboards?.map((user) => (
-          <li key={user._id}>
-            {user.leaderboardUser} - {user.score}</li>
-        ))}
-      </ul>
-    </main>
+     <div className="leaderboard main-container center">
+
+      <div className="content">
+        <h1>LEADERBOARD</h1>
+        <ul>
+          {sortedLeaderboards?.map((user) => (
+            <li key={user._id}>
+              {user.leaderboardUser} ⭐ {user.score}</li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
   );
 };
 
