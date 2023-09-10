@@ -56,7 +56,7 @@ const Cell = ({ q, r, i, setScore, score }) => {
             console.log("These are player locations: ", playerLocations);
 
             EnemyShot(i, enemyLocations, setEnemyLocation, score, setScore);
-            FriendlyShot(i, friendlyLocations, setFriendlyLocation);
+            FriendlyShot(i, friendlyLocations, setFriendlyLocation, score, setScore);
 
 
 
