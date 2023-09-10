@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { HexGrid, Layout, Hexagon, Text, Pattern, Path, Hex } from 'react-hexgrid';
 import Cell from './Cell'
+import Auth from '../utils/auth'; 
 import GridArray from './GridArray'
 import Dashboard from './dashboard'
 import { PlayerSpawn } from './PlayerSpawn'
@@ -19,6 +20,13 @@ const randomFriendlyPlace2 = FriendlySpawn2();
 
 
 const Grid = () => {
+    const isAuthenticated = Auth.loggedIn();
+    const currentUser = isAuthenticated ? Auth.getProfile() : null;
+
+    const userLogout = () => {
+        Auth.logout();
+    }
+
     const [gridArrayState, useGridArrayState] = useState(gridArray)
 
     const [score, setScore] = useState(0);
@@ -40,7 +48,6 @@ const Grid = () => {
     const [bullets, setBulletCount] = useState(6)
 
     const [timer, setTimer] = useState(10); // Initialize the timer stat
-
 
     useEffect(() => {
         console.log("These are enemy locations: ", enemyLocations);
@@ -73,14 +80,20 @@ const Grid = () => {
     }, []);
 
     // UNCOMMENT THIS TO MAKE GAMEOVER SCREEN APPEAR
-    if (timer <= 0) {
-        return <GameOverScreen score={score} />;
-      }
+    // if (timer <= 0) {
+    //     return <GameOverScreen score={score} />;
+    //   }
+
+    
 
     return (
+        
         <div className="timerDiv">
             <div className="timer">
-                <p>Timer: {timer}</p>
+            {isAuthenticated && (
+                    <p>User: {currentUser.data.username} | Score: {score}<br/></p>
+                )}
+              <p> Timer: {timer}</p>
             </div>
 
             <div className="app">
@@ -114,6 +127,9 @@ const Grid = () => {
                         </Layout>
                     </HexGrid>
                 </div>
+                {isAuthenticated ? (
+                    <button onClick={userLogout}>Logout</button>
+                ) : null}
             </div>
         </div>
     );
