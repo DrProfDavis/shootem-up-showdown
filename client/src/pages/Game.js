@@ -4,8 +4,10 @@ import Grid from "../components/Grid";
 
 const Game = () => {
   return (
-    <div className="container">
-      <Grid />
+    <div className="game main-container center">
+      <div className="container">
+        <Grid />
+      </div>
     </div>
   );
 };
