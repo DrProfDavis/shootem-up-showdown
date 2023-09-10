@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css');
+
 .positioned-div {
   position: absolute;
   top: 10%; /* Adjust the top value to position it as needed */
@@ -22,4 +25,9 @@
   min-width: 25%;
   transform: translate(-50%,0%);
   /* background-color: #f0f0f0; Background color for visibility */
+}
+
+.home-text {
+  font-family: 'Cinzel', serif;
+  animation: bounce;
 }
