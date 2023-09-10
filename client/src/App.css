@@ -83,8 +83,24 @@ Home.css
         animation-direction: alternate;              
 }
 
-.game  {
-    background-image: url('./images/background2.png');
+.game {
+    background-image: url('./images/background3.png');
+  background-size:cover;
+        -webkit-animation: slidein 12s;
+        animation: slidein 12s;
+
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+
+        -webkit-animation-direction: alternate;
+        animation-direction: alternate;              
+}
+
+.gameover {
+    background-image: url('./images/background3.png');
   background-size:cover;
         -webkit-animation: slidein 12s;
         animation: slidein 12s;

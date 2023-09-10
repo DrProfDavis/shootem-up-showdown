@@ -8,6 +8,7 @@ import { EnemySpawn1, EnemySpawn2 } from './EnemySpawn';
 import { FriendlySpawn1, FriendlySpawn2 } from './FriendlySpawn';
 import GameOverScreen from "./GameOver"; 
 
+
 const gridArray = GridArray;
 
 const randomPlayerPlace = PlayerSpawn();
@@ -67,7 +68,7 @@ const Grid = () => {
 
     //UNCOMMENT THIS TO MAKE GAMEOVER SCREEN APPEAR
     if (timer <= 0) {
-        return <GameOverScreen />;
+        return <GameOverScreen score={score} />;
       }
 
     return (

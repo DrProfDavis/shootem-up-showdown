@@ -1,4 +1,4 @@
-const EnemyShot = (i, enemyLocations, setEnemyLocation, setTimer) => {
+const EnemyShot = (i, enemyLocations, setEnemyLocation, setTimer, setScore) => {
 
 
     if (enemyLocations.enemy1 === i) {
@@ -8,6 +8,7 @@ const EnemyShot = (i, enemyLocations, setEnemyLocation, setTimer) => {
         enemy1: null, //Change back to null to make cowboy disappear. It seems that the scores are being treated as separate scores though.
       });
       setTimer((prevTimer) => prevTimer + 5);
+      setScore((prevScore) => prevScore + 1);
 
     }
 
@@ -18,6 +19,7 @@ const EnemyShot = (i, enemyLocations, setEnemyLocation, setTimer) => {
         enemy2: null,
       });
       setTimer((prevTimer) => prevTimer + 5);
+      setScore((prevScore) => prevScore + 1);
 
     }
 
