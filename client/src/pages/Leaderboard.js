@@ -19,20 +19,22 @@ const Home = () => {
     ? [...data.leaderboards].sort((a, b) => b.score - a.score)
     : [];
 
+    const topTenLeaderboards = sortedLeaderboards.slice(0, 10);
+
   return (
      <div className="leaderboard main-container center">
-
       <div className="content">
+        <button><Link to="/home">Click here to go back</Link></button>
         <h1>LEADERBOARD</h1>
         <ul>
-          {sortedLeaderboards?.map((user) => (
+          {topTenLeaderboards.map((user) => (
             <li key={user._id}>
-              {user.leaderboardUser} ⭐ {user.score}</li>
+              {user.leaderboardUser} ⭐ {user.score}
+            </li>
           ))}
         </ul>
       </div>
     </div>
-
   );
 };
 
