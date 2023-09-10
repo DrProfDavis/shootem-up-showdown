@@ -22,7 +22,7 @@ const Home = () => {
   return (
      <div className="leaderboard main-container center">
 
-      <div className="content">
+      <div>
         <h1>LEADERBOARD</h1>
         <ul>
           {sortedLeaderboards?.map((user) => (
