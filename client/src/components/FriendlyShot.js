@@ -1,5 +1,5 @@
 
-const FriendlyShot = (i, friendlyLocations, setFriendlyLocation, score, setScore) => {
+const FriendlyShot = (i, friendlyLocations, setFriendlyLocation, setTimer) => {
 
     if (friendlyLocations.friendly1 === i) {
         console.log("FRIENDLY 1 HAS BEEN HIT");
@@ -7,7 +7,7 @@ const FriendlyShot = (i, friendlyLocations, setFriendlyLocation, score, setScore
             ...friendlyLocations,
             friendly1: null, 
         });
-        setScore((prevScore) => prevScore - 1);
+        setTimer(0);
     }
     if (friendlyLocations.friendly2 === i) {
         console.log("FRIENDLY 2 HAS BEEN HIT");
@@ -15,7 +15,7 @@ const FriendlyShot = (i, friendlyLocations, setFriendlyLocation, score, setScore
             ...friendlyLocations,
             friendly2: null, 
         });
-        setScore((prevScore) => prevScore - 1);
+        setTimer(0);
     }
 };
 

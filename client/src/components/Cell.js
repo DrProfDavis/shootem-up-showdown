@@ -8,10 +8,7 @@ import { FriendlyShot } from './FriendlyShot';
 
 
 
-
-
-
-const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, setEnemyLocation, enemyLocations, setFriendlyLocation, friendlyLocations }) => {
+const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, setEnemyLocation, enemyLocations, setFriendlyLocation, friendlyLocations, timer, setTimer }) => {
     // const [clickedPlayer, setClickedPlayer] = useState(0);
 
     return (
@@ -20,8 +17,8 @@ const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, set
 
             console.log("These are player locations: ", playerLocation);
 
-            EnemyShot(i, enemyLocations, setEnemyLocation, score, setScore);
-            FriendlyShot(i, friendlyLocations, setFriendlyLocation, score, setScore);
+            EnemyShot(i, enemyLocations, setEnemyLocation, setTimer);
+            FriendlyShot(i, friendlyLocations, setFriendlyLocation, setTimer);
 
 
 
