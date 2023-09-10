@@ -65,6 +65,7 @@ const Grid = () => {
         return () => clearInterval(interval);
     }, []);
 
+    //UNCOMMENT THIS TO MAKE GAMEOVER SCREEN APPEAR
     if (timer <= 0) {
         return <GameOverScreen />;
       }
