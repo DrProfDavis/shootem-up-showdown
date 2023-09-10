@@ -7,7 +7,7 @@ import bullets3 from "../images/bullets_3.png"
 import bullets2 from "../images/bullets_2.png"
 import bullets1 from "../images/bullets_1.png"
 
-function Dashboard({bullets}) {
+function Dashboard({ bullets }) {
 
 
 
