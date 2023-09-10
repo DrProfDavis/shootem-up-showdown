@@ -47,9 +47,9 @@ const Login = (props) => {
   };
 
   return (
-    <div className="login main-container center">
-      <Container className="text-center">
-        <div className='positioned-div'>
+    <div className="login main-container content">
+      <Container className="text-center ">
+        <div className='positioned-div '>
           <div className="card">
 
             <h4 className="card-header p-2">Login</h4>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 const HowToPlay = () => {
 
   return (
-    <div className="howtoplay main-container center">
+    <div className="howtoplay main-container center content">
       <main>
         <button><Link to="/login">LOG IN</Link></button>
 

@@ -27,7 +27,7 @@ const Home = () => {
         <ul>
           {sortedLeaderboards?.map((user) => (
             <li key={user._id}>
-              {user.leaderboardUser} - {user.score}</li>
+              {user.leaderboardUser} ⭐ {user.score}</li>
           ))}
         </ul>
       </div>

@@ -42,7 +42,7 @@ Home.css
 
 .content {
     position: relative; 
-    height: 100vh;
+    height:130vh;
     /* transform: translate(-10%, -0%); */
     z-index: 1; /* Place the content above the background image */
     padding: 20%; 
@@ -84,7 +84,7 @@ Home.css
 }
 
 .game  {
-    background-image: url('./images/background4.png');
+    background-image: url('./images/background2.png');
   background-size:cover;
         -webkit-animation: slidein 12s;
         animation: slidein 12s;
@@ -176,6 +176,19 @@ to {background-position: -100px 0px;background-size:2750px;}
   color:white;
   font-family: 'Source Code Pro', monospace;
   background-color: rgb(223, 154, 97);
+  opacity: 90%;
+  text-transform:uppercase;
+}
+.center li{
+  display: block;
+  /* display: flex; */
+  text-align:center;
+  font-weight: bolder;
+  font-size: 30px;
+  color:white;
+  
+  font-family: 'Source Code Pro', monospace;
+  background-color: rgb(172, 121, 79);
   opacity: 90%;
   text-transform:uppercase;
 }
