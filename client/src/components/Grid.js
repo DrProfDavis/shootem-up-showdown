@@ -37,6 +37,8 @@ const Grid = () => {
         friendly2: randomFriendlyPlace2.i,
     });
 
+    const [bullets, setBulletCount] = useState(6)
+
     const [timer, setTimer] = useState(10); // Initialize the timer stat
 
 
@@ -53,6 +55,10 @@ const Grid = () => {
     }, [score]);
 
     useEffect(() => {
+        console.log("Bullets has been updated: ", bullets);
+    }, [bullets]);
+
+    useEffect(() => {
         const interval = setInterval(() => {
             setTimer((prevTimer) => {
                 if (prevTimer > 0) {
@@ -66,7 +72,7 @@ const Grid = () => {
         return () => clearInterval(interval);
     }, []);
 
-    //UNCOMMENT THIS TO MAKE GAMEOVER SCREEN APPEAR
+    // UNCOMMENT THIS TO MAKE GAMEOVER SCREEN APPEAR
     if (timer <= 0) {
         return <GameOverScreen score={score} />;
       }
@@ -78,14 +84,31 @@ const Grid = () => {
             </div>
 
             <div className="app">
-                <Dashboard></Dashboard>
+                <Dashboard bullets={bullets}></Dashboard>
                 <div className='gameboard'>
                     <HexGrid width={1200} height={675}>
                         <Layout spacing={1.05} size={{ x: 6, y: 6 }} origin={{ x: 0, y: 0 }}>
                             {gridArrayState.map((coord, i) => {
                                 const [q, r] = coord
                                 return (
-                                    <Cell key={`${i}-${q}-${r}`} q={q} r={r} i={i} setScore={setScore} score={score} setPlayerLocation={setPlayerLocation} playerLocation={playerLocation} setEnemyLocation={setEnemyLocation} enemyLocations={enemyLocations} setFriendlyLocation={setFriendlyLocation} friendlyLocations={friendlyLocations} setTimer={setTimer} timer={timer} />
+                                    <Cell 
+                                    key={`${i}-${q}-${r}`} 
+                                    q={q} 
+                                    r={r} 
+                                    i={i} 
+                                    setScore={setScore} 
+                                    score={score} 
+                                    setPlayerLocation={setPlayerLocation} 
+                                    playerLocation={playerLocation} 
+                                    setEnemyLocation={setEnemyLocation} 
+                                    enemyLocations={enemyLocations} 
+                                    setFriendlyLocation={setFriendlyLocation} 
+                                    friendlyLocations={friendlyLocations} 
+                                    setTimer={setTimer} 
+                                    timer={timer}
+                                    setBulletCount={setBulletCount}
+                                    bullets={bullets}
+                                    />
                                 )
                             })}
                         </Layout>

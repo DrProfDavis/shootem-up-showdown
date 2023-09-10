@@ -118,6 +118,7 @@ svg path {
 
 .dashboard {
     height: 80%;
+    width: 500px;
     margin-left: 20px;
     /* transform: translateX(-45%); */
     /* background-color: var(--bg); */
@@ -142,7 +143,14 @@ svg path {
     background-color: #525357;
 }
 
-.revolver {
-    height: 50%;
-    width: 100%;
+.revolver, .bullets {
+    position: absolute;
+    top: 0;
+    left: 250px;
+    height: auto;
+    width: 20%;
+}
+
+.bullets {
+    z-index: 1;
 }

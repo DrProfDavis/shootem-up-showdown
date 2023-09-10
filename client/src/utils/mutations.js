@@ -26,11 +26,20 @@ export const ADD_USER = gql`
   }
 `;
 
+// export const ADD_LEADERBOARD = gql`
+//   mutation addLeaderboard($leaderboardText: String!) {
+//     addLeaderboard(leaderboardText: $leaderboardText) {
+//       _id
+//       score
+//     }
+//   }
+// `;
+
 export const ADD_LEADERBOARD = gql`
-  mutation addLeaderboard($leaderboardText: String!) {
-    addLeaderboard(leaderboardText: $leaderboardText) {
-      _id
-      score
-    }
+mutation AddLeaderBoard($score: Int!) {
+  addLeaderboard(score: $score) {
+    _id
+    score
   }
+}
 `;
