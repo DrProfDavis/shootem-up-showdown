@@ -5,10 +5,10 @@ import { Enemy } from './Enemy' // Import the Enemy component
 import { Friendly } from './Friendly' // Import the Friendly component
 import { EnemyShot } from './EnemyShot';
 import { FriendlyShot } from './FriendlyShot';
+import { HandleClick } from "./HandleClick";
 
 
-
-const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, setEnemyLocation, enemyLocations, setFriendlyLocation, friendlyLocations, timer, setTimer }) => {
+const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, setEnemyLocation, enemyLocations, setFriendlyLocation, friendlyLocations, timer, setTimer, bullets, setBulletCount }) => {
     // const [clickedPlayer, setClickedPlayer] = useState(0);
 
     return (
@@ -16,7 +16,7 @@ const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, set
             // HandleClick(q, r, i);
 
             console.log("These are player locations: ", playerLocation);
-
+            HandleClick(bullets, setBulletCount)
             EnemyShot(i, enemyLocations, setEnemyLocation, setTimer);
             FriendlyShot(i, friendlyLocations, setFriendlyLocation, setTimer);
 
