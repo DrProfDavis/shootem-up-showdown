@@ -127,9 +127,6 @@ const Grid = () => {
                         </Layout>
                     </HexGrid>
                 </div>
-                {isAuthenticated ? (
-                    <button onClick={userLogout}>Logout</button>
-                ) : null}
             </div>
         </div>
     );
