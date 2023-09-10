@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 
 import { QUERY_LEADERBOARDS } from '../utils/queries';
 
-import backgroundImage from '../images/background1.png'; 
+import '../App.css';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Button, Container, Row, Col } from 'react-bootstrap';
 
 const Home = () => {
 
@@ -17,17 +19,11 @@ const Home = () => {
     ? [...data.leaderboards].sort((a, b) => b.score - a.score)
     : [];
 
-  const h1Style = {
-    fontSize: '50px', // Adjust the font size as needed
-  };
-
   return (
-    <div className="main-container">
-      <img src={backgroundImage} alt="Description of the image" className="background-image" />
+     <div className="leaderboard main-container center">
 
-    {/* Content */}
       <div className="content">
-        <h1 style={h1Style}>LEADERBOARD</h1>
+        <h1>LEADERBOARD</h1>
         <ul>
           {sortedLeaderboards?.map((user) => (
             <li key={user._id}>
