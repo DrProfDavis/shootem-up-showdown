@@ -45,6 +45,8 @@ const Home = () => {
         <br></br>
         <br></br>
 
+        <Button variant="light" size="lg"><Link to="/howtoplay">HOW TO PLAY</Link></Button>
+
         <Button variant="light" size="lg"><Link to="/leaderboard">LEADERBOARD</Link></Button>
 
         {isAuthenticated ? (
