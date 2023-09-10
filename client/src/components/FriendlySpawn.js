@@ -1,22 +1,14 @@
-const places1 = [
-    {i: 54},
-    {i: 55},
-    {i: 56},
-    {i: 61},
-    {i: 62},
-    {i: 63},
-    {i: 69},
-];
+const places1 = [];
 
-const places2 = [
-    {i: 70},
-    {i: 76},
-    {i: 77},
-    {i: 88},
-    {i: 83},
-    {i: 84},
-    {i: 85},
-];
+for (let i = 0; i <= 126; i++) {
+    places1.push({ i });
+}
+
+const places2 = [];
+
+for (let i = 0; i <= 126; i++) {
+    places2.push({ i });
+}
 
 
 const getRandomPlace1 = () => {

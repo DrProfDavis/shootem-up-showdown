@@ -7,7 +7,7 @@ import { PlayerSpawn } from './PlayerSpawn'
 import { EnemySpawn1, EnemySpawn2 } from './EnemySpawn';
 import { FriendlySpawn1, FriendlySpawn2 } from './FriendlySpawn';
 import GameOverScreen from "./GameOver"; 
-import { HandleClick } from "./HandleClick";
+
 
 const gridArray = GridArray;
 
@@ -72,9 +72,10 @@ const Grid = () => {
         return () => clearInterval(interval);
     }, []);
 
-    // if (timer <= 0) {
-    //     return <GameOverScreen />;
-    //   }
+    // UNCOMMENT THIS TO MAKE GAMEOVER SCREEN APPEAR
+    if (timer <= 0) {
+        return <GameOverScreen score={score} />;
+      }
 
     return (
         <div className="timerDiv">

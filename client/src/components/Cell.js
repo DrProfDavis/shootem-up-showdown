@@ -17,7 +17,7 @@ const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, set
 
             console.log("These are player locations: ", playerLocation);
             HandleClick(bullets, setBulletCount)
-            EnemyShot(i, enemyLocations, setEnemyLocation, setTimer);
+            EnemyShot(i, enemyLocations, setEnemyLocation, setTimer, setScore);
             FriendlyShot(i, friendlyLocations, setFriendlyLocation, setTimer);
 
 
