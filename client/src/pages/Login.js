@@ -5,37 +5,11 @@ import { LOGIN } from '../utils/mutations';
 import Auth from '../utils/auth';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Button, Container, Form, Row, Col } from 'react-bootstrap';
 
-
-// function Login(props) {
-//   const [formState, setFormState] = useState({ username: '', password: '' });
-//   const [login, { error }] = useMutation(LOGIN);
-
-//   const handleFormSubmit = async (event) => {
-//     event.preventDefault();
-//     try {
-//       const mutationResponse = await login({
-//         variables: { username: formState.username, password: formState.password },
-//       });
-//       const token = mutationResponse.data.login.token;
-//       Auth.login(token);
-//     } catch (e) {
-//       console.log(e);
-//     }
-//   };
-
-//   const handleChange = (event) => {
-//     const { name, value } = event.target;
-//     setFormState({
-//       ...formState,
-//       [name]: value,
-//     });
-//   };
 
 const Login = (props) => {
-  // removed email
-  const [formState, setFormState] = useState({username: '', password: '' });
+  const [formState, setFormState] = useState({ username: '', password: '' });
   const [login, { error, data }] = useMutation(LOGIN);
 
   // update state based on form input changes
@@ -64,73 +38,46 @@ const Login = (props) => {
 
     // clear form values
     setFormState({
-      // email: '',
       username: '',
       password: '',
     });
   };
 
   return (
-    <Container className="text-center">
-    <div className='positioned-div'>
-      <div className="card">
-        
-        <h4 className="card-header p-2">Login</h4>
-        <div className="card-body">
-            
+    <div className="login main-container center">
+      <Container className="text-center">
+        <div className='positioned-div'>
+          <div >
             {data ? (
               <p>
                 Success! You may now head{' '}
                 <Link to="/">back to the homepage.</Link>
               </p>
             ) : (
-              
-              <form onSubmit={handleFormSubmit}>
-                {/* <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                /> */}
-                <div className="flex-row space-between my-2"> 
-                  <input
-                    className="form-input"
-                    placeholder="Your username"
-                    name="username"
-                    type="username"
-                    value={formState.username}
-                    onChange={handleChange}
-                  />
+
+              <form class="form-signin" onSubmit={handleFormSubmit}>
+                <h2 className="card-header p-2">HOWDY🌵</h2>
+                <label htmlFor="username" for="inputEmail" class="sr-only"></label>
+                <input class="form-control" placeholder="Username "
+                  name="username" type="username" value={formState.username} onChange={handleChange} required autofocus />
+
+                <label for="inputPassword" class="sr-only"></label>
+                <input class="form-control" placeholder="******" name="password" type="password" value={formState.password} onChange={handleChange} required />
+
+                <div class="checkbox mb-3">
+                  <label>
+                    <input type="checkbox" value="remember-me" /> Remember me
+                  </label>
                 </div>
-                <div className="flex-row space-between my-2">
-                  <input
-                    className="form-input"
-                    placeholder="******"
-                    name="password"
-                    type="password"
-                    value={formState.password}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="flex-row space-between my-2">
-                  <Button
-                    className="btn btn-block btn-primary"
-                    style={{ cursor: 'pointer' }}
-                    type="submit"
-                  >
-                    Submit
-                  </Button>
-                </div>
-                <div>
-                  <Link to="/signup"
-                  className="btn btn-block btn-secondary"
-                  >
-                    Sign Up
-                  </Link>
-                </div>
+
+                <button class="btn btn-lg btn-warning btn-block" type="submit">LOG IN</button>
+                <br></br>
+                <br></br>
+                <p>Don't have an account?<Link to="/signup">  Sign Up</Link></p>
+                <p class="mt-2 mb-0 text-muted">&copy; 2023</p>
+
               </form>
+
             )}
 
             {error && (
@@ -140,8 +87,8 @@ const Login = (props) => {
             )}
           </div>
         </div>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 }
 
