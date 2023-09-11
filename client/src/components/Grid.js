@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useCallback } from "react"
 import { HexGrid, Layout, Hexagon, Text, Pattern, Path, Hex } from 'react-hexgrid';
 import Cell from './Cell'
 import Auth from '../utils/auth'; 
@@ -21,32 +21,57 @@ const randomFriendlyPlace2 = FriendlySpawn2();
 
 
 const Grid = () => {
+    //Checks true or false to see if a user is logged in or not
     const isAuthenticated = Auth.loggedIn();
+
+    //Checks the current user that is logged in. If logged in, get the user profile, if not, nothing happens
     const currentUser = isAuthenticated ? Auth.getProfile() : null;
 
     const [gridArrayState, useGridArrayState] = useState(gridArray)
 
+    //The score of the user
     const [score, setScore] = useState(0);
 
+    //Player location (I think we're deleting this)
     const [playerLocation, setPlayerLocation] = useState({
         player: randomPlayerPlace.i,
     });
 
+    //Enemy locations
     const [enemyLocations, setEnemyLocation] = useState({
         enemy1: randomEnemyPlace.i,
         enemy2: randomEnemyPlace2.i,
     });
 
+    //Cowgirl locations
     const [friendlyLocations, setFriendlyLocation] = useState({
         friendly1: randomFriendlyPlace.i,
         friendly2: randomFriendlyPlace2.i,
     });
 
+    //Bullets remaining
     const [bullets, setBulletCount] = useState(6)
 
+    //Reload
     const [isReloading, setIsReloading] = useState(false);
 
+    //Timer
     const [timer, setTimer] = useState(10); 
+
+    //Reload logic, reload one at a time with a max of six bullets
+    const handleReload = useCallback(() => {
+        if (bullets < 6 && !isReloading) {
+          const reloadAudio = new Audio(reloadSound);
+          reloadAudio.play();
+          setIsReloading(true);
+          console.log("Reloading...");
+          setTimeout(() => {
+            setBulletCount((prevCount) => Math.min(prevCount + 1, 6)); // Increment bullet count
+            setIsReloading(false);
+            console.log("Reloaded! Bullets: ", bullets + 1);
+          }, 1000);
+        }
+      }, [bullets, isReloading, setIsReloading, setBulletCount]);
 
     
 
@@ -68,25 +93,17 @@ const Grid = () => {
 
     useEffect(() => {
         const handleKeyDown = (event) => {
-          if (event.key === "r" && bullets < 6 && !isReloading) {
-            const reloadAudio = new Audio(reloadSound);
-            reloadAudio.play();
-            setIsReloading(true);
-            console.log("Reloading...");
-            setTimeout(() => {
-              setBulletCount(6);
-              setIsReloading(false);
-              console.log("Reloaded! Bullets: 6");
-            }, 3000);
+          if (event.key === "r") {
+            handleReload();
           }
         };
-      
+    
         window.addEventListener("keydown", handleKeyDown);
-      
+    
         return () => {
           window.removeEventListener("keydown", handleKeyDown);
         };
-      }, [bullets, isReloading, setBulletCount]);
+      }, [handleReload]);
 
     useEffect(() => {
         const interval = setInterval(() => {
