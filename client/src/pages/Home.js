@@ -53,7 +53,7 @@ const Home = () => {
           {!isAuthenticated ? (
             <Link to="/signup" className="btn btn-block btn-warning">SIGN UP</Link>
           ) : (
-              <Link to="/" className="btn btn-block btn-warning">PLAY GAME</Link>
+              <Link to="/game" className="btn btn-block btn-warning">PLAY GAME</Link>
           )}
           <br></br>
           <br></br>

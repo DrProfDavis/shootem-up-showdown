@@ -48,11 +48,11 @@ const App = () => {
           <Routes>
               <Route 
                 path="/"
-                element={<Game />}
+                element={<Home />}
               />
               <Route 
-                path="/home" 
-                element={<Home />}
+                path="/game" 
+                element={<Game />}
               />
               <Route 
                 path="/login" 
