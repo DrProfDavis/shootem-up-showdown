@@ -58,7 +58,7 @@ Home.css .main-container {
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200');
 
 .leaderboard {
-  background-image: url('./images/background4.png');
+  background-image: url('./images/background2.png');
   background-size: cover;
   -webkit-animation: slidein 8s;
   animation: slidein 8s;
@@ -74,7 +74,7 @@ Home.css .main-container {
 }
 
 .game {
-  background-image: url('./images/background3.png');
+  background-image: url('./images/background4.png');
   background-size: cover;
   -webkit-animation: slidein 12s;
   animation: slidein 12s;
@@ -106,7 +106,7 @@ Home.css .main-container {
 }
 
 .howtoplay {
-  background-image: url('./images/background4.png');
+  background-image: url('./images/background2.png');
   background-size: cover;
   -webkit-animation: slidein 12s;
   animation: slidein 12s;
@@ -194,11 +194,11 @@ Home.css .main-container {
 .center h1 {
   text-align: center;
   font-weight: bold;
-  font-size: 180px;
-  color: white;
+  font-size: 150px;
+  color: rgb(79, 45, 96);
   font-family: 'Source Code Pro', monospace;
   font-weight: bolder;
-  background-color: rgb(223, 154, 97);
+  /* background-color: rgb(223, 154, 97); */
   opacity: 90%;
   text-transform: uppercase;
 }
@@ -236,6 +236,17 @@ Home.css .main-container {
   text-transform: uppercase;
 }
 
+.center h5 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  color: white;
+  font-family: 'Source Code Pro', monospace;
+  background-color: rgb(172, 121, 79);
+  opacity: 90%;
+  text-transform: uppercase;
+}
+
 .center li {
   display: block;
   /* display: flex; */
@@ -243,7 +254,7 @@ Home.css .main-container {
   font-weight: bolder;
   font-size: 30px;
   color: white;
-
+  max-width: 15em;
   font-family: 'Source Code Pro', monospace;
   background-color: rgb(172, 121, 79);
   opacity: 90%;
