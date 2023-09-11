@@ -74,7 +74,7 @@ Home.css .main-container {
 }
 
 .game {
-  background-image: url('./images/background3.png');
+  background-image: url('./images/background4.png');
   background-size: cover;
   -webkit-animation: slidein 12s;
   animation: slidein 12s;
@@ -228,10 +228,10 @@ Home.css .main-container {
 .center h4 {
   text-align: center;
   font-weight: bold;
-  font-size: 30px;
-  color: white;
+  /* font-size: 30px; */
+  color: black;
   font-family: 'Source Code Pro', monospace;
-  background-color: rgb(92, 169, 207);
+  /* background-color: rgb(92, 169, 207); */
   opacity: 90%;
   text-transform: uppercase;
 }
