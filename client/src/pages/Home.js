@@ -49,6 +49,7 @@ const Home = () => {
         )}
 
         <br></br>
+        <br></br>
 
         {!isAuthenticated ? (
           <Link to="/signup"><button class="btn btn-lg btn-warning btn-block">SIGN UP</button></Link>
@@ -75,9 +76,9 @@ const Home = () => {
         </nav>
 
         {!isPlaying && (
-          <Button variant="light" size="lg" onClick={startBackgroundMusic}>
-            Click here for audio!
-          </Button>
+          <button class="btn btn-sm btn-dark btn-block" onClick={startBackgroundMusic}>
+            🔊
+          </button>
         )}
 
       </div>

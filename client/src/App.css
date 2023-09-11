@@ -199,7 +199,7 @@ Home.css .main-container {
   font-family: 'Source Code Pro', monospace;
   font-weight: bold;
   background-color: rgb(223, 154, 97);
-  opacity: 85%;
+  opacity: 95%;
   text-transform: uppercase;
 }
 
@@ -210,7 +210,7 @@ Home.css .main-container {
   color: white;
   font-family: 'Source Code Pro', monospace;
   background-color: rgb(224, 160, 107);
-  opacity: 30%;
+  opacity: 90%;
   text-transform: uppercase;
 }
 
@@ -267,13 +267,18 @@ body {
 
 .form-signin {
   width: 100%;
-  max-width: 350px;
-  padding: 15px;
+  max-width: 25em;
+  padding: 25px;
   margin: auto;
   background-color: rgb(219, 233, 245);
   border-color: rgb(131, 150, 168);
   border-width: 10px;
   border-style: solid;
+  height: 550px;
+}
+
+p {
+  font-size: 1.3em;
 }
 
 .form-signin .checkbox {
@@ -284,8 +289,8 @@ body {
   position: relative;
   box-sizing: border-box;
   height: auto;
-  padding: 10px;
-  font-size: 25px;
+  padding: 20px;
+  font-size: 1.6em;
 }
 
 .form-signin .form-control:focus {
