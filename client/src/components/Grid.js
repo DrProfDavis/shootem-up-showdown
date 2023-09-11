@@ -7,6 +7,7 @@ import Dashboard from './dashboard'
 import { PlayerSpawn } from './PlayerSpawn'
 import { EnemySpawn1, EnemySpawn2 } from './EnemySpawn';
 import { FriendlySpawn1, FriendlySpawn2 } from './FriendlySpawn';
+import reloadSound from '../audio/reload.mp3'
 import GameOverScreen from "./GameOver"; 
 
 
@@ -22,10 +23,6 @@ const randomFriendlyPlace2 = FriendlySpawn2();
 const Grid = () => {
     const isAuthenticated = Auth.loggedIn();
     const currentUser = isAuthenticated ? Auth.getProfile() : null;
-
-    const userLogout = () => {
-        Auth.logout();
-    }
 
     const [gridArrayState, useGridArrayState] = useState(gridArray)
 
@@ -47,7 +44,11 @@ const Grid = () => {
 
     const [bullets, setBulletCount] = useState(6)
 
-    const [timer, setTimer] = useState(10); // Initialize the timer stat
+    const [isReloading, setIsReloading] = useState(false);
+
+    const [timer, setTimer] = useState(10); 
+
+    
 
     useEffect(() => {
         console.log("These are enemy locations: ", enemyLocations);
@@ -64,6 +65,28 @@ const Grid = () => {
     useEffect(() => {
         console.log("Bullets has been updated: ", bullets);
     }, [bullets]);
+
+    useEffect(() => {
+        const handleKeyDown = (event) => {
+          if (event.key === "r" && bullets < 6 && !isReloading) {
+            const reloadAudio = new Audio(reloadSound);
+            reloadAudio.play();
+            setIsReloading(true);
+            console.log("Reloading...");
+            setTimeout(() => {
+              setBulletCount(6);
+              setIsReloading(false);
+              console.log("Reloaded! Bullets: 6");
+            }, 3000);
+          }
+        };
+      
+        window.addEventListener("keydown", handleKeyDown);
+      
+        return () => {
+          window.removeEventListener("keydown", handleKeyDown);
+        };
+      }, [bullets, isReloading, setBulletCount]);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -121,6 +144,8 @@ const Grid = () => {
                                     timer={timer}
                                     setBulletCount={setBulletCount}
                                     bullets={bullets}
+                                    setIsReloading={setIsReloading}
+                                    isReloading={isReloading}
                                     />
                                 )
                             })}
