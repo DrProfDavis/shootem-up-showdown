@@ -50,8 +50,7 @@ const Login = (props) => {
           <div >
             {data ? (
               <p>
-                Success! You may now head{' '}
-                <Link to="/">back to the homepage.</Link>
+                <Link to="/">SUCCESS!</Link>
               </p>
             ) : (
 
@@ -77,6 +76,8 @@ const Login = (props) => {
                 <p class="mt-2 mb-0 text-muted">&copy; 2023</p>
 
               </form>
+              
+              
 
             )}
 

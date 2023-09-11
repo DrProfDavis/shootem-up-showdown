@@ -58,7 +58,7 @@ const Home = () => {
           {!isAuthenticated ? (
             <Link to="/signup" className="btn btn-block btn-warning btn-style">SIGN UP</Link>
           ) : (
-              <Link to="/" className="btn btn-block btn-warning btn-style">PLAY GAME</Link>
+              <Link to="/game" className="btn btn-block btn-warning">PLAY GAME</Link>
           )}
           <br></br>
           <br></br>
@@ -67,28 +67,28 @@ const Home = () => {
           <br></br>
           <Link to="/leaderboard" className="btn btn-block btn-warning btn-style">LEADERBOARD</Link>
           <br></br>
-          <br></br>
           <nav>
             {isAuthenticated ? (
               <button class="btn btn-sm btn-danger btn-block btn-style" onClick={userLogout}>LOG OUT</button>
-            ) : null}
+              ) : null}
           </nav>
-          <br></br>
+              <br></br>
           </div>
           <div>
             {isPlaying ? (
-              <Button className="btn btn-dark btn-block btn-style" onClick={pauseBackgroundMusic}>
-                Pause 🔊
-              </Button>
+              <button className="btn btn-dark btn-block btn-style" onClick={pauseBackgroundMusic}>
+                🔇
+              </button>
             ) : (
-              <Button className="btn btn-dark btn-block btn-style" onClick={startBackgroundMusic}>
-                Play 🔊
-              </Button>
+              <babelutton className="btn btn-dark btn-block btn-style" onClick={startBackgroundMusic}>
+                🔊
+              </babelutton>
             )}
           </div>
 
+        </div>
+
       </div>
-    </div>
   );
 };
 

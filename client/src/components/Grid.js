@@ -9,6 +9,8 @@ import { EnemySpawn1, EnemySpawn2 } from './EnemySpawn';
 import { FriendlySpawn1, FriendlySpawn2 } from './FriendlySpawn';
 import reloadSound from '../audio/reload.mp3'
 import GameOverScreen from "./GameOver";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Button, Container, Row, Col } from 'react-bootstrap';
 
 
 const gridArray = GridArray;
@@ -157,8 +159,8 @@ const Grid = () => {
                     </div>
                     <Dashboard bullets={bullets}></Dashboard>
                     <div className="mute-button">
-                        <button onClick={toggleMute}>
-                            {isMuted ? 'Unmute Sound' : 'Mute Sound'}
+                        <button className="btn btn-dark btn-block btn-style" onClick={toggleMute}>
+                            {isMuted ? '🔇' : '🔊'}
                         </button>
                     </div>
                 </div>
