@@ -6,6 +6,7 @@ import { Friendly } from './Friendly' // Import the Friendly component
 import { EnemyShot } from './EnemyShot';
 import { FriendlyShot } from './FriendlyShot';
 import { HandleClick } from "./HandleClick";
+import gunshotSound from '../audio/gunshot.mp3'
 
 
 const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, setEnemyLocation, enemyLocations, setFriendlyLocation, friendlyLocations, timer, setTimer, bullets, setBulletCount }) => {
@@ -15,8 +16,13 @@ const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, set
         <Hexagon onClick={() => {
             // HandleClick(q, r, i);
 
+            const playGunshotSound = () => {
+                const audio = new Audio(gunshotSound);
+                audio.play();
+            }
+
             console.log("These are player locations: ", playerLocation);
-            HandleClick(bullets, setBulletCount)
+            HandleClick(bullets, setBulletCount, playGunshotSound)
             EnemyShot(i, enemyLocations, setEnemyLocation, setTimer, setScore);
             FriendlyShot(i, friendlyLocations, setFriendlyLocation, setTimer);
 
