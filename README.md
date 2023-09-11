@@ -24,7 +24,7 @@
 
   https://eperezcosano.github.io/hex-grid/
   https://pixabay.com/sound-effects/9mm-pistol-shoot-short-reverb-7152/
-  https://pixabay.com/sound-effects/clean-revolver-reload-6889/
+  https://pixabay.com/sound-effects/shell-load-87813/
 
 ## TESTS
 
