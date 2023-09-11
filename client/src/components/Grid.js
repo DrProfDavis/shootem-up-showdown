@@ -80,9 +80,9 @@ const Grid = () => {
     }, []);
 
     // UNCOMMENT THIS TO MAKE GAMEOVER SCREEN APPEAR
-    if (timer <= 0) {
-        return <GameOverScreen score={score} />;
-      }
+    // if (timer <= 0) {
+    //     return <GameOverScreen score={score} />;
+    //   }
 
     
 

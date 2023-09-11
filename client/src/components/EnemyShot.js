@@ -1,5 +1,7 @@
 const EnemyShot = (i, enemyLocations, setEnemyLocation, setTimer, setScore) => {
 
+  
+
 
     if (enemyLocations.enemy1 === i) {
       console.log("ENEMY 1 HAS BEEN HIT");
