@@ -129,17 +129,26 @@ const Grid = () => {
     return (
         
         <div className="timerDiv">
-            <div className="timer">
-            {isAuthenticated && (
-                    <h4>User: {currentUser.data.username} | Score: {score}<br/></h4>
-                )}
-              <h4> Timer: {timer}</h4>
-            </div>
-
             <div className="app">
-                <Dashboard bullets={bullets}></Dashboard>
+                <div className="dashboard">
+                    <div className="playerInfo">
+                        <div className="user">
+                            <h4 className="head">Player</h4>
+                            {isAuthenticated && (<h4 className="info"> {currentUser.data.username}</h4>)}
+                        </div>
+                        <div className="score">
+                            <h4 className="head">Score</h4>
+                            <h4 className="info">{score}</h4>
+                        </div>
+                        <div className="timer">
+                            <h4 className="head">Timer</h4>
+                            <h4 className="info">{timer}</h4>
+                        </div>
+                    </div>
+                    <Dashboard bullets={bullets}></Dashboard>
+                </div>
                 <div className='gameboard'>
-                    <HexGrid width={1200} height={675}>
+                    <HexGrid className="grid" width={1200} height={675}>
                         <Layout spacing={1.05} size={{ x: 6, y: 6 }} origin={{ x: 0, y: 0 }}>
                             {gridArrayState.map((coord, i) => {
                                 const [q, r] = coord
