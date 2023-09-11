@@ -10,7 +10,7 @@ const HowToPlay = () => {
   return (
     <div className="howtoplay main-container center content">
       <main>
-        <Link to="/home" className="btn btn-lg btn-light btn-block btn-style">🔙 HOME</Link>
+        <Link to="/" className="btn btn-lg btn-light btn-block btn-style">🔙 HOME</Link>
 
         <br></br>
         <br></br>

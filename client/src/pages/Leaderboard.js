@@ -24,11 +24,11 @@ const Home = () => {
   return (
      <div className="leaderboard center">
       <div>
-        <Link to="/home"><button class="btn btn-lg btn-light btn-block">🔙 HOME</button></Link>
+        <Link to="/"><button class="btn btn-lg btn-light btn-block">🔙 HOME</button></Link>
 
         <br></br>
         <br></br>
-        
+
         <h1>LEADERBOARD</h1>
 
         <br></br>
