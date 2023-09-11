@@ -12,14 +12,14 @@ function Dashboard({ bullets }) {
 
 
   return (
-    <div className="dashboard">
-      <img className="revolver" src={RevolverImage} alt="revolver"></img>
+    <div className="">
       {bullets === 6 ? <img className="bullets" src={bulletsF} alt="bullets"></img> : null}
       {bullets === 5 ? <img className="bullets" src={bullets5} alt="bullets"></img> : null}
       {bullets === 4 ? <img className="bullets" src={bullets4} alt="bullets"></img> : null}
       {bullets === 3 ? <img className="bullets" src={bullets3} alt="bullets"></img> : null}
       {bullets === 2 ? <img className="bullets" src={bullets2} alt="bullets"></img> : null}
       {bullets === 1 ? <img className="bullets" src={bullets1} alt="bullets"></img> : null}
+      {bullets === 0 ? <img className="bullets" src={RevolverImage} alt="bullets"></img> : null}
     </div>
   )
 }
