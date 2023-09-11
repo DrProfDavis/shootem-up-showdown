@@ -44,7 +44,7 @@ const Login = (props) => {
   };
 
   return (
-    <div className="login main-container center">
+    <div className="login main-container center ">
       <Container className="text-center">
         <div className='positioned-div'>
           <div >
