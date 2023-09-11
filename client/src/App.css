@@ -194,12 +194,12 @@ Home.css .main-container {
 .center h1 {
   text-align: center;
   font-weight: bold;
-  font-size: 150px;
+  font-size: 180px;
   color: white;
   font-family: 'Source Code Pro', monospace;
-  font-weight: bold;
+  font-weight: bolder;
   background-color: rgb(223, 154, 97);
-  opacity: 95%;
+  opacity: 90%;
   text-transform: uppercase;
 }
 

@@ -75,6 +75,8 @@ const Home = () => {
           ) : null}
         </nav>
 
+        <br></br>
+
         {!isPlaying && (
           <button class="btn btn-sm btn-dark btn-block" onClick={startBackgroundMusic}>
             🔊
