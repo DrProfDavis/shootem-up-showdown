@@ -67,22 +67,23 @@ const Home = () => {
           <br></br>
           <Link to="/leaderboard" className="btn btn-block btn-warning">LEADERBOARD</Link>
           <br></br>
-          <br></br>
           <nav>
             {isAuthenticated ? (
               <button class="btn btn-sm btn-danger btn-block" onClick={userLogout}>LOG OUT</button>
-            ) : null}
+              ) : null}
           </nav>
-          <br></br>
-          {isPlaying ? (
-            <button class="btn btn-sm btn-dark btn-block" onClick={pauseBackgroundMusic}>
-              Pause 🔊
-            </button>
-          ) : (
-            <button class="btn btn-sm btn-dark btn-block" onClick={startBackgroundMusic}>
-              Play 🔊
-            </button>
-          )}
+              <br></br>
+          <div>
+            {isPlaying ? (
+              <button class="btn btn-sm btn-dark btn-block" onClick={pauseBackgroundMusic}>
+                🔇
+              </button>
+            ) : (
+              <button class="btn btn-sm btn-dark btn-block" onClick={startBackgroundMusic}>
+                🔊
+              </button>
+            )}
+          </div>
         </div>
 
       </div>
