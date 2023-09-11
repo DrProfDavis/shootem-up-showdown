@@ -24,6 +24,11 @@ const Home = () => {
     setIsPlaying(true);
   }
 
+  const pauseBackgroundMusic = () => {
+    audio.pause();
+    setIsPlaying(false);
+  }
+
   useEffect(() => {
     // Cleanup the audio when the component unmounts
     return () => {
@@ -69,9 +74,13 @@ const Home = () => {
             ) : null}
           </nav>
           <br></br>
-          {!isPlaying && (
+          {isPlaying ? (
+            <button class="btn btn-sm btn-dark btn-block" onClick={pauseBackgroundMusic}>
+              Pause 🔊
+            </button>
+          ) : (
             <button class="btn btn-sm btn-dark btn-block" onClick={startBackgroundMusic}>
-              🔊
+              Play 🔊
             </button>
           )}
         </div>
