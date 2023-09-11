@@ -47,7 +47,7 @@ const Home = () => {
 
         <div className="d-grid gap-2">
           {!isAuthenticated ? (
-            <Link to="/login" className="btn btn-block btn-warning">LOG IN</Link>
+            <Link to="/login" className="btn btn-block btn-warning btn-style">LOG IN</Link>
           ) : (
             <div className='main-container'>
               <h3>HOWDY {currentUser.data.username}🌵</h3>
@@ -56,22 +56,36 @@ const Home = () => {
           <br></br>
           <br></br>
           {!isAuthenticated ? (
-            <Link to="/signup" className="btn btn-block btn-warning">SIGN UP</Link>
+            <Link to="/signup" className="btn btn-block btn-warning btn-style">SIGN UP</Link>
           ) : (
               <Link to="/game" className="btn btn-block btn-warning">PLAY GAME</Link>
           )}
           <br></br>
           <br></br>
-          <Link to="/howtoplay" className="btn btn-block btn-warning">HOW TO PLAY</Link>
+          <Link to="/howtoplay" className="btn btn-block btn-warning btn-style">HOW TO PLAY</Link>
           <br></br>
           <br></br>
-          <Link to="/leaderboard" className="btn btn-block btn-warning">LEADERBOARD</Link>
+          <Link to="/leaderboard" className="btn btn-block btn-warning btn-style">LEADERBOARD</Link>
+          <br></br>
           <br></br>
           <nav>
             {isAuthenticated ? (
-              <button class="btn btn-sm btn-danger btn-block" onClick={userLogout}>LOG OUT</button>
-              ) : null}
+              <button class="btn btn-sm btn-danger btn-block btn-style" onClick={userLogout}>LOG OUT</button>
+            ) : null}
           </nav>
+          <br></br>
+          </div>
+          <div>
+            {isPlaying ? (
+              <Button className="btn btn-dark btn-block btn-style" onClick={pauseBackgroundMusic}>
+                Pause 🔊
+              </Button>
+            ) : (
+              <Button className="btn btn-dark btn-block btn-style" onClick={startBackgroundMusic}>
+                Play 🔊
+              </Button>
+            )}
+          </div>
               <br></br>
           <div>
             {isPlaying ? (
