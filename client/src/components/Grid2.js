@@ -11,7 +11,8 @@ import reloadSound from '../audio/reload.mp3'
 import GameOverScreen from "./GameOver";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button, Container, Row, Col } from 'react-bootstrap';
-import Grid2 from './Grid2'
+import Grid3 from "./Grid3";
+
 
 
 const gridArray = GridArray;
@@ -23,7 +24,7 @@ const randomFriendlyPlace = FriendlySpawn1();
 const randomFriendlyPlace2 = FriendlySpawn2();
 
 
-const Grid = () => {
+const Grid2 = ({ prevScore, prevTimer, prevBullets }) => {
     //Checks true or false to see if a user is logged in or not
     const isAuthenticated = Auth.loggedIn();
 
@@ -33,7 +34,7 @@ const Grid = () => {
     const [gridArrayState, useGridArrayState] = useState(gridArray)
 
     //The score of the user
-    const [score, setScore] = useState(0);
+    const [score, setScore] = useState(prevScore);
 
     //Player location (I think we're deleting this)
     const [playerLocation, setPlayerLocation] = useState({
@@ -54,29 +55,29 @@ const Grid = () => {
     });
 
     //Bullets remaining
-    const [bullets, setBulletCount] = useState(6)
+    const [bullets, setBulletCount] = useState(prevBullets)
 
     //Reload
     const [isReloading, setIsReloading] = useState(false);
 
     //Timer
-    const [timer, setTimer] = useState(10);
+    const [timer, setTimer] = useState(prevTimer);
 
-    //Determines if you want to mute the sound effects or not
+    
     const [isMuted, setIsMuted] = useState(false);
+
+
     const toggleMute = () => {
         setIsMuted((prevIsMuted) => !prevIsMuted);
     };
 
-    //Check which tile you are clicking on (going to use this for crosshair image)
     const [clickedTileIndex, setClickedTileIndex] = useState(false); 
 
-    //Level you are currently at
-    const [level, SetLevel] = useState(1);
+    const [level, SetLevel] = useState(2);
+    
 
-  
 
-    //Reload logic, reload one at a time with a max of six bullets with audio
+    //Reload logic, reload one at a time with a max of six bullets
     const handleReload = useCallback(() => {
         if (bullets < 6 && !isReloading) {
             if (!isMuted) {
@@ -115,7 +116,6 @@ const Grid = () => {
         console.log("THIS IS THE CLICKED TILE INDEX: ", clickedTileIndex);
     }, [clickedTileIndex]);
 
-    //Click r to reload, useeffect will only run when handleReload is ran
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === "r") {
@@ -130,7 +130,6 @@ const Grid = () => {
         };
     }, [handleReload]);
 
-    //Timer to count down
     useEffect(() => {
         const interval = setInterval(() => {
             setTimer((prevTimer) => {
@@ -150,12 +149,14 @@ const Grid = () => {
         return <GameOverScreen score={score} />;
       }
 
-    //Logic to go to next level. Pass the current score, timer, and bullets
-    if (score == 2){
-        return <Grid2 prevScore={score} prevTimer={timer} prevBullets={bullets}/>;
+    if (score == 4){
+        return <Grid3 prevScore={score} prevTimer={timer} prevBullets={bullets}/>;
     }
 
+
+
     return (
+
         <div className="timerDiv">
             <div className="app">
                 <div className="dashboard">
@@ -228,4 +229,4 @@ const Grid = () => {
     );
 }
 
-export default Grid;
+export default Grid2;
