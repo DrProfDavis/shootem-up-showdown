@@ -18,7 +18,7 @@ const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, set
 
     return (
         <Hexagon onClick={() => {
-            // HandleClick(q, r, i);
+            // HandleClick(q, r, i);npm
 
 
             console.log("These are player locations: ", playerLocation);
