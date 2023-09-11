@@ -12,7 +12,7 @@ function Dashboard({ bullets }) {
 
 
   return (
-    <div className="">
+    <div>
       {bullets === 6 ? <img className="bullets" src={bulletsF} alt="bullets"></img> : null}
       {bullets === 5 ? <img className="bullets" src={bullets5} alt="bullets"></img> : null}
       {bullets === 4 ? <img className="bullets" src={bullets4} alt="bullets"></img> : null}

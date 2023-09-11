@@ -178,6 +178,12 @@ Home.css .main-container {
   }
 }
 
+@import url('https://fonts.googleapis.com/css?family=Poppins:wght@400;700&display=swap');
+
+:root {
+  --font: 'Poppins', monospace;
+} 
+
 .center {
   display: flex;
   align-items: center;
@@ -196,9 +202,9 @@ Home.css .main-container {
   font-weight: bold;
   font-size: 150px;
   color: rgb(79, 45, 96);
-  font-family: 'Source Code Pro', monospace;
+  font-family: var(--font);
   font-weight: bolder;
-  /* background-color: rgb(223, 154, 97); */
+  background-color: rgb(223, 154, 97);
   opacity: 90%;
   text-transform: uppercase;
 }
@@ -227,12 +233,11 @@ Home.css .main-container {
 }
 .center h4 {
   text-align: center;
-  font-weight: bold;
+  /* font-weight: bold; */
   /* font-size: 30px; */
   color: black;
-  font-family: 'Source Code Pro', monospace;
   /* background-color: rgb(92, 169, 207); */
-  opacity: 90%;
+  opacity: 70%;
   text-transform: uppercase;
 }
 
@@ -254,8 +259,8 @@ Home.css .main-container {
   font-weight: bolder;
   font-size: 30px;
   color: white;
-  max-width: 15em;
-  font-family: 'Source Code Pro', monospace;
+
+  font-family: var(--font);
   background-color: rgb(172, 121, 79);
   opacity: 90%;
   text-transform: uppercase;

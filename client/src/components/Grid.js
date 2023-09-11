@@ -156,13 +156,19 @@ const Grid = () => {
                             <h4 className="head">Player</h4>
                             {isAuthenticated && (<h4 className="info"> {currentUser.data.username}</h4>)}
                         </div>
-                        <div className="score">
-                            <h4 className="head">Score</h4>
-                            <h4 className="info">{score}</h4>
-                        </div>
                         <div className="timer">
                             <h4 className="head">Timer</h4>
-                            <h4 className="info">{timer}</h4>
+                            <h4 className="infoTimer">{timer}</h4>
+                        </div>   
+                        <div className="score level">
+                            <div>
+                                <h4 className="head">Level</h4>
+                                <h4 className="info">{score}</h4>
+                            </div>
+                            <div>
+                                <h4 className="head">Score</h4>
+                                <h4 className="info">{score}</h4>
+                            </div>
                         </div>
                     </div>
                     <Dashboard bullets={bullets}></Dashboard>
