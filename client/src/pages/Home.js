@@ -1,12 +1,16 @@
-import React from 'react';
+import { React, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import '../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button, Container, Row, Col } from 'react-bootstrap';
+import backgroundMusic from '../audio/background-home.mp3'
 
 
 const Home = () => {
+
+  const [audio] = useState(new Audio(backgroundMusic));
+  const [isPlaying, setIsPlaying] = useState(false);
 
   const isAuthenticated = Auth.loggedIn();
   const currentUser = isAuthenticated ? Auth.getProfile() : null;
@@ -14,6 +18,19 @@ const Home = () => {
   const userLogout = () => {
     Auth.logout();
   }
+
+  const startBackgroundMusic = () => {
+    audio.play();
+    setIsPlaying(true);
+  }
+
+  useEffect(() => {
+    // Cleanup the audio when the component unmounts
+    return () => {
+      audio.pause();
+      audio.currentTime = 0;
+    };
+  }, [audio]);
 
   return (
     <div className="home main-container center">
@@ -52,6 +69,12 @@ const Home = () => {
         {isAuthenticated ? (
           <button onClick={userLogout}>Logout</button>
         ) : null}
+
+        {!isPlaying && (
+          <Button variant="light" size="lg" onClick={startBackgroundMusic}>
+            Click here for audio!
+          </Button>
+        )}
 
       </div>
     </div>
