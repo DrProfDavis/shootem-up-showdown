@@ -1,14 +1,14 @@
 import { useState, useEffect, useCallback } from "react"
 import { HexGrid, Layout, Hexagon, Text, Pattern, Path, Hex } from 'react-hexgrid';
 import Cell from './Cell'
-import Auth from '../utils/auth'; 
+import Auth from '../utils/auth';
 import GridArray from './GridArray'
 import Dashboard from './dashboard'
 import { PlayerSpawn } from './PlayerSpawn'
 import { EnemySpawn1, EnemySpawn2 } from './EnemySpawn';
 import { FriendlySpawn1, FriendlySpawn2 } from './FriendlySpawn';
 import reloadSound from '../audio/reload.mp3'
-import GameOverScreen from "./GameOver"; 
+import GameOverScreen from "./GameOver";
 
 
 const gridArray = GridArray;
@@ -56,24 +56,34 @@ const Grid = () => {
     const [isReloading, setIsReloading] = useState(false);
 
     //Timer
-    const [timer, setTimer] = useState(10); 
+    const [timer, setTimer] = useState(10);
+
+
+    const [isMuted, setIsMuted] = useState(false);
+
+
+    const toggleMute = () => {
+        setIsMuted((prevIsMuted) => !prevIsMuted);
+    };
 
     //Reload logic, reload one at a time with a max of six bullets
     const handleReload = useCallback(() => {
         if (bullets < 6 && !isReloading) {
-          const reloadAudio = new Audio(reloadSound);
-          reloadAudio.play();
-          setIsReloading(true);
-          console.log("Reloading...");
-          setTimeout(() => {
-            setBulletCount((prevCount) => Math.min(prevCount + 1, 6)); // Increment bullet count
-            setIsReloading(false);
-            console.log("Reloaded! Bullets: ", bullets + 1);
-          }, 1000);
+            if (!isMuted) {
+                const reloadAudio = new Audio(reloadSound);
+                reloadAudio.play();
+            }
+            setIsReloading(true);
+            console.log("Reloading...");
+            setTimeout(() => {
+                setBulletCount((prevCount) => Math.min(prevCount + 1, 6)); // Increment bullet count
+                setIsReloading(false);
+                console.log("Reloaded! Bullets: ", bullets + 1);
+            }, 1000);
         }
-      }, [bullets, isReloading, setIsReloading, setBulletCount]);
+    }, [bullets, isReloading, setIsReloading, setBulletCount]);
 
-    
+
 
     useEffect(() => {
         console.log("These are enemy locations: ", enemyLocations);
@@ -93,17 +103,17 @@ const Grid = () => {
 
     useEffect(() => {
         const handleKeyDown = (event) => {
-          if (event.key === "r") {
-            handleReload();
-          }
+            if (event.key === "r") {
+                handleReload();
+            }
         };
-    
+
         window.addEventListener("keydown", handleKeyDown);
-    
+
         return () => {
-          window.removeEventListener("keydown", handleKeyDown);
+            window.removeEventListener("keydown", handleKeyDown);
         };
-      }, [handleReload]);
+    }, [handleReload]);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -111,10 +121,10 @@ const Grid = () => {
                 if (prevTimer > 0) {
                     return prevTimer - 1;
                 } else {
-                    return 0; 
+                    return 0;
                 }
             });
-        }, 1000); 
+        }, 1000);
 
         return () => clearInterval(interval);
     }, []);
@@ -124,10 +134,10 @@ const Grid = () => {
     //     return <GameOverScreen score={score} />;
     //   }
 
-    
+
 
     return (
-        
+
         <div className="timerDiv">
             <div className="app">
                 <div className="dashboard">
@@ -146,6 +156,11 @@ const Grid = () => {
                         </div>
                     </div>
                     <Dashboard bullets={bullets}></Dashboard>
+                    <div className="mute-button">
+                        <button onClick={toggleMute}>
+                            {isMuted ? 'Unmute Sound' : 'Mute Sound'}
+                        </button>
+                    </div>
                 </div>
                 <div className='gameboard'>
                     <HexGrid className="grid" width={1200} height={675}>
@@ -153,25 +168,27 @@ const Grid = () => {
                             {gridArrayState.map((coord, i) => {
                                 const [q, r] = coord
                                 return (
-                                    <Cell 
-                                    key={`${i}-${q}-${r}`} 
-                                    q={q} 
-                                    r={r} 
-                                    i={i} 
-                                    setScore={setScore} 
-                                    score={score} 
-                                    setPlayerLocation={setPlayerLocation} 
-                                    playerLocation={playerLocation} 
-                                    setEnemyLocation={setEnemyLocation} 
-                                    enemyLocations={enemyLocations} 
-                                    setFriendlyLocation={setFriendlyLocation} 
-                                    friendlyLocations={friendlyLocations} 
-                                    setTimer={setTimer} 
-                                    timer={timer}
-                                    setBulletCount={setBulletCount}
-                                    bullets={bullets}
-                                    setIsReloading={setIsReloading}
-                                    isReloading={isReloading}
+                                    <Cell
+                                        key={`${i}-${q}-${r}`}
+                                        q={q}
+                                        r={r}
+                                        i={i}
+                                        setScore={setScore}
+                                        score={score}
+                                        setPlayerLocation={setPlayerLocation}
+                                        playerLocation={playerLocation}
+                                        setEnemyLocation={setEnemyLocation}
+                                        enemyLocations={enemyLocations}
+                                        setFriendlyLocation={setFriendlyLocation}
+                                        friendlyLocations={friendlyLocations}
+                                        setTimer={setTimer}
+                                        timer={timer}
+                                        setBulletCount={setBulletCount}
+                                        bullets={bullets}
+                                        setIsReloading={setIsReloading}
+                                        isReloading={isReloading}
+                                        setIsMuted={setIsMuted}
+                                        isMuted={isMuted}
                                     />
                                 )
                             })}

@@ -9,11 +9,14 @@ import { HandleClick } from "./HandleClick";
 import gunshotSound from '../audio/gunshot.mp3'
 
 
-const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, setEnemyLocation, enemyLocations, setFriendlyLocation, friendlyLocations, timer, setTimer, bullets, setBulletCount, setIsReloading, isReloading }) => {
+const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, setEnemyLocation, enemyLocations, setFriendlyLocation, friendlyLocations, timer, setTimer, bullets, setBulletCount, setIsReloading, isReloading, setIsMuted, isMuted }) => {
     // const [clickedPlayer, setClickedPlayer] = useState(0);
     const playGunshotSound = () => {
-        const audio = new Audio(gunshotSound);
-        audio.play();
+        if(!isMuted)
+        {
+            const audio = new Audio(gunshotSound);
+            audio.play();
+        }
     }
 
     return (
