@@ -23,8 +23,8 @@ const Home = () => {
 
   return (
      <div className="leaderboard main-container center">
-      <div className="content">
-        <button><Link to="/home">Click here to go back</Link></button>
+
+      <div>
         <h1>LEADERBOARD</h1>
         <ul>
           {topTenLeaderboards.map((user) => (

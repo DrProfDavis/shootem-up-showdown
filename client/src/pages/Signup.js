@@ -39,45 +39,7 @@ function Signup(props) {
     <div className="signup main-container center">
       <Container className="text-center signup">
         <div className='positioned-div'>
-          {/* <div className="card"> */}
-            {/* <h4 className="card-header p-2">Sign Up</h4> */}
-            {/* <div className="card-body"> */}
 
-              {/* <form onSubmit={handleFormSubmit}>
-                <div className="flex-row space-between my-2">
-                  <label htmlFor="username"></label>
-                  <input
-                    placeholder="Username"
-                    name="username"
-                    type="username"
-                    id="username"
-                    onChange={handleChange}
-                  />
-                </div>
-
-                <div className="flex-row space-between my-2">
-                  <label htmlFor="pwd"></label>
-                  <input
-                    placeholder="******"
-                    name="password"
-                    type="password"
-                    id="pwd"
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="flex-row space-between my-2">
-                  <Button
-                    className="btn btn-block btn-primary"
-                    style={{ cursor: 'pointer' }}
-                    type="submit">Submit
-                  </Button>
-                </div>
-                <div>
-                  <Link to="/login"
-                    className="btn btn-block btn-secondary"
-                  >Log In</Link>
-                </div>
-              </form> */}
               <form class="form-signin" onSubmit={handleFormSubmit}>
                 <h2 className="card-header p-2">SIGN UP🌵</h2>
                 <label htmlFor="username" for="inputEmail" class="sr-only"></label>

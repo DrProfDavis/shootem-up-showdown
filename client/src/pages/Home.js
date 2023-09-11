@@ -33,42 +33,46 @@ const Home = () => {
   }, [audio]);
 
   return (
+
     <div className="home main-container center">
-
-      <div className="content d-grid gap-2">
+      <div>
         <h1>SHOWDOWN</h1>
-        <br></br>
+      <br></br>
+
+
+        {!isAuthenticated ? (
+          <Link to="/login"><button class="btn btn-lg btn-warning btn-block" >LOG IN</button></Link>
+        ) : (
+          <div className='main-container'>
+            <h3>HOWDY {currentUser.data.username}🌵</h3>
+          </div>
+        )}
+
         <br></br>
 
         {!isAuthenticated ? (
-          <Button variant="light" size="lg"><Link to="/login">LOG IN</Link></Button>
+          <Link to="/signup"><button class="btn btn-lg btn-warning btn-block">SIGN UP</button></Link>
         ) : (
-          <div>
-            <p>Welcome: {currentUser.data.username}</p>
-          </div>
+            <Link to="/"><button class="btn btn-lg btn-warning btn-block">PLAY GAME</button></Link>
         )}
 
         <br></br>
         <br></br>
 
-        {!isAuthenticated ? (
-          <Button variant="light" size="lg"><Link to="/signup">SIGN UP</Link></Button>
-        ) : (
-          <div>
-            <Button variant="light" size="lg"><Link to="/">PLAY GAME</Link></Button>
-          </div>
-        )}
+        <Link to="/howtoplay"><button class="btn btn-lg btn-warning btn-block" >HOW TO PLAY</button></Link>
+        <br></br>
+        <br></br>
+
+        <Link to="/leaderboard"><button class="btn btn-lg btn-warning btn-block" >LEADERBOARD</button></Link>
 
         <br></br>
         <br></br>
 
-        <Button variant="light" size="lg"><Link to="/howtoplay">HOW TO PLAY</Link></Button>
-
-        <Button variant="light" size="lg"><Link to="/leaderboard">LEADERBOARD</Link></Button>
-
-        {isAuthenticated ? (
-          <button onClick={userLogout}>Logout</button>
-        ) : null}
+        <nav>
+          {isAuthenticated ? (
+            <button class="btn btn-sm btn-danger btn-block" onClick={userLogout}>LOG OUT</button>
+          ) : null}
+        </nav>
 
         {!isPlaying && (
           <Button variant="light" size="lg" onClick={startBackgroundMusic}>
