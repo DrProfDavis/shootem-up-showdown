@@ -68,6 +68,10 @@ const Grid = () => {
         setIsMuted((prevIsMuted) => !prevIsMuted);
     };
 
+    const [clickedTileIndex, setClickedTileIndex] = useState(false); 
+
+  
+
     //Reload logic, reload one at a time with a max of six bullets
     const handleReload = useCallback(() => {
         if (bullets < 6 && !isReloading) {
@@ -104,6 +108,10 @@ const Grid = () => {
     }, [bullets]);
 
     useEffect(() => {
+        console.log("THIS IS THE CLICKED TILE INDEX: ", clickedTileIndex);
+    }, [clickedTileIndex]);
+
+    useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === "r") {
                 handleReload();
@@ -132,9 +140,9 @@ const Grid = () => {
     }, []);
 
     // UNCOMMENT THIS TO MAKE GAMEOVER SCREEN APPEAR
-    // if (timer <= 0) {
-    //     return <GameOverScreen score={score} />;
-    //   }
+    if (timer <= 0) {
+        return <GameOverScreen score={score} />;
+      }
 
 
 
@@ -191,7 +199,11 @@ const Grid = () => {
                                         isReloading={isReloading}
                                         setIsMuted={setIsMuted}
                                         isMuted={isMuted}
+                                        setClickedTileIndex={setClickedTileIndex}
+                                        clickedTileIndex= {clickedTileIndex}
                                     />
+                                    
+                                    
                                 )
                             })}
                         </Layout>
