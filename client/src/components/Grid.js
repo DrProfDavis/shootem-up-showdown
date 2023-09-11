@@ -91,9 +91,9 @@ const Grid = () => {
         <div className="timerDiv">
             <div className="timer">
             {isAuthenticated && (
-                    <p>User: {currentUser.data.username} | Score: {score}<br/></p>
+                    <h4>User: {currentUser.data.username} | Score: {score}<br/></h4>
                 )}
-              <p> Timer: {timer}</p>
+              <h4> Timer: {timer}</h4>
             </div>
 
             <div className="app">

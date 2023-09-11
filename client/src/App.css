@@ -1,9 +1,10 @@
 .positioned-div {
   position: absolute;
-  top: 10%; /* Adjust the top value to position it as needed */
+  top: 10%;
+  /* Adjust the top value to position it as needed */
   left: 50%;
   min-width: 25%;
-  transform: translate(-50%,0%);
+  transform: translate(-50%, 0%);
   /* background-color: #f0f0f0; Background color for visibility */
 }
 
@@ -17,163 +18,167 @@
 
 .home-div {
   position: absolute;
-  top: 40%; /* Adjust the top value to position it as needed */
+  top: 40%;
+  /* Adjust the top value to position it as needed */
   left: 50%;
   min-width: 25%;
-  transform: translate(-50%,0%);
+  transform: translate(-50%, 0%);
   /* background-color: #f0f0f0; Background color for visibility */
 }
-Home.css
 
-.main-container {
-    position: relative;
-  }
-  
-  .background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1; /* Place the background image behind the content */
-    opacity: 1; /* Adjust the opacity of the background image as needed */
-    
+Home.css .main-container {
+  position: relative;
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  /* Place the background image behind the content */
+  opacity: 1;
+  /* Adjust the opacity of the background image as needed */
+
 }
 
 .content {
-    position: relative; 
-    height:130vh;
-    /* transform: translate(-10%, -0%); */
-    z-index: 1; /* Place the content above the background image */
-    padding: 20%; 
-    text-align: center; /* Center-align the content */
-    /* background-color: rgba(255, 255, 255, 0.8); */
+  position: relative;
+  height: 130vh;
+  /* transform: translate(-10%, -0%); */
+  z-index: 1;
+  /* Place the content above the background image */
+  padding: 20%;
+  text-align: center;
+  /* Center-align the content */
+  /* background-color: rgba(255, 255, 255, 0.8); */
 }
 
-/* body  {
-    background-image: url('./images/background2.png');
-    background-size:cover;
-    -webkit-animation: slidein 10s;
-    animation: slidein 10s;
-    
-    -webkit-animation-fill-mode: forwards;
-    animation-fill-mode: forwards;
-    
-    -webkit-animation-iteration-count: infinite;
-    animation-iteration-count: infinite;
-    
-    -webkit-animation-direction: alternate;
-    animation-direction: alternate;              
-} */
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200');
 
-.leaderboard  {
-    background-image: url('./images/background4.png');
-  background-size:cover;
-        -webkit-animation: slidein 8s;
-        animation: slidein 8s;
+.leaderboard {
+  background-image: url('./images/background4.png');
+  background-size: cover;
+  -webkit-animation: slidein 8s;
+  animation: slidein 8s;
 
-        -webkit-animation-fill-mode: forwards;
-        animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 
-        -webkit-animation-iteration-count: infinite;
-        animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
 
-        -webkit-animation-direction: alternate;
-        animation-direction: alternate;              
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
 }
 
 .game {
-    background-image: url('./images/background3.png');
-  background-size:cover;
-        -webkit-animation: slidein 12s;
-        animation: slidein 12s;
+  background-image: url('./images/background3.png');
+  background-size: cover;
+  -webkit-animation: slidein 12s;
+  animation: slidein 12s;
 
-        -webkit-animation-fill-mode: forwards;
-        animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 
-        -webkit-animation-iteration-count: infinite;
-        animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
 
-        -webkit-animation-direction: alternate;
-        animation-direction: alternate;              
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
 }
 
 .gameover {
-    background-image: url('./images/background3.png');
-  background-size:cover;
-        -webkit-animation: slidein 12s;
-        animation: slidein 12s;
+  background-image: url('./images/background3.png');
+  background-size: cover;
+  -webkit-animation: slidein 12s;
+  animation: slidein 12s;
 
-        -webkit-animation-fill-mode: forwards;
-        animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 
-        -webkit-animation-iteration-count: infinite;
-        animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
 
-        -webkit-animation-direction: alternate;
-        animation-direction: alternate;              
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
 }
-.howtoplay  {
-    background-image: url('./images/background4.png');
-  background-size:cover;
-        -webkit-animation: slidein 12s;
-        animation: slidein 12s;
 
-        -webkit-animation-fill-mode: forwards;
-        animation-fill-mode: forwards;
+.howtoplay {
+  background-image: url('./images/background4.png');
+  background-size: cover;
+  -webkit-animation: slidein 12s;
+  animation: slidein 12s;
 
-        -webkit-animation-iteration-count: infinite;
-        animation-iteration-count: infinite;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 
-        -webkit-animation-direction: alternate;
-        animation-direction: alternate;              
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
 }
 
 .home {
-    background-image: url('./images/background2.png');
-  background-size:cover;
-        -webkit-animation: slidein 10s;
-        animation: slidein 10s;
+  background-image: url('./images/background2.png');
+  background-size: cover;
+  -webkit-animation: slidein 10s;
+  animation: slidein 10s;
 
-        -webkit-animation-fill-mode: forwards;
-        animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 
-        -webkit-animation-iteration-count: infinite;
-        animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
 
-        -webkit-animation-direction: alternate;
-        animation-direction: alternate;              
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
 }
 
-.login, .signup {
-    background-image: url('./images/background3.png');
-  background-size:cover;
-        -webkit-animation: slidein 10s;
-        animation: slidein 10s;
+.login,
+.signup {
+  background-image: url('./images/background3.png');
+  background-size: cover;
+  -webkit-animation: slidein 10s;
+  animation: slidein 10s;
 
-        -webkit-animation-fill-mode: forwards;
-        animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 
-        -webkit-animation-iteration-count: infinite;
-        animation-iteration-count: infinite;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
 
-        -webkit-animation-direction: alternate;
-        animation-direction: alternate;              
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;
 }
 
 @-webkit-keyframes slidein {
-from {background-position: top; background-size:3000px; }
-to {background-position: -100px 0px;background-size:2750px;}
+  from {
+    background-position: top;
+    background-size: 3000px;
+  }
+
+  to {
+    background-position: -100px 0px;
+    background-size: 2750px;
+  }
 }
 
 @keyframes slidein {
-from {background-position: top;background-size:3000px; }
-to {background-position: -100px 0px;background-size:2750px;}
+  from {
+    background-position: top;
+    background-size: 3000px;
+  }
+
+  to {
+    background-position: -100px 0px;
+    background-size: 2750px;
+  }
 }
 
-.center
-{
+.center {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -185,41 +190,71 @@ to {background-position: -100px 0px;background-size:2750px;}
   left: 0;
   border-radius: 1px;
 }
-.center h1{
-  text-align:center;
+
+.center h1 {
+  text-align: center;
   font-weight: bold;
   font-size: 150px;
-  color:white;
+  color: white;
   font-family: 'Source Code Pro', monospace;
+  font-weight: bold;
   background-color: rgb(223, 154, 97);
-  opacity: 90%;
-  text-transform:uppercase;
+  opacity: 85%;
+  text-transform: uppercase;
 }
-.center h2{
-  text-align:center;
+
+.center h2 {
+  text-align: center;
   font-weight: bold;
   font-size: 50px;
-  color:white;
+  color: white;
   font-family: 'Source Code Pro', monospace;
   background-color: rgb(224, 160, 107);
-  opacity: 90%;
-  text-transform:uppercase;
+  opacity: 30%;
+  text-transform: uppercase;
 }
-.center li{
+
+.center h3 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  color: white;
+  font-family: 'Source Code Pro', monospace;
+  background-color: rgb(224, 160, 107);
+  opacity: 70%;
+  text-transform: uppercase;
+  /* width: 30% */
+}
+.center h4 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  color: white;
+  font-family: 'Source Code Pro', monospace;
+  background-color: rgb(92, 169, 207);
+  opacity: 90%;
+  text-transform: uppercase;
+}
+
+.center li {
   display: block;
   /* display: flex; */
-  text-align:center;
+  text-align: center;
   font-weight: bolder;
   font-size: 30px;
-  color:white;
-  
+  color: white;
+
   font-family: 'Source Code Pro', monospace;
   background-color: rgb(172, 121, 79);
   opacity: 90%;
-  text-transform:uppercase;
+  text-transform: uppercase;
 }
 
-#root{text-align: center; width: 100%;}
+#root {
+  text-align: center;
+  width: 100%;
+}
+
 body {
   display: -ms-flexbox;
   display: flex;
@@ -238,11 +273,13 @@ body {
   background-color: rgb(219, 233, 245);
   border-color: rgb(131, 150, 168);
   border-width: 10px;
-  border-style:solid;
+  border-style: solid;
 }
+
 .form-signin .checkbox {
   font-weight: 500;
 }
+
 .form-signin .form-control {
   position: relative;
   box-sizing: border-box;
@@ -250,16 +287,30 @@ body {
   padding: 10px;
   font-size: 25px;
 }
+
 .form-signin .form-control:focus {
   z-index: 2;
 }
+
 .form-signin input[type="email"] {
   margin-bottom: -1px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
+
 .form-signin input[type="password"] {
   margin-bottom: 10px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+}
+
+btn-large {
+  height: 80px;
+  width: 400px;
+  font-size: 1.5em;
+}
+
+a {
+  /* font-size: 1.5em; */
+  text-decoration: none;
 }

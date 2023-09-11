@@ -31,8 +31,8 @@ code {
 .timer {
     text-align: center; /* Center the text horizontally */
 
-    background-color: #f0f0f0; 
-    width: 100%; /* Make it take the full width of its parent */
+    /* background-color: #f0f0f0;  */
+    width: 65%; /* Make it take the full width of its parent */
   }
 
   .timerDiv{
