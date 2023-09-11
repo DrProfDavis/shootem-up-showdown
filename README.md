@@ -2,11 +2,9 @@
 
 ## DESCRIPTION
 
-  na
+  "Shoot'em Up Showdown" is an action-packed Wild West-themed game where players test their quick-draw skills to shoot down bandits while avoiding innocent damsels. With immersive gunshot sound effects and Wild West styling, players are transported to the rugged frontier. The goal is to eliminate bandits as swiftly as possible, earning points for precision and speed. Compete for the top spot on the leaderboard, and enjoy the added features of login/logout functionality to keep track of your progress. Can you prove yourself as the fastest gunslinger in this thrilling showdown?
 
 ## TABLE OF CONTENTS
-
-  -- [Installation](#installation)
 
   -- [Usage](#usage)
 
@@ -18,17 +16,15 @@
 
   -- [Contacts](#contacts)
 
-## INSTALLATION
-
-  na
-
 ## USAGE
 
-  na
+  Anyone may use/fork this project in any way with [credits](#contacts)
 
 ## CONTRIBUTIONS
 
   https://eperezcosano.github.io/hex-grid/
+  https://pixabay.com/sound-effects/9mm-pistol-shoot-short-reverb-7152/
+  https://pixabay.com/sound-effects/clean-revolver-reload-6889/
 
 ## TESTS
 
@@ -47,18 +43,25 @@
 
 ## CONTACTS
 
-  GitHub: [DrProfDavis](https://github.com/DrProfDavis)
-  Email: [smd031@gmail.com](mailto:smd031@gmail.com)
-
-  GitHub: [Rockojoe2](https://github.com/rockojoe2)
+  Andrew Huynh <br>
+  GitHub: [katyn-sh](https://github.com/katyn-sh) <br>
+  Email: [tanhung.huynh@protonmail.ch](mailto:tanhung.huynh@protonmail.ch)
+  
+  Ediubong Ekwere <br>
+  GitHub: [JunoAndIce](https://github.com/JunoAndIce) <br>
+  Email: [ekwere.edi@gmail.com](mailto:ekwere.edi@gmail.com)
+  
+  Joey Lee <br>
+  GitHub: [Rockojoe2](https://github.com/rockojoe2) <br>
   Email: [lee.d.joey@gmail.com](mailto:lee.d.joey@gmail.com)
 
-  GitHub: [JunoAndIce](https://github.com/JunoAndIce)
-  Email: [ekwere.edi@gmail.com](mailto:ekwere.edi@gmail.com)
-
-  GitHub: [MayPhamX](https://github.com/MayPhamX)
+  May Pham <br>
+  GitHub: [MayPhamX](https://github.com/MayPhamX) <br>
   Email: [maypham@utexas.edu](mailto:maypham@utexas.edu)
   
-  GitHub: [katyn-sh](https://github.com/katyn-sh)
-  Email: [tanhung.huynh@protonmail.ch](mailto:tanhung.huynh@protonmail.ch)
+  Shawn Davis <br>
+  GitHub: [DrProfDavis](https://github.com/DrProfDavis) <br>
+  Email: [smd031@gmail.com](mailto:smd031@gmail.com)
+
+
   
