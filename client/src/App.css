@@ -319,3 +319,12 @@ a {
   /* font-size: 1.5em; */
   text-decoration: none;
 }
+
+.card-txt{
+  background-color: rgb(172, 121, 79);
+  opacity: 75%;
+}
+
+.btn-style{
+  opacity: 90%;
+}
