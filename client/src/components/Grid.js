@@ -235,12 +235,12 @@ const Grid = () => {
         }, [score]);
 
     // UNCOMMENT THIS TO MAKE GAME OVER SCREEN APPEAR
-    // if (timer <= 0) {
-    //     return <GameOverScreen timer={timer} />;
-    // }
+    if (timer <= 0) {
+        return <GameOverScreen timer={timer} />;
+    }
 
     if (score === 90 && level === 5) {
-        return <GameOverScreen timer={timer} />;
+        return <GameOverScreen score={timer} />;
     }
 
     //Logic to go to next level. Pass the current score, timer, and bullets

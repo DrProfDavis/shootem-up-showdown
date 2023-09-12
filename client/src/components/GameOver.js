@@ -7,7 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button } from 'react-bootstrap';
 import { ADD_LEADERBOARD } from '../utils/mutations';
 
-const GameOver = ({timer}) => {
+const GameOver = ({score}) => {
 
     const currentUser = Auth.getProfile();
     console.log("THE CURRENT USER LOGGED IN IS: ", currentUser);
@@ -15,7 +15,7 @@ const GameOver = ({timer}) => {
 
     const handleAddToLeaderboard = () => {
         addLeaderboard({
-          variables: { timer },
+          variables: { score },
         })
           .then((response) => {
             console.log("Score added to leaderboard:", response);
@@ -34,7 +34,7 @@ return (
         <>
         {/* <p>User ID: {currentUser.data._id}</p> */}
         <p>Current User: {currentUser.data.username}</p>
-        <p>Score: {timer}</p>
+        <p>Score: {score}</p>
         </>
       )}
 
