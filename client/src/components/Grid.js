@@ -1,28 +1,29 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 import { HexGrid, Layout, Hexagon, Text, Pattern, Path, Hex } from 'react-hexgrid';
+import { PlayerSpawn } from './PlayerSpawn'
+import { EnemySpawn1, EnemySpawn2 } from './EnemySpawn';
+import { FriendlySpawn1, FriendlySpawn2, friendlyIndices } from './FriendlySpawn';
+import { Button, Container, Row, Col } from 'react-bootstrap';
+import { Enemy } from './Enemy' // Import the Enemy component
 import Cell from './Cell'
 import Auth from '../utils/auth';
 import GridArray from './GridArray'
-import DashRevolver from './dashRevolver'
-import { PlayerSpawn } from './PlayerSpawn'
-import { EnemySpawn1, EnemySpawn2 } from './EnemySpawn';
-import { FriendlySpawn1, FriendlySpawn2 } from './FriendlySpawn';
 import reloadSound from '../audio/reload.mp3'
 import GameOverScreen from "./GameOver";
-import 'bootstrap/dist/css/bootstrap.min.css'
-import { Button, Container, Row, Col } from 'react-bootstrap';
-import Grid2 from './Grid2'
 import DashInfo from "./dashInfo";
 import DashButtons from "./dashButtons";
-
+import DashRevolver from './dashRevolver'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Grid2 from './Grid2'
 
 const gridArray = GridArray;
 
-const randomPlayerPlace = PlayerSpawn();
-const randomEnemyPlace = EnemySpawn1();
-const randomEnemyPlace2 = EnemySpawn2();
-const randomFriendlyPlace = FriendlySpawn1();
-const randomFriendlyPlace2 = FriendlySpawn2();
+// const randomPlayerPlace = PlayerSpawn();
+const randomFriendlyPlace = FriendlySpawn1(3);
+const randomEnemyPlace1 = EnemySpawn1(6);
+// const randomEnemyPlace2 = EnemySpawn2(5);
+
+// const randomFriendlyPlace2 = FriendlySpawn2();
 
 
 const Grid = () => {
@@ -38,22 +39,36 @@ const Grid = () => {
     const [score, setScore] = useState(0);
 
     //Player location (I think we're deleting this)
-    const [playerLocation, setPlayerLocation] = useState({
-        player: randomPlayerPlace.i,
-    });
+    // const [playerLocation, setPlayerLocation] = useState({
+    //     player: randomPlayerPlace.i,
+    // });
 
 
     //Enemy locations
-    const [enemyLocations, setEnemyLocation] = useState({
-        enemy1: randomEnemyPlace.i,
-        enemy2: randomEnemyPlace2.i,
-    });
+    // const [enemyLocations, setEnemyLocation] = useState({
+    //     enemy1: randomEnemyPlace.i,
+    //     enemy2: randomEnemyPlace2.i,
+    // });
+
+    const [enemyLocations, setEnemyLocation] = useState(
+        randomEnemyPlace1.reduce((locations, place, index) => {
+            locations[`enemy${index + 1}`] = place.i;
+            return locations;
+        }, {})
+    );
 
     //Cowgirl locations
-    const [friendlyLocations, setFriendlyLocation] = useState({
-        friendly1: randomFriendlyPlace.i,
-        friendly2: randomFriendlyPlace2.i,
-    });
+    // const [friendlyLocations, setFriendlyLocation] = useState({
+    //     friendly1: randomFriendlyPlace.i,
+    //     friendly2: randomFriendlyPlace2.i,
+    // });
+
+    const [friendlyLocations, setFriendlyLocation] = useState(
+        randomFriendlyPlace.reduce((locations, place, index) => {
+            locations[`friendly${index + 1}`] = place.i;
+            return locations;
+        }, {})
+    );
 
     //Bullets remaining
     const [bullets, setBulletCount] = useState(6)
@@ -97,9 +112,32 @@ const Grid = () => {
                 setBulletCount((prevCount) => Math.min(prevCount + 1, 6)); // Increment bullet count
                 setIsReloading(false);
                 console.log("Reloaded! Bullets: ", bullets + 1);
-            }, 1000);
+            }, 100);
         }
     }, [bullets, isReloading, setIsReloading, setBulletCount]);
+
+    const addNewEnemies = (numNewEnemies) => {
+        const newEnemyLocations = EnemySpawn1(numNewEnemies);
+        setEnemyLocation(prevLocations => ({
+        ...prevLocations,
+        ...newEnemyLocations.reduce((locations, place, index) => {
+            locations[`enemy${Object.keys(prevLocations).length + index + 1}`] = place.i;
+            return locations;
+        }, {})
+        }));
+    };
+
+    const addNewFriends = (numNewFriends) => {
+        const newFriendLocations = FriendlySpawn1(numNewFriends);
+        setFriendlyLocation(prevLocations => ({
+        ...prevLocations,
+        ...newFriendLocations.reduce((locations, place, index) => {
+            locations[`Friend${Object.keys(prevLocations).length + index + 1}`] = place.i;
+            return locations;
+        }, {})
+        }));
+    };
+
 
     useEffect(() => {
         console.log("These are enemy locations: ", enemyLocations);
@@ -173,15 +211,56 @@ const Grid = () => {
         return () => clearInterval(interval);
     }, []);
 
+    useEffect(() => {
+        if (score == 6) {
+            addNewFriends(3);
+            addNewEnemies(12);
+            SetLevel(prevLevel => prevLevel + 1)
+        }
+        if (score == 18) {
+            addNewFriends(6);
+            addNewEnemies(18);
+            SetLevel(prevLevel => prevLevel + 1)
+        }
+        if (score == 36) {
+            addNewFriends(9);
+            addNewEnemies(24);
+            SetLevel(prevLevel => prevLevel + 1)
+        }
+        if (score == 60) {
+            addNewFriends(12);
+            addNewEnemies(30);
+            SetLevel(prevLevel => prevLevel + 1)
+        }
+        }, [score]);
+
     // UNCOMMENT THIS TO MAKE GAME OVER SCREEN APPEAR
-    if (timer <= 0) {
-        return <GameOverScreen score={score} />;
+    // if (timer <= 0) {
+    //     return <GameOverScreen timer={timer} />;
+    // }
+
+    if (score === 90 && level === 5) {
+        return <GameOverScreen timer={timer} />;
     }
 
     //Logic to go to next level. Pass the current score, timer, and bullets
-    if (score == 2) {
-        return <Grid2 prevScore={score} prevTimer={timer} prevBullets={bullets} />;
-    }
+    // if (score == 5) {
+    //     return <Grid2 prevScore={score} prevTimer={timer} prevBullets={bullets} />;
+    // }
+
+    const enemies = Object.values(enemyLocations).map((location, index) => {
+        return <Enemy key={`enemy${index + 1}`} location={location} />;
+    });
+
+    const friendlies = Object.values(enemyLocations).map((location, index) => {
+        return <Enemy key={`enemy${index + 1}`} location={location} />;
+    });
+
+    
+
+    
+
+    
 
     return (
         <div className="main-game">
@@ -221,8 +300,6 @@ const Grid = () => {
                                         i={i}
                                         setScore={setScore}
                                         score={score}
-                                        setPlayerLocation={setPlayerLocation}
-                                        playerLocation={playerLocation}
                                         setEnemyLocation={setEnemyLocation}
                                         enemyLocations={enemyLocations}
                                         setFriendlyLocation={setFriendlyLocation}
@@ -237,6 +314,8 @@ const Grid = () => {
                                         isMuted={isMuted}
                                         setClickedTileIndex={setClickedTileIndex}
                                         clickedTileIndex={clickedTileIndex}
+                                        enemies={enemies}
+                                        friendlies={friendlies}
                                     />
 
 
