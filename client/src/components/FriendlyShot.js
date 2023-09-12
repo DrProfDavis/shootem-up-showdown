@@ -28,52 +28,68 @@
 //           setTimer((prevTime) => prevTime + 10);
 //       }
 
-//       if (friendlyLocations.Friend4 === i) {
+//       if (friendlyLocations.friendly4 === i) {
 //         console.log("FRIENDLY 4 HAS BEEN HIT");
 //         setFriendlyLocation({
 //             ...friendlyLocations,
-//             Friend4: null,
+//             friendly4: null,
 //         });
 //         setTimer((prevTime) => prevTime + 10);
 //     }
 
-//     if (friendlyLocations.Friend5 === i) {
+//     if (friendlyLocations.friendly5 === i) {
 //       console.log("FRIENDLY 5 HAS BEEN HIT");
 //       setFriendlyLocation({
 //           ...friendlyLocations,
-//           Friend5: null,
+//           friendly5: null,
 //       });
 //       setTimer((prevTime) => prevTime + 10);
 //   }
-//   if (friendlyLocations.Friend6 === i) {
+//   if (friendlyLocations.friendly6 === i) {
 //     console.log("FRIENDLY 6 HAS BEEN HIT");
 //     setFriendlyLocation({
 //         ...friendlyLocations,
-//         Friend6: null,
+//         friendly6: null,
 //     });
 //     setTimer((prevTime) => prevTime + 10);
 // }
 //     }
 // };
 
-const FriendlyShot = (i, friendlyLocations, setFriendlyLocation, setTimer, setScore, isReloading, bullets) => {
-    if (!isReloading && bullets > 0) {
-      const handleFriendlyHit = (friendlyNumber) => {
-        console.log(`FRIEND ${friendlyNumber} HAS BEEN HIT`);
+// const FriendlyShot = (i, friendlyLocations, setFriendlyLocation, setTimer, setScore, isReloading, bullets) => {
+//     if (!isReloading && bullets > 0) {
+//       const handleFriendlyHit = (friendlyNumber) => {
+//         console.log(`FRIEND ${friendlyNumber} HAS BEEN HIT`);
+//         setFriendlyLocation({
+//           ...friendlyLocations,
+//           [`Friend${friendlyNumber}`]: null,
+//         });
+//         setTimer((prevTime) => prevTime + 10);
+//       };
+  
+//       Object.keys(friendlyLocations).forEach((friend) => {
+//         const friendlyNumber = friend.replace('friend', '');
+//         if (friendlyLocations[friend] === i) {
+//             handleFriendlyHit(friendlyNumber);
+//         }
+//       });
+//     }
+//   };
+
+const FriendlyShot = (i, friendlyLocations, setFriendlyLocation, setTimer, isReloading, bullets) => {
+  if (!isReloading && bullets > 0) {
+    for (let j = 1; j <= 50; j++) {
+      const friendlyKey = `friendly${j}`;
+      if (friendlyLocations[friendlyKey] === i) {
+        console.log(`FRIENDLY ${j} HAS BEEN HIT`);
         setFriendlyLocation({
           ...friendlyLocations,
-          [`Friend${friendlyNumber}`]: null,
+          [friendlyKey]: null,
         });
         setTimer((prevTime) => prevTime + 10);
-      };
-  
-      Object.keys(friendlyLocations).forEach((friend) => {
-        const friendlyNumber = friend.replace('friend', '');
-        if (friendlyLocations[friend] === i) {
-            handleFriendlyHit(friendlyNumber);
-        }
-      });
+      }
     }
-  };
+  }
+};
 
 export { FriendlyShot };
