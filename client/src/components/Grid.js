@@ -99,6 +99,8 @@ const Grid = () => {
     //Variable for checking if any animations have finished.
     const [animationEnded, setAnimationEnded] = useState(false);
 
+    const [gameOver, setGameOver] = useState(false);
+
     //Reload logic, reload one at a time with a max of six bullets with audio
     const handleReload = useCallback(() => {
         if (bullets < 6 && !isReloading) {
@@ -159,6 +161,14 @@ const Grid = () => {
         console.log("THIS IS THE CLICKED TILE INDEX: ", clickedTileIndex);
     }, [clickedTileIndex]);
 
+    useEffect(() => {
+        if (score >= 90 && level >= 5) {
+          setGameOver(true);
+          // Clear the timer interval here
+          // Add code to stop the timer
+        }
+      }, [score, level]);
+
     //Click r to reload, useeffect will only run when handleReload is ran
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -176,24 +186,24 @@ const Grid = () => {
 
     //Timer to count down (GAME)
     useEffect(() => {
-        if (animationEnded) {
-            const interval = setInterval(() => {
-                setTimer((prevTimer) => {
-                    if (prevTimer >= 0) {
-                        // Increment the timer by 0.01
-                        const newTimer = Number((prevTimer + 0.01).toFixed(2));
-                        return newTimer;
-                    } else {
-                        // Timer has reached 0, clear the interval
-                        clearInterval(interval);
-                        return 0.00;
-                    }
-                });
-            }, 10); // Run every 10 milliseconds (0.01 seconds)
-    
-            return () => clearInterval(interval);
+        if (!gameOver && animationEnded) {
+          const interval = setInterval(() => {
+            setTimer((prevTimer) => {
+              if (prevTimer >= 0) {
+                // Increment the timer by 0.01
+                const newTimer = Number((prevTimer + 0.01).toFixed(2));
+                return newTimer;
+              } else {
+                // Timer has reached 0, clear the interval
+                clearInterval(interval);
+                return 0.00;
+              }
+            });
+          }, 10); // Run every 10 milliseconds (0.01 seconds)
+      
+          return () => clearInterval(interval);
         }
-    }, [animationEnded]);
+      }, [animationEnded, gameOver]);
 
     //Timer to count down (BOARD)
     const boardTimerRef = useRef(boardTimer);

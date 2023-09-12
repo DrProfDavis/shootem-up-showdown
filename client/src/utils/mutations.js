@@ -36,7 +36,7 @@ export const ADD_USER = gql`
 // `;
 
 export const ADD_LEADERBOARD = gql`
-mutation AddLeaderBoard($score: Int!) {
+mutation AddLeaderBoard($score: Float!) {
   addLeaderboard(score: $score) {
     _id
     score
