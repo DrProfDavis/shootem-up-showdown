@@ -11,7 +11,7 @@ import crosshair from '../images/crosshair.jpg'
 
 
 
-const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setFriendlyLocation, friendlyLocations, timer, setTimer, bullets, setBulletCount, setIsReloading, isReloading, setIsMuted, isMuted, setClickedTileIndex, clickedTileIndex, enemies, friendlies}) => {
+const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setFriendlyLocation, friendlyLocations, timer, setTimer, bullets, setBulletCount, setIsReloading, isReloading, setIsMuted, isMuted, setClickedTileIndex, clickedTileIndex, enemies, friendlies, gameStarted, setGameStarted}) => {
     // const [clickedPlayer, setClickedPlayer] = useState(0);
     // const [clickedTileIndex, setClickedTileIndex] = useState(null); 
     const playGunshotSound = () => {
@@ -27,6 +27,9 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
         <Hexagon onClick={() => {
             // HandleClick(q, r, i);npm
 
+            if (!gameStarted) {
+                setGameStarted(true);
+            }
 
             HandleClick(bullets, setBulletCount, playGunshotSound, isReloading)
             EnemyShot(i, enemyLocations, setEnemyLocation, setTimer, setScore, isReloading, bullets);
