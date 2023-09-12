@@ -1,6 +1,5 @@
-import { React, useState, useEffect } from 'react';
-import { Hexagon, Text } from 'react-hexgrid'
-import { Player } from './Player' // Import the Player component
+import { React } from 'react';
+import { Hexagon } from 'react-hexgrid'
 import { Enemy } from './Enemy' // Import the Enemy component
 import { Friendly } from './Friendly' // Import the Friendly component
 import { EnemyShot } from './EnemyShot';
