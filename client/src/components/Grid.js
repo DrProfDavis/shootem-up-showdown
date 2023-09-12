@@ -1,9 +1,9 @@
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import { HexGrid, Layout, Hexagon, Text, Pattern, Path, Hex } from 'react-hexgrid';
 import Cell from './Cell'
 import Auth from '../utils/auth';
 import GridArray from './GridArray'
-import Dashboard from './dashboard'
+import DashRevolver from './dashRevolver'
 import { PlayerSpawn } from './PlayerSpawn'
 import { EnemySpawn1, EnemySpawn2 } from './EnemySpawn';
 import { FriendlySpawn1, FriendlySpawn2 } from './FriendlySpawn';
@@ -12,6 +12,8 @@ import GameOverScreen from "./GameOver";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import Grid2 from './Grid2'
+import DashInfo from "./dashInfo";
+import DashButtons from "./dashButtons";
 
 
 const gridArray = GridArray;
@@ -39,7 +41,7 @@ const Grid = () => {
     const [playerLocation, setPlayerLocation] = useState({
         player: randomPlayerPlace.i,
     });
-    
+
 
     //Enemy locations
     const [enemyLocations, setEnemyLocation] = useState({
@@ -59,6 +61,9 @@ const Grid = () => {
     //Reload
     const [isReloading, setIsReloading] = useState(false);
 
+    //Board Timer
+    const [boardTimer, setBoardTimer] = useState(3);
+
     //Timer
     const [timer, setTimer] = useState(10);
 
@@ -69,12 +74,12 @@ const Grid = () => {
     };
 
     //Check which tile you are clicking on (going to use this for crosshair image)
-    const [clickedTileIndex, setClickedTileIndex] = useState(false); 
+    const [clickedTileIndex, setClickedTileIndex] = useState(false);
 
     //Level you are currently at
     const [level, SetLevel] = useState(1);
 
-  
+    const [animationEnded, setAnimationEnded] = useState(false);
 
     //Reload logic, reload one at a time with a max of six bullets with audio
     const handleReload = useCallback(() => {
@@ -132,59 +137,74 @@ const Grid = () => {
 
     //Timer to count down
     useEffect(() => {
+        if (animationEnded) {
+            const interval = setInterval(() => {
+                setTimer((prevTimer) => {
+                    if (prevTimer > 0) {
+                        return prevTimer - 1;
+                    } else {
+                        return 0;
+                    }
+                });
+            }, 1000);
+    
+            return () => clearInterval(interval);
+        }
+    }, [animationEnded]);
+
+    //Timer to count down (board)
+    const boardTimerRef = useRef(boardTimer);
+
+    useEffect(() => {
+        boardTimerRef.current = boardTimer;
+    }, [boardTimer]);
+
+    useEffect(() => {
         const interval = setInterval(() => {
-            setTimer((prevTimer) => {
-                if (prevTimer > 0) {
-                    return prevTimer - 1;
-                } else {
-                    return 0;
-                }
-            });
+            if (boardTimerRef.current > 1) {
+                setBoardTimer(prevTimer => prevTimer - 1);
+            } else {
+                clearInterval(interval);
+                setBoardTimer('DRAW');
+            }
         }, 1000);
 
         return () => clearInterval(interval);
     }, []);
 
     // UNCOMMENT THIS TO MAKE GAMEOVER SCREEN APPEAR
-    if (timer <= 0) {
-        return <GameOverScreen score={score} />;
-      }
+    // if (timer <= 0) {
+    //     return <GameOverScreen score={score} />;
+    //   }
 
     //Logic to go to next level. Pass the current score, timer, and bullets
-    if (score == 2){
-        return <Grid2 prevScore={score} prevTimer={timer} prevBullets={bullets}/>;
+    if (score == 2) {
+        return <Grid2 prevScore={score} prevTimer={timer} prevBullets={bullets} />;
     }
 
     return (
-        <div className="timerDiv">
+        <div className="main-game">
+            {!animationEnded && (
+                <div className={`dimmed ${boardTimer === 'DRAW' ? 'fade-out' : ''}`}
+                    key={boardTimer}
+                    onAnimationEnd={() => setAnimationEnded(true)}>
+                    <p>{boardTimer}</p>
+                </div>
+            )}
             <div className="app">
                 <div className="dashboard">
-                    <div className="playerInfo">
-                        <div className="user">
-                            <h4 className="head">Player</h4>
-                            {isAuthenticated && (<h4 className="info"> {currentUser.data.username}</h4>)}
-                        </div>
-                        <div className="timer">
-                            <h4 className="head">Timer</h4>
-                            <h4 className="infoTimer">{timer}</h4>
-                        </div>   
-                        <div className="score level">
-                            <div>
-                                <h4 className="head">Level</h4>
-                                <h4 className="info">{level}</h4>
-                            </div>
-                            <div>
-                                <h4 className="head">Score</h4>
-                                <h4 className="info">{score}</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <Dashboard bullets={bullets}></Dashboard>
-                    <div className="mute-button">
-                        <button className="btn btn-dark btn-block btn-style" onClick={toggleMute}>
-                            {isMuted ? '🔇' : '🔊'}
-                        </button>
-                    </div>
+                    <DashInfo
+                        isAuthenticated={isAuthenticated}
+                        currentUser={currentUser}
+                        timer={timer}
+                        level={level}
+                        score={score}>
+                    </DashInfo>
+                    <DashRevolver bullets={bullets}></DashRevolver>
+                    <DashButtons
+                        toggleMute={toggleMute}
+                        isMuted={isMuted}>
+                    </DashButtons>
                 </div>
                 <div className='gameboard'>
                     <HexGrid className="grid" width={1200} height={675}>
@@ -214,10 +234,10 @@ const Grid = () => {
                                         setIsMuted={setIsMuted}
                                         isMuted={isMuted}
                                         setClickedTileIndex={setClickedTileIndex}
-                                        clickedTileIndex= {clickedTileIndex}
+                                        clickedTileIndex={clickedTileIndex}
                                     />
-                                    
-                                    
+
+
                                 )
                             })}
                         </Layout>

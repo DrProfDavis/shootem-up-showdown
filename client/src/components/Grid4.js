@@ -3,7 +3,7 @@ import { HexGrid, Layout, Hexagon, Text, Pattern, Path, Hex } from 'react-hexgri
 import Cell from './Cell'
 import Auth from '../utils/auth';
 import GridArray from './GridArray'
-import Dashboard from './dashboard'
+import Dashboard from './dashRevolver'
 import { PlayerSpawn } from './PlayerSpawn'
 import { EnemySpawn1, EnemySpawn2 } from './EnemySpawn';
 import { FriendlySpawn1, FriendlySpawn2 } from './FriendlySpawn';
