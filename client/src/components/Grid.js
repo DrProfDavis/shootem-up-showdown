@@ -78,6 +78,8 @@ const Grid = () => {
     //Variable for checking if any animations have finished.
     const [animationEnded, setAnimationEnded] = useState(false);
 
+    const [gameStarted, setGameStarted] = useState(false);
+
     //Gameover state
     const [gameOver, setGameOver] = useState(false);
 
@@ -163,7 +165,7 @@ const Grid = () => {
 
     //Timer to count down (GAME)
     useEffect(() => {
-        if (!gameOver && animationEnded) {
+        if (!gameOver && animationEnded && gameStarted) {
             const interval = setInterval(() => {
                 setTimer((prevTimer) => {
                     if (prevTimer >= 0) {
@@ -180,7 +182,7 @@ const Grid = () => {
 
             return () => clearInterval(interval);
         }
-    }, [animationEnded, gameOver]);
+    }, [animationEnded, gameOver, gameStarted]);
 
     //Timer to count down (BOARD)
     const boardTimerRef = useRef(boardTimer);
@@ -295,6 +297,8 @@ const Grid = () => {
                                         clickedTileIndex={clickedTileIndex}
                                         enemies={enemies}
                                         friendlies={friendlies}
+                                        gameStarted={gameStarted}
+                                        setGameStarted={setGameStarted}
                                     />
                                 )
                             })}
