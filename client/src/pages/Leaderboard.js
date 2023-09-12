@@ -16,7 +16,7 @@ const Home = () => {
 
   //This gets our leaderboards in our database, and then makes an array and sorts it because we can't "sort" the array atrieved from apollo. 
   const sortedLeaderboards = data?.leaderboards
-    ? [...data.leaderboards].sort((a, b) => b.score - a.score)
+    ? [...data.leaderboards].sort((a, b) => a.score - b.score)
     : [];
 
     const topTenLeaderboards = sortedLeaderboards.slice(0, 10);

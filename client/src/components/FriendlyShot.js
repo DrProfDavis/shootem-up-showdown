@@ -29,7 +29,7 @@ const FriendlyShot = (i, friendlyLocations, setFriendlyLocation, setTimer, setSc
           ...friendlyLocations,
           [`Friend${friendlyNumber}`]: null,
         });
-        setTimer(0);
+        setTimer((prevTime) => prevTime + 10);
       };
   
       Object.keys(friendlyLocations).forEach((friend) => {
