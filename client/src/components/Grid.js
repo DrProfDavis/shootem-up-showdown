@@ -69,6 +69,8 @@ const Grid = () => {
 
     //Determines if you want to mute the sound effects or not
     const [isMuted, setIsMuted] = useState(false);
+
+    //Toggle Mute function
     const toggleMute = () => {
         setIsMuted((prevIsMuted) => !prevIsMuted);
     };
@@ -79,6 +81,7 @@ const Grid = () => {
     //Level you are currently at
     const [level, SetLevel] = useState(1);
 
+    //Variable for checking if any animations have finished.
     const [animationEnded, setAnimationEnded] = useState(false);
 
     //Reload logic, reload one at a time with a max of six bullets with audio
@@ -97,8 +100,6 @@ const Grid = () => {
             }, 1000);
         }
     }, [bullets, isReloading, setIsReloading, setBulletCount]);
-
-
 
     useEffect(() => {
         console.log("These are enemy locations: ", enemyLocations);
@@ -135,7 +136,7 @@ const Grid = () => {
         };
     }, [handleReload]);
 
-    //Timer to count down
+    //Timer to count down (GAME)
     useEffect(() => {
         if (animationEnded) {
             const interval = setInterval(() => {
@@ -147,12 +148,12 @@ const Grid = () => {
                     }
                 });
             }, 1000);
-    
+
             return () => clearInterval(interval);
         }
     }, [animationEnded]);
 
-    //Timer to count down (board)
+    //Timer to count down (BOARD)
     const boardTimerRef = useRef(boardTimer);
 
     useEffect(() => {
@@ -172,10 +173,10 @@ const Grid = () => {
         return () => clearInterval(interval);
     }, []);
 
-    // UNCOMMENT THIS TO MAKE GAMEOVER SCREEN APPEAR
-    // if (timer <= 0) {
-    //     return <GameOverScreen score={score} />;
-    //   }
+    // UNCOMMENT THIS TO MAKE GAME OVER SCREEN APPEAR
+    if (timer <= 0) {
+        return <GameOverScreen score={score} />;
+    }
 
     //Logic to go to next level. Pass the current score, timer, and bullets
     if (score == 2) {
@@ -199,13 +200,13 @@ const Grid = () => {
                         timer={timer}
                         level={level}
                         score={score}
-                        />
+                    />
                     <DashRevolver bullets={bullets}
                     />
                     <DashButtons
                         toggleMute={toggleMute}
                         isMuted={isMuted}
-                        />
+                    />
                 </div>
                 <div className='gameboard'>
                     <HexGrid className="grid" width={1200} height={675}>
