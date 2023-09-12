@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 import { HexGrid, Layout, Hexagon, Text, Pattern, Path, Hex } from 'react-hexgrid';
 import { PlayerSpawn } from './PlayerSpawn'
-import { EnemySpawn1, EnemySpawn2 } from './EnemySpawn';
-import { FriendlySpawn1, FriendlySpawn2, friendlyIndices } from './FriendlySpawn';
+import { EnemySpawn } from './EnemySpawn';
+import { FriendlySpawn, friendlyIndices } from './FriendlySpawn';
 import { Button, Container, Row, Col } from 'react-bootstrap';
 import { Enemy } from './Enemy' // Import the Enemy component
 import Cell from './Cell'
@@ -14,16 +14,11 @@ import DashInfo from "./dashInfo";
 import DashButtons from "./dashButtons";
 import DashRevolver from './dashRevolver'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import Grid2 from './Grid2'
 
 const gridArray = GridArray;
 
-// const randomPlayerPlace = PlayerSpawn();
-const randomFriendlyPlace = FriendlySpawn1(3);
-const randomEnemyPlace1 = EnemySpawn1(6);
-// const randomEnemyPlace2 = EnemySpawn2(5);
-
-// const randomFriendlyPlace2 = FriendlySpawn2();
+const randomFriendlyPlace = FriendlySpawn(3);
+const randomEnemyPlace = EnemySpawn(6);
 
 
 const Grid = () => {
@@ -38,31 +33,15 @@ const Grid = () => {
     //The score of the user
     const [score, setScore] = useState(0);
 
-    //Player location (I think we're deleting this)
-    // const [playerLocation, setPlayerLocation] = useState({
-    //     player: randomPlayerPlace.i,
-    // });
-
-
-    //Enemy locations
-    // const [enemyLocations, setEnemyLocation] = useState({
-    //     enemy1: randomEnemyPlace.i,
-    //     enemy2: randomEnemyPlace2.i,
-    // });
-
+    //Enemy Spawn locations
     const [enemyLocations, setEnemyLocation] = useState(
-        randomEnemyPlace1.reduce((locations, place, index) => {
+        randomEnemyPlace.reduce((locations, place, index) => {
             locations[`enemy${index + 1}`] = place.i;
             return locations;
         }, {})
     );
 
-    //Cowgirl locations
-    // const [friendlyLocations, setFriendlyLocation] = useState({
-    //     friendly1: randomFriendlyPlace.i,
-    //     friendly2: randomFriendlyPlace2.i,
-    // });
-
+    //Cowgirl spawn locations
     const [friendlyLocations, setFriendlyLocation] = useState(
         randomFriendlyPlace.reduce((locations, place, index) => {
             locations[`friendly${index + 1}`] = place.i;
@@ -70,7 +49,7 @@ const Grid = () => {
         }, {})
     );
 
-    //Bullets remaining
+    //Bullets Counter
     const [bullets, setBulletCount] = useState(6)
 
     //Reload
@@ -99,6 +78,7 @@ const Grid = () => {
     //Variable for checking if any animations have finished.
     const [animationEnded, setAnimationEnded] = useState(false);
 
+    //Gameover state
     const [gameOver, setGameOver] = useState(false);
 
     //Reload logic, reload one at a time with a max of six bullets with audio
@@ -118,8 +98,9 @@ const Grid = () => {
         }
     }, [bullets, isReloading, setIsReloading, setBulletCount]);
 
+    //Spawn new enemies logic
     const addNewEnemies = (numNewEnemies) => {
-        const newEnemyLocations = EnemySpawn1(numNewEnemies);
+        const newEnemyLocations = EnemySpawn(numNewEnemies);
         setEnemyLocation(prevLocations => ({
             ...prevLocations,
             ...newEnemyLocations.reduce((locations, place, index) => {
@@ -129,8 +110,9 @@ const Grid = () => {
         }));
     };
 
+    //Spawn new enemies logic
     const addNewFriends = (numNewFriends) => {
-        const newFriendLocations = FriendlySpawn1(numNewFriends);
+        const newFriendLocations = FriendlySpawn(numNewFriends);
         setFriendlyLocation(prevLocations => ({
             ...prevLocations,
             ...newFriendLocations.reduce((locations, place, index) => {
@@ -139,7 +121,6 @@ const Grid = () => {
             }, {})
         }));
     };
-
 
     useEffect(() => {
         console.log("These are enemy locations: ", enemyLocations);
@@ -163,20 +144,18 @@ const Grid = () => {
 
     useEffect(() => {
         if (score >= 90 && level >= 5) {
-          setGameOver(true);
+            setGameOver(true);
         }
-      }, [score, level]);
+    }, [score, level]);
 
-    //Click r to reload, useeffect will only run when handleReload is ran
+    //Click r to reload, useEffect will only run when handleReload is ran
     useEffect(() => {
         const handleKeyDown = (event) => {
             if (event.key === "r") {
                 handleReload();
             }
         };
-
         window.addEventListener("keydown", handleKeyDown);
-
         return () => {
             window.removeEventListener("keydown", handleKeyDown);
         };
@@ -185,23 +164,23 @@ const Grid = () => {
     //Timer to count down (GAME)
     useEffect(() => {
         if (!gameOver && animationEnded) {
-          const interval = setInterval(() => {
-            setTimer((prevTimer) => {
-              if (prevTimer >= 0) {
-                // Increment the timer by 0.01
-                const newTimer = Number((prevTimer + 0.01).toFixed(2));
-                return newTimer;
-              } else {
-                // Timer has reached 0, clear the interval
-                clearInterval(interval);
-                return 0.00;
-              }
-            });
-          }, 10); // Run every 10 milliseconds (0.01 seconds)
-      
-          return () => clearInterval(interval);
+            const interval = setInterval(() => {
+                setTimer((prevTimer) => {
+                    if (prevTimer >= 0) {
+                        // Increment the timer by 0.01
+                        const newTimer = Number((prevTimer + 0.01).toFixed(2));
+                        return newTimer;
+                    } else {
+                        // Timer has reached 0, clear the interval
+                        clearInterval(interval);
+                        return 0.00;
+                    }
+                });
+            }, 10); // Run every 10 milliseconds (0.01 seconds)
+
+            return () => clearInterval(interval);
         }
-      }, [animationEnded, gameOver]);
+    }, [animationEnded, gameOver]);
 
     //Timer to count down (BOARD)
     const boardTimerRef = useRef(boardTimer);
@@ -223,6 +202,7 @@ const Grid = () => {
         return () => clearInterval(interval);
     }, []);
 
+    //Logic to handle the level changes, and enemy respawns
     useEffect(() => {
         if (score == 6) {
             addNewFriends(3);
@@ -246,33 +226,20 @@ const Grid = () => {
         }
     }, [score]);
 
-    // UNCOMMENT THIS TO MAKE GAME OVER SCREEN APPEAR
-    // if (timer <= 0) {
-    //     return <GameOverScreen timer={timer} />;
-    // }
-
+    //End game when all enemies have been killed
     if (score === 90 && level === 5) {
         return <GameOverScreen score={timer} />;
     }
 
-    //Logic to go to next level. Pass the current score, timer, and bullets
-    // if (score == 5) {
-    //     return <Grid2 prevScore={score} prevTimer={timer} prevBullets={bullets} />;
-    // }
-
+    //Maps all enemies
     const enemies = Object.values(enemyLocations).map((location, index) => {
         return <Enemy key={`enemy${index + 1}`} location={location} />;
     });
 
+    // Maps all Friends
     const friendlies = Object.values(enemyLocations).map((location, index) => {
         return <Enemy key={`enemy${index + 1}`} location={location} />;
     });
-
-
-
-
-
-
 
     return (
         <div className="main-game">
@@ -329,8 +296,6 @@ const Grid = () => {
                                         enemies={enemies}
                                         friendlies={friendlies}
                                     />
-
-
                                 )
                             })}
                         </Layout>
