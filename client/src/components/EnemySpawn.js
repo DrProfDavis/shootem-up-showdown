@@ -8,8 +8,7 @@ const createPlaces = (size) => {
     return places;
 }
 
-const places1 = createPlaces(126);
-const places2 = createPlaces(126);
+const places = createPlaces(126);
 
 const getRandomPlaces = (places, numPlaces) => {
     const randomPlaces = [];
@@ -25,10 +24,6 @@ const getRandomPlaces = (places, numPlaces) => {
     return randomPlaces;
 };
 
-const EnemySpawn1 = (numPlaces) => getRandomPlaces(places1, numPlaces);
-const EnemySpawn2 = (numPlaces) => getRandomPlaces(places2, numPlaces);
+const EnemySpawn = (numPlaces) => getRandomPlaces(places, numPlaces);
 
-
-
-
-export {EnemySpawn1, EnemySpawn2};
+export { EnemySpawn };
