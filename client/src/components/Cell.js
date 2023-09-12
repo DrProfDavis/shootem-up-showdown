@@ -7,10 +7,13 @@ import { EnemyShot } from './EnemyShot';
 import { FriendlyShot } from './FriendlyShot';
 import { HandleClick } from "./HandleClick";
 import gunshotSound from '../audio/gunshot.mp3'
+import crosshair from '../images/crosshair.jpg'
 
 
-const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, setEnemyLocation, enemyLocations, setFriendlyLocation, friendlyLocations, timer, setTimer, bullets, setBulletCount, setIsReloading, isReloading, setIsMuted, isMuted }) => {
+
+const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, setEnemyLocation, enemyLocations, setFriendlyLocation, friendlyLocations, timer, setTimer, bullets, setBulletCount, setIsReloading, isReloading, setIsMuted, isMuted, setClickedTileIndex, clickedTileIndex}) => {
     // const [clickedPlayer, setClickedPlayer] = useState(0);
+    // const [clickedTileIndex, setClickedTileIndex] = useState(null); 
     const playGunshotSound = () => {
         if(!isMuted)
         {
@@ -18,6 +21,7 @@ const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, set
             audio.play();
         }
     }
+
 
     return (
         <Hexagon onClick={() => {
@@ -28,6 +32,9 @@ const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, set
             HandleClick(bullets, setBulletCount, playGunshotSound, isReloading)
             EnemyShot(i, enemyLocations, setEnemyLocation, setTimer, setScore);
             FriendlyShot(i, friendlyLocations, setFriendlyLocation, setTimer);
+            setClickedTileIndex(i);
+            
+            
 
 
 
@@ -38,6 +45,8 @@ const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, set
             {enemyLocations.enemy2 === i ? <Enemy/> : null}
             {friendlyLocations.friendly1 === i ? <Friendly/> : null}
             {friendlyLocations.friendly2 === i ? <Friendly/> : null}
+            { i === clickedTileIndex ? <img src={crosshair} alt="Crosshair" className="crosshair" /> : null}
+            
         </Hexagon>
     )
 }
