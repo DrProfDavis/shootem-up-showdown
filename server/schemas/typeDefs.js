@@ -12,7 +12,7 @@ const typeDefs = gql`
   type Leaderboard {
     _id: ID
     leaderboardUser: String
-    score: Int
+    score: Float
   }
 
   type Auth {
@@ -30,7 +30,7 @@ const typeDefs = gql`
 
   type Mutation {
     addUser(username: String!, password: String!): Auth
-    addLeaderboard(score: Int!): Leaderboard
+    addLeaderboard(score: Float!): Leaderboard
     login(username:String!, password: String!): Auth
   }
 `;

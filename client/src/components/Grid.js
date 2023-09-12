@@ -80,7 +80,7 @@ const Grid = () => {
     const [boardTimer, setBoardTimer] = useState(3);
 
     //Timer
-    const [timer, setTimer] = useState(10);
+    const [timer, setTimer] = useState(0.00);
 
     //Determines if you want to mute the sound effects or not
     const [isMuted, setIsMuted] = useState(false);
@@ -98,6 +98,8 @@ const Grid = () => {
 
     //Variable for checking if any animations have finished.
     const [animationEnded, setAnimationEnded] = useState(false);
+
+    const [gameOver, setGameOver] = useState(false);
 
     //Reload logic, reload one at a time with a max of six bullets with audio
     const handleReload = useCallback(() => {
@@ -119,22 +121,22 @@ const Grid = () => {
     const addNewEnemies = (numNewEnemies) => {
         const newEnemyLocations = EnemySpawn1(numNewEnemies);
         setEnemyLocation(prevLocations => ({
-        ...prevLocations,
-        ...newEnemyLocations.reduce((locations, place, index) => {
-            locations[`enemy${Object.keys(prevLocations).length + index + 1}`] = place.i;
-            return locations;
-        }, {})
+            ...prevLocations,
+            ...newEnemyLocations.reduce((locations, place, index) => {
+                locations[`enemy${Object.keys(prevLocations).length + index + 1}`] = place.i;
+                return locations;
+            }, {})
         }));
     };
 
     const addNewFriends = (numNewFriends) => {
         const newFriendLocations = FriendlySpawn1(numNewFriends);
         setFriendlyLocation(prevLocations => ({
-        ...prevLocations,
-        ...newFriendLocations.reduce((locations, place, index) => {
-            locations[`Friend${Object.keys(prevLocations).length + index + 1}`] = place.i;
-            return locations;
-        }, {})
+            ...prevLocations,
+            ...newFriendLocations.reduce((locations, place, index) => {
+                locations[`Friend${Object.keys(prevLocations).length + index + 1}`] = place.i;
+                return locations;
+            }, {})
         }));
     };
 
@@ -159,6 +161,14 @@ const Grid = () => {
         console.log("THIS IS THE CLICKED TILE INDEX: ", clickedTileIndex);
     }, [clickedTileIndex]);
 
+    useEffect(() => {
+        if (score >= 90 && level >= 5) {
+          setGameOver(true);
+          // Clear the timer interval here
+          // Add code to stop the timer
+        }
+      }, [score, level]);
+
     //Click r to reload, useeffect will only run when handleReload is ran
     useEffect(() => {
         const handleKeyDown = (event) => {
@@ -176,20 +186,24 @@ const Grid = () => {
 
     //Timer to count down (GAME)
     useEffect(() => {
-        if (animationEnded) {
-            const interval = setInterval(() => {
-                setTimer((prevTimer) => {
-                    if (prevTimer > 0) {
-                        return prevTimer - 1;
-                    } else {
-                        return 0;
-                    }
-                });
-            }, 1000);
-
-            return () => clearInterval(interval);
+        if (!gameOver && animationEnded) {
+          const interval = setInterval(() => {
+            setTimer((prevTimer) => {
+              if (prevTimer >= 0) {
+                // Increment the timer by 0.01
+                const newTimer = Number((prevTimer + 0.01).toFixed(2));
+                return newTimer;
+              } else {
+                // Timer has reached 0, clear the interval
+                clearInterval(interval);
+                return 0.00;
+              }
+            });
+          }, 10); // Run every 10 milliseconds (0.01 seconds)
+      
+          return () => clearInterval(interval);
         }
-    }, [animationEnded]);
+      }, [animationEnded, gameOver]);
 
     //Timer to count down (BOARD)
     const boardTimerRef = useRef(boardTimer);
@@ -232,7 +246,7 @@ const Grid = () => {
             addNewEnemies(30);
             SetLevel(prevLevel => prevLevel + 1)
         }
-        }, [score]);
+    }, [score]);
 
     // UNCOMMENT THIS TO MAKE GAME OVER SCREEN APPEAR
     // if (timer <= 0) {
@@ -240,7 +254,7 @@ const Grid = () => {
     // }
 
     if (score === 90 && level === 5) {
-        return <GameOverScreen timer={timer} />;
+        return <GameOverScreen score={timer} />;
     }
 
     //Logic to go to next level. Pass the current score, timer, and bullets
@@ -256,11 +270,11 @@ const Grid = () => {
         return <Enemy key={`enemy${index + 1}`} location={location} />;
     });
 
-    
 
-    
 
-    
+
+
+
 
     return (
         <div className="main-game">

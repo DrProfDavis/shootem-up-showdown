@@ -10,16 +10,12 @@ function DashInfo({ isAuthenticated, currentUser, timer, level, score }) {
       </div>
       <div className="timer">
         <h4 className="head">Timer</h4>
-        <h4 className="infoTimer">{timer}</h4>
+        <h4 className="infoTimer">{timer.toFixed(2)}</h4>
       </div>
       <div className="score level">
         <div>
           <h4 className="head">Level</h4>
           <h4 className="info">{level}</h4>
-        </div>
-        <div>
-          <h4 className="head">Score</h4>
-          <h4 className="info">{score}</h4>
         </div>
       </div>
     </div>

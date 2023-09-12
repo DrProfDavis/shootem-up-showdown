@@ -6,7 +6,7 @@ const EnemyShot = (i, enemyLocations, setEnemyLocation, setTimer, setScore, isRe
         ...enemyLocations,
         [`enemy${enemyNumber}`]: null,
       });
-      setTimer((prevTimer) => prevTimer + 5);
+      // setTimer((prevTimer) => prevTimer + 5);
       setScore((prevScore) => prevScore + 1);
     };
 
