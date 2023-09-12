@@ -32,7 +32,7 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
             EnemyShot(i, enemyLocations, setEnemyLocation, setTimer, setScore, isReloading, bullets);
             FriendlyShot(i, friendlyLocations, setFriendlyLocation, setTimer, isReloading, bullets);
             setClickedTileIndex(i);
-            console.log(enemies)
+            console.log(friendlyLocations)
             
             
 

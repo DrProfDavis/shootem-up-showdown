@@ -134,7 +134,7 @@ const Grid = () => {
         setFriendlyLocation(prevLocations => ({
             ...prevLocations,
             ...newFriendLocations.reduce((locations, place, index) => {
-                locations[`Friend${Object.keys(prevLocations).length + index + 1}`] = place.i;
+                locations[`friendly${Object.keys(prevLocations).length + index + 1}`] = place.i;
                 return locations;
             }, {})
         }));
@@ -164,8 +164,6 @@ const Grid = () => {
     useEffect(() => {
         if (score >= 90 && level >= 5) {
           setGameOver(true);
-          // Clear the timer interval here
-          // Add code to stop the timer
         }
       }, [score, level]);
 
