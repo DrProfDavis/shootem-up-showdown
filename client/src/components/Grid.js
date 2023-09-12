@@ -1,9 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react"
-import { HexGrid, Layout, Hexagon, Text, Pattern, Path, Hex } from 'react-hexgrid';
-import { PlayerSpawn } from './PlayerSpawn'
+import { HexGrid, Layout } from 'react-hexgrid';
 import { EnemySpawn } from './EnemySpawn';
-import { FriendlySpawn, friendlyIndices } from './FriendlySpawn';
-import { Button, Container, Row, Col } from 'react-bootstrap';
+import { FriendlySpawn} from './FriendlySpawn';
 import { Enemy } from './Enemy' // Import the Enemy component
 import Cell from './Cell'
 import Auth from '../utils/auth';
@@ -28,7 +26,7 @@ const Grid = () => {
     //Checks the current user that is logged in. If logged in, get the user profile, if not, nothing happens
     const currentUser = isAuthenticated ? Auth.getProfile() : null;
 
-    const [gridArrayState, useGridArrayState] = useState(gridArray)
+    const [gridArrayState] = useState(gridArray)
 
     //The score of the user
     const [score, setScore] = useState(0);
@@ -98,7 +96,7 @@ const Grid = () => {
                 console.log("Reloaded! Bullets: ", bullets + 1);
             }, 100);
         }
-    }, [bullets, isReloading, setIsReloading, setBulletCount]);
+    }, [bullets, isReloading, setIsReloading, setBulletCount, isMuted]);
 
     //Spawn new enemies logic
     const addNewEnemies = (numNewEnemies) => {
@@ -206,22 +204,22 @@ const Grid = () => {
 
     //Logic to handle the level changes, and enemy respawns
     useEffect(() => {
-        if (score == 6) {
+        if (score === 6) {
             addNewFriends(3);
             addNewEnemies(12);
             SetLevel(prevLevel => prevLevel + 1)
         }
-        if (score == 18) {
+        if (score === 18) {
             addNewFriends(6);
             addNewEnemies(18);
             SetLevel(prevLevel => prevLevel + 1)
         }
-        if (score == 36) {
+        if (score === 36) {
             addNewFriends(9);
             addNewEnemies(24);
             SetLevel(prevLevel => prevLevel + 1)
         }
-        if (score == 60) {
+        if (score === 60) {
             addNewFriends(12);
             addNewEnemies(30);
             SetLevel(prevLevel => prevLevel + 1)
