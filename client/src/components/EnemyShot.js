@@ -1,6 +1,6 @@
-const EnemyShot = (i, enemyLocations, setEnemyLocation, setTimer, setScore) => {
+const EnemyShot = (i, enemyLocations, setEnemyLocation, setTimer, setScore, isReloading, bullets) => {
 
-  
+  if (!isReloading && bullets > 0) {
     if (enemyLocations.enemy1 === i) {
       console.log("ENEMY 1 HAS BEEN HIT");
       setEnemyLocation({
@@ -22,7 +22,7 @@ const EnemyShot = (i, enemyLocations, setEnemyLocation, setTimer, setScore) => {
       setScore((prevScore) => prevScore + 1);
 
     }
-
+  }
 
   };
 

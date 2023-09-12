@@ -30,8 +30,8 @@ const Cell = ({ q, r, i, setScore, score, setPlayerLocation, playerLocation, set
 
             console.log("These are player locations: ", playerLocation);
             HandleClick(bullets, setBulletCount, playGunshotSound, isReloading)
-            EnemyShot(i, enemyLocations, setEnemyLocation, setTimer, setScore);
-            FriendlyShot(i, friendlyLocations, setFriendlyLocation, setTimer);
+            EnemyShot(i, enemyLocations, setEnemyLocation, setTimer, setScore, isReloading, bullets);
+            FriendlyShot(i, friendlyLocations, setFriendlyLocation, setTimer, isReloading, bullets);
             setClickedTileIndex(i);
             
             
