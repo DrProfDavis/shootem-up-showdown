@@ -1,16 +1,18 @@
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect, useCallback, useRef } from "react"
 import { HexGrid, Layout, Hexagon, Text, Pattern, Path, Hex } from 'react-hexgrid';
-import Cell from './Cell'
-import Auth from '../utils/auth';
-import GridArray from './GridArray'
-import Dashboard from './dashRevolver'
 import { PlayerSpawn } from './PlayerSpawn'
 import { EnemySpawn1, EnemySpawn2 } from './EnemySpawn';
 import { FriendlySpawn1, FriendlySpawn2 } from './FriendlySpawn';
+import { Button, Container, Row, Col } from 'react-bootstrap';
+import Cell from './Cell'
+import Auth from '../utils/auth';
+import GridArray from './GridArray'
 import reloadSound from '../audio/reload.mp3'
 import GameOverScreen from "./GameOver";
+import DashInfo from "./dashInfo";
+import DashButtons from "./dashButtons";
+import DashRevolver from './dashRevolver'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { Button, Container, Row, Col } from 'react-bootstrap';
 import Grid5 from "./Grid5";
 
 
@@ -40,7 +42,7 @@ const Grid4 = ({ prevScore, prevTimer, prevBullets }) => {
     const [playerLocation, setPlayerLocation] = useState({
         player: randomPlayerPlace.i,
     });
-    
+
 
     //Enemy locations
     const [enemyLocations, setEnemyLocation] = useState({
@@ -71,10 +73,10 @@ const Grid4 = ({ prevScore, prevTimer, prevBullets }) => {
         setIsMuted((prevIsMuted) => !prevIsMuted);
     };
 
-    const [clickedTileIndex, setClickedTileIndex] = useState(false); 
+    const [clickedTileIndex, setClickedTileIndex] = useState(false);
 
     const [level, SetLevel] = useState(4);
-    
+
 
 
     //Reload logic, reload one at a time with a max of six bullets
@@ -147,10 +149,10 @@ const Grid4 = ({ prevScore, prevTimer, prevBullets }) => {
     // UNCOMMENT THIS TO MAKE GAMEOVER SCREEN APPEAR
     if (timer <= 0) {
         return <GameOverScreen score={score} />;
-      }
+    }
 
-    if (score == 8){
-        return <Grid5 prevScore={score} prevTimer={timer} prevBullets={bullets}/>;
+    if (score == 8) {
+        return <Grid5 prevScore={score} prevTimer={timer} prevBullets={bullets} />;
     }
 
 
@@ -160,32 +162,19 @@ const Grid4 = ({ prevScore, prevTimer, prevBullets }) => {
         <div className="timerDiv">
             <div className="app">
                 <div className="dashboard">
-                    <div className="playerInfo">
-                        <div className="user">
-                            <h4 className="head">Player</h4>
-                            {isAuthenticated && (<h4 className="info"> {currentUser.data.username}</h4>)}
-                        </div>
-                        <div className="timer">
-                            <h4 className="head">Timer</h4>
-                            <h4 className="infoTimer">{timer}</h4>
-                        </div>   
-                        <div className="score level">
-                            <div>
-                                <h4 className="head">Level</h4>
-                                <h4 className="info">{level}</h4>
-                            </div>
-                            <div>
-                                <h4 className="head">Score</h4>
-                                <h4 className="info">{score}</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <Dashboard bullets={bullets}></Dashboard>
-                    <div className="mute-button">
-                        <button className="btn btn-dark btn-block btn-style" onClick={toggleMute}>
-                            {isMuted ? '🔇' : '🔊'}
-                        </button>
-                    </div>
+                    <DashInfo
+                        isAuthenticated={isAuthenticated}
+                        currentUser={currentUser}
+                        timer={timer}
+                        level={level}
+                        score={score}
+                    />
+                    <DashRevolver bullets={bullets}
+                    />
+                    <DashButtons
+                        toggleMute={toggleMute}
+                        isMuted={isMuted}
+                    />
                 </div>
                 <div className='gameboard'>
                     <HexGrid className="grid" width={1200} height={675}>
@@ -215,10 +204,10 @@ const Grid4 = ({ prevScore, prevTimer, prevBullets }) => {
                                         setIsMuted={setIsMuted}
                                         isMuted={isMuted}
                                         setClickedTileIndex={setClickedTileIndex}
-                                        clickedTileIndex= {clickedTileIndex}
+                                        clickedTileIndex={clickedTileIndex}
                                     />
-                                    
-                                    
+
+
                                 )
                             })}
                         </Layout>
