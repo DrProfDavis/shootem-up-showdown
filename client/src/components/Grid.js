@@ -198,13 +198,14 @@ const Grid = () => {
                         currentUser={currentUser}
                         timer={timer}
                         level={level}
-                        score={score}>
-                    </DashInfo>
-                    <DashRevolver bullets={bullets}></DashRevolver>
+                        score={score}
+                        />
+                    <DashRevolver bullets={bullets}
+                    />
                     <DashButtons
                         toggleMute={toggleMute}
-                        isMuted={isMuted}>
-                    </DashButtons>
+                        isMuted={isMuted}
+                        />
                 </div>
                 <div className='gameboard'>
                     <HexGrid className="grid" width={1200} height={675}>
