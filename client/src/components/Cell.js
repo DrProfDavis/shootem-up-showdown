@@ -20,6 +20,13 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
             require('../audio/Female2.mp3'),
             require('../audio/Female3.mp3'),
             require('../audio/Female4.mp3'),
+            require('../audio/Female5.mp3'),
+            require('../audio/Female6.mp3'),
+            require('../audio/Female7.mp3'),
+            require('../audio/Female8.mp3'),
+            require('../audio/Female9.mp3'),
+            require('../audio/Female10.mp3'),
+            require('../audio/Female11.mp3')
           ];
     
           const enemyHitSounds = [
