@@ -170,7 +170,7 @@ const Grid = () => {
     //Click r to reload, useEffect will only run when handleReload is ran
     useEffect(() => {
         const handleKeyDown = (event) => {
-            if (event.key === "r") {
+            if (event.key === "r" || event.key === "R") {
                 handleReload();
             }
         };
