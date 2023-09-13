@@ -33,8 +33,8 @@ return (
       {currentUser && (
         <>
         {/* <p>User ID: {currentUser.data._id}</p> */}
-        <h3>Current User: {currentUser.data.username}</h3>
-        <h3>Score: {score}</h3>
+        <h5>Current User: {currentUser.data.username}</h5>
+        <h5>Score: {score}</h5>
         </>
       )}
       <br></br>
