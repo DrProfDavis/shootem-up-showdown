@@ -16,33 +16,61 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
 
     
         const cowgirlHitSounds = [
-            require('../audio/Female1.mp3'), //Mica
-            require('../audio/Female3.mp3'), //Mica
-            require('../audio/Female4.mp3'), //Mica
-            require('../audio/Female5.mp3'), //Mica
-            require('../audio/Female6.mp3'), //Shawn
-            require('../audio/Female7.mp3'), //Shawn
-            require('../audio/Female8.mp3'), //Shawn
-            require('../audio/Female9.mp3'), //Shawn
-            require('../audio/Female10.mp3'), //Shawn
-            require('../audio/Female11.mp3') //Shawn
+            require('../audio/Female1.mp3'),
+            // require('../audio/Female2.mp3'),
+            require('../audio/Female3.mp3'),
+            require('../audio/Female4.mp3'),
+            require('../audio/Female5.mp3'),
+            require('../audio/Female6.mp3'),
+            require('../audio/Female7.mp3'),
+            require('../audio/Female8.mp3'),
+            require('../audio/Female9.mp3'),
+            require('../audio/Female10.mp3'),
+            require('../audio/Female11.mp3'),
+            require('../audio/Female12.mp3'),
+            require('../audio/Female13.mp3'),
+            require('../audio/Female14.mp3'),
+            require('../audio/Female15.mp3'),
+            require('../audio/Female16.mp3'),
+            require('../audio/Female17.mp3'),
+            require('../audio/Female18.mp3')
           ];
     
           const enemyHitSounds = [
-            require('../audio/Male1.mp3'), //Mica
-            require('../audio/Male2.mp3'), //Mica
-            require('../audio/Male3.mp3'), //Mica
-            require('../audio/Male4.mp3'), //Mica
-            require('../audio/Male6.mp3'), //Mica
-            require('../audio/Male7.mp3'), //Shawn
-            require('../audio/Male8.mp3'), //Shawn
-            require('../audio/Male9.mp3'), //Shawn
-            require('../audio/Male10.mp3'), //Shawn
-            require('../audio/Male11.mp3'), //Shawn
-            require('../audio/Male12.mp3'), //Shawn
-            require('../audio/Male13.mp3'), //Shawn
-            require('../audio/Male14.mp3'), //Shawn
-            require('../audio/Male15.mp3') //Shawn
+            require('../audio/Male1.mp3'),
+            require('../audio/Male2.mp3'),
+            require('../audio/Male3.mp3'),
+            require('../audio/Male4.mp3'),
+            // require('../audio/Male5.mp3'),
+            require('../audio/Male6.mp3'),
+            require('../audio/Male7.mp3'),
+            require('../audio/Male8.mp3'),
+            require('../audio/Male9.mp3'),
+            require('../audio/Male10.mp3'),
+            require('../audio/Male11.mp3'),
+            require('../audio/Male12.mp3'),
+            require('../audio/Male13.mp3'),
+            require('../audio/Male14.mp3'),
+            require('../audio/Male15.mp3'),
+            require('../audio/Male16.mp3'),
+            require('../audio/Male17.mp3'),
+            require('../audio/Male18.mp3'),
+            require('../audio/Male19.mp3'),
+            require('../audio/Male20.mp3'),
+            require('../audio/Male21.mp3'),
+            require('../audio/Male22.mp3'),
+            require('../audio/Male23.mp3'),
+            require('../audio/Male24.mp3'),
+            require('../audio/Male25.mp3'),
+            require('../audio/Male26.mp3'),
+            require('../audio/Male27.mp3'),
+            require('../audio/Male28.mp3'),
+            require('../audio/Male29.mp3'),
+            require('../audio/Male30.mp3'),
+            require('../audio/Ow1.mp3'),
+            require('../audio/Ouchy.mp3'),
+            require('../audio/ThatsAboutIt.mp3'),
+            require('../audio/DeathSound.mp3')
           ];
           
           
