@@ -88,7 +88,7 @@ const Grid = () => {
 
     const startMusic = () => {
     const backgroundMusic = new Audio(BackgroundMusic);
-    backgroundMusic.volume = 0.2;
+    backgroundMusic.volume = 0.1;
     backgroundMusicRef.current = backgroundMusic; // Store the reference
     backgroundMusic.play();
     setIsMusicPlaying(true);
@@ -170,7 +170,7 @@ const Grid = () => {
     //Click r to reload, useEffect will only run when handleReload is ran
     useEffect(() => {
         const handleKeyDown = (event) => {
-            if (event.key === "r") {
+            if (event.key === "r" || event.key === "R") {
                 handleReload();
             }
         };
