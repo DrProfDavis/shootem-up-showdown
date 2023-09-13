@@ -11,6 +11,7 @@
     "client-install": "cd client && npm install",
     "server-install": "cd server && npm install",
     "install-all": "npm-run-all --parallel client-install server-install",
+    "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",
     "build": "cd client && npm run build"
   },
