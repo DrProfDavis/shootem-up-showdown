@@ -90,7 +90,7 @@ Home.css .main-container {
 }
 
 .gameover {
-  background-image: url('./images/background4.png');
+  background-image: url('./images/background3.png');
   background-size: cover;
   -webkit-animation: slidein 12s;
   animation: slidein 12s;
@@ -252,16 +252,27 @@ Home.css .main-container {
   text-transform: uppercase;
 }
 
+.center h6 {
+  text-align: center;
+  font-weight: bold;
+  font-size: 20px;
+  color: white;
+  font-family: 'Source Code Pro', monospace;
+  background-color: rgb(121, 84, 53);
+  opacity: 90%;
+  text-transform: uppercase;
+}
+
 .center li {
   display: block;
   /* display: flex; */
   text-align: center;
   font-weight: bolder;
   font-size: 30px;
-  color: rgb(79, 45, 96);
-  
+  color: white;
+
   font-family: var(--font);
-  /* background-color: rgb(172, 121, 79); */
+  background-color: rgb(172, 121, 79);
   opacity: 90%;
   text-transform: uppercase;
 }
