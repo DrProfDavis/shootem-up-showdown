@@ -90,7 +90,7 @@ Home.css .main-container {
 }
 
 .gameover {
-  background-image: url('./images/background3.png');
+  background-image: url('./images/background4.png');
   background-size: cover;
   -webkit-animation: slidein 12s;
   animation: slidein 12s;
@@ -204,7 +204,7 @@ Home.css .main-container {
   color: rgb(79, 45, 96);
   font-family: var(--font);
   font-weight: bolder;
-  background-color: rgb(223, 154, 97);
+  /* background-color: rgb(223, 154, 97); */
   opacity: 90%;
   text-transform: uppercase;
 }
@@ -258,10 +258,10 @@ Home.css .main-container {
   text-align: center;
   font-weight: bolder;
   font-size: 30px;
-  color: white;
-
+  color: rgb(79, 45, 96);
+  
   font-family: var(--font);
-  background-color: rgb(172, 121, 79);
+  /* background-color: rgb(172, 121, 79); */
   opacity: 90%;
   text-transform: uppercase;
 }

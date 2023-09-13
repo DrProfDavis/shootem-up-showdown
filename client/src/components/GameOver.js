@@ -33,20 +33,19 @@ return (
       {currentUser && (
         <>
         {/* <p>User ID: {currentUser.data._id}</p> */}
-        <p>Current User: {currentUser.data.username}</p>
-        <p>Score: {score}</p>
+        <h3>Current User: {currentUser.data.username}</h3>
+        <h3>Score: {score}</h3>
         </>
       )}
-
-      <Button
-        className="btn btn-block btn-warning"
+      <br></br>
+      
+        <Link to="/leaderboard"><Button
+        className="btn btn-lg btn-warning btn-block btn-style"
         style={{ cursor: 'pointer' }}
         type="submit"
-        onClick={handleAddToLeaderboard}>
-        <Link to="/leaderboard" className="btn btn-block btn-secondary">
-          LEADERBOARD
-        </Link>
-      </Button>
+        onClick={handleAddToLeaderboard}>LEADERBOARD</Button></Link>
+        
+      
     </div>
   );
 }
