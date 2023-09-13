@@ -1,29 +1,23 @@
-const EnemyShot = (i, enemyLocations, setEnemyLocation, setTimer, setScore) => {
-
-  
-    if (enemyLocations.enemy1 === i) {
-      console.log("ENEMY 1 HAS BEEN HIT");
+const EnemyShot = (i, enemyLocations, setEnemyLocation, setTimer, setScore, isReloading, bullets, playEnemyHit) => {
+  if (!isReloading && bullets > 0) {
+    const handleEnemyHit = (enemyNumber) => {
+      console.log(`ENEMY ${enemyNumber} HAS BEEN HIT`);
+      playEnemyHit();
       setEnemyLocation({
         ...enemyLocations,
-        enemy1: null, //Change back to null to make cowboy disappear. It seems that the scores are being treated as separate scores though.
+        [`enemy${enemyNumber}`]: null,
       });
-      setTimer((prevTimer) => prevTimer + 5);
+      // setTimer((prevTimer) => prevTimer + 5);
       setScore((prevScore) => prevScore + 1);
+    };
 
-    }
-
-    if (enemyLocations.enemy2 === i) {
-      console.log("ENEMY 2 HAS BEEN HIT");
-      setEnemyLocation({
-        ...enemyLocations,
-        enemy2: null,
-      });
-      setTimer((prevTimer) => prevTimer + 5);
-      setScore((prevScore) => prevScore + 1);
-
-    }
-
-
-  };
+    Object.keys(enemyLocations).forEach((enemy) => {
+      const enemyNumber = enemy.replace('enemy', '');
+      if (enemyLocations[enemy] === i) {
+        handleEnemyHit(enemyNumber);
+      }
+    });
+  }
+};
 
 export { EnemyShot };

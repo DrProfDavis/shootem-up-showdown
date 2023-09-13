@@ -1,37 +1,32 @@
-const places1 = [];
+const friendlyIndices = [];
 
-for (let i = 0; i <= 126; i++) {
-    places1.push({ i });
+const createPlaces = (size) => {
+    const places = [];
+    for (let i = 0; i <= size; i++) {
+        places.push({ i });
+    }
+    return places;
 }
 
-const places2 = [];
+const places = createPlaces(126);
 
-for (let i = 0; i <= 126; i++) {
-    places2.push({ i });
-}
+const getRandomPlaces = (places, numPlaces) => {
+    const randomPlaces = [];
+    const selectedIndices = new Set();
+    
+    while (randomPlaces.length < numPlaces) {
+        const randomIndex = Math.floor(Math.random() * places.length);
+        if (!selectedIndices.has(randomIndex)) {
+            selectedIndices.add(randomIndex);
+            randomPlaces.push(places[randomIndex]);
+            friendlyIndices.push(places[randomIndex].i)
+        }
+    }
 
-
-const getRandomPlace1 = () => {
-    const randomIndex = Math.floor(Math.random() * places1.length);
-    return places1[randomIndex];
+    return randomPlaces;
 };
 
-const getRandomPlace2 = () => {
-    const randomIndex = Math.floor(Math.random() * places2.length);
-    return places2[randomIndex];
-};
+const FriendlySpawn = (numPlaces) => getRandomPlaces(places, numPlaces);
 
 
-const FriendlySpawn1 = () => {
-    const randomPlace = getRandomPlace1();
-    return randomPlace;
-}
-
-const FriendlySpawn2 = () => {
-    const randomPlace = getRandomPlace2();
-    return randomPlace;
-}
-
-
-
-export {FriendlySpawn1, FriendlySpawn2};
+export { FriendlySpawn, friendlyIndices };

@@ -1,22 +1,20 @@
 
-const FriendlyShot = (i, friendlyLocations, setFriendlyLocation, setTimer) => {
-
-    if (friendlyLocations.friendly1 === i) {
-        console.log("FRIENDLY 1 HAS BEEN HIT");
+const FriendlyShot = (i, friendlyLocations, setFriendlyLocation, setTimer, isReloading, bullets, playCowgirlHit) => {
+  if (!isReloading && bullets > 0) {
+    for (let j = 1; j <= 50; j++) {
+      const friendlyKey = `friendly${j}`;
+      if (friendlyLocations[friendlyKey] === i) {
+        console.log(`FRIENDLY ${j} HAS BEEN HIT`);
+        playCowgirlHit();
         setFriendlyLocation({
-            ...friendlyLocations,
-            friendly1: null, 
+          ...friendlyLocations,
+          [friendlyKey]: null,
         });
-        setTimer(0);
+        setTimer((prevTime) => prevTime + 10);
+      }
     }
-    if (friendlyLocations.friendly2 === i) {
-        console.log("FRIENDLY 2 HAS BEEN HIT");
-        setFriendlyLocation({
-            ...friendlyLocations,
-            friendly2: null, 
-        });
-        setTimer(0);
-    }
+  }
 };
 
 export { FriendlyShot };
+
