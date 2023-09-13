@@ -7,6 +7,7 @@ import { FriendlyShot } from './FriendlyShot';
 import { HandleClick } from "./HandleClick";
 import gunshotSound from '../audio/gunshot.mp3'
 import cowgirlHitSound from '../audio/Female2.mp3'
+import enemyHitSound from '../audio/Male5.mp3'
 import crosshair from '../images/crosshair.jpg'
 
 
@@ -30,6 +31,14 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
         }
     }
 
+    const playEnemyHit = () => {
+        if(!isMuted)
+        {
+            const enemyHit = new Audio(enemyHitSound);
+            enemyHit.play();
+        }
+    }
+
     return (
         <Hexagon onClick={() => {
             // HandleClick(q, r, i);
@@ -39,7 +48,7 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
             }
 
             HandleClick(bullets, setBulletCount, playGunshotSound, isReloading)
-            EnemyShot(i, enemyLocations, setEnemyLocation, setTimer, setScore, isReloading, bullets);
+            EnemyShot(i, enemyLocations, setEnemyLocation, setTimer, setScore, isReloading, bullets, playEnemyHit);
             FriendlyShot(i, friendlyLocations, setFriendlyLocation, setTimer, isReloading, bullets, playCowgirlHit);
             setClickedTileIndex(i);
             console.log(friendlyLocations)
