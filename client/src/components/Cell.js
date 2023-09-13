@@ -17,7 +17,6 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
     
         const cowgirlHitSounds = [
             require('../audio/Female1.mp3'),
-            require('../audio/Female2.mp3'),
             require('../audio/Female3.mp3'),
             require('../audio/Female4.mp3'),
             require('../audio/Female5.mp3'),
@@ -34,7 +33,6 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
             require('../audio/Male2.mp3'),
             require('../audio/Male3.mp3'),
             require('../audio/Male4.mp3'),
-            require('../audio/Male5.mp3'),
             require('../audio/Male6.mp3'),
             require('../audio/Male7.mp3'),
             require('../audio/Male8.mp3'),
