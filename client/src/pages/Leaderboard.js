@@ -22,7 +22,7 @@ const Home = () => {
     const topTenLeaderboards = sortedLeaderboards.slice(0, 10);
 
   return (
-     <div className="leaderboard center">
+     <div className="leaderboard content main-container center">
       <div>
         <Link to="/"><button class="btn btn-lg btn-light btn-block">🔙 HOME</button></Link>
 
@@ -32,14 +32,14 @@ const Home = () => {
         <h1>LEADERBOARD</h1>
 
         <br></br>
-
-        <ul>
+        <div className="width">
+        <ul className="leaderboard">
           {topTenLeaderboards.map((user) => (
             <li key={user._id}>
               {user.leaderboardUser} ⭐ {user.score}
             </li>
           ))}
-        </ul>
+        </ul></div>
       </div>
     </div>
   );
