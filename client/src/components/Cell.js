@@ -35,7 +35,7 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
         if(!isMuted)
         {
             const gunSound = new Audio(gunshotSound);
-            gunSound.volume = .05;
+            gunSound.volume = .1;
             gunSound.play();
         }
     }
