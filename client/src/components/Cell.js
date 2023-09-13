@@ -6,19 +6,65 @@ import { EnemyShot } from './EnemyShot';
 import { FriendlyShot } from './FriendlyShot';
 import { HandleClick } from "./HandleClick";
 import gunshotSound from '../audio/gunshot.mp3'
+// import cowgirlHitSound from '../audio/Female2.mp3'
+import enemyHitSound from '../audio/Male5.mp3'
 import crosshair from '../images/crosshair.jpg'
 
 
 
 const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setFriendlyLocation, friendlyLocations, timer, setTimer, bullets, setBulletCount, setIsReloading, isReloading, setIsMuted, isMuted, setClickedTileIndex, clickedTileIndex, enemies, friendlies, gameStarted, setGameStarted}) => {
 
+    
+        const cowgirlHitSounds = [
+            require('../audio/Female1.mp3'),
+            require('../audio/Female2.mp3'),
+            require('../audio/Female3.mp3'),
+            require('../audio/Female4.mp3'),
+          ];
+    
+          const enemyHitSounds = [
+            require('../audio/Male1.mp3'),
+            require('../audio/Male2.mp3'),
+            require('../audio/Male3.mp3'),
+            require('../audio/Male4.mp3'),
+            require('../audio/Male5.mp3')
+          ];
+          
+          
     const playGunshotSound = () => {
         if(!isMuted)
         {
-            const audio = new Audio(gunshotSound);
-            audio.play();
+            const gunSound = new Audio(gunshotSound);
+            gunSound.volume = .05;
+            gunSound.play();
         }
     }
+
+      
+      const playCowgirlHit = () => {
+        if (!isMuted) {
+          const randomIndex = Math.floor(Math.random() * cowgirlHitSounds.length);
+          const cowgirlHit = new Audio(cowgirlHitSounds[randomIndex]);
+          cowgirlHit.play();
+        }
+      };
+
+    // const playEnemyHit = () => {
+    //     if(!isMuted)
+    //     {
+    //         const enemyHit = new Audio(enemyHitSound);
+    //         enemyHit.play();
+    //     }
+    // }
+
+   
+      const playEnemyHit = () => {
+        if (!isMuted) {
+          const randomIndex = Math.floor(Math.random() * enemyHitSounds.length);
+          const enemyHit = new Audio(enemyHitSounds[randomIndex]);
+          enemyHit.play();
+        }
+      };
 
     return (
         <Hexagon onClick={() => {
@@ -29,8 +75,8 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
             }
 
             HandleClick(bullets, setBulletCount, playGunshotSound, isReloading)
-            EnemyShot(i, enemyLocations, setEnemyLocation, setTimer, setScore, isReloading, bullets);
-            FriendlyShot(i, friendlyLocations, setFriendlyLocation, setTimer, isReloading, bullets);
+            EnemyShot(i, enemyLocations, setEnemyLocation, setTimer, setScore, isReloading, bullets, playEnemyHit);
+            FriendlyShot(i, friendlyLocations, setFriendlyLocation, setTimer, isReloading, bullets, playCowgirlHit);
             setClickedTileIndex(i);
             console.log(friendlyLocations)
         }} key={`${i}-${q}-${r}`} q={q} r={r}>
@@ -47,4 +93,4 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
     )
 }
 
-export default Cell
+export default Cell  

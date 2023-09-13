@@ -1,7 +1,8 @@
-const EnemyShot = (i, enemyLocations, setEnemyLocation, setTimer, setScore, isReloading, bullets) => {
+const EnemyShot = (i, enemyLocations, setEnemyLocation, setTimer, setScore, isReloading, bullets, playEnemyHit) => {
   if (!isReloading && bullets > 0) {
     const handleEnemyHit = (enemyNumber) => {
       console.log(`ENEMY ${enemyNumber} HAS BEEN HIT`);
+      playEnemyHit();
       setEnemyLocation({
         ...enemyLocations,
         [`enemy${enemyNumber}`]: null,
