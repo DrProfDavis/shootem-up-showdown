@@ -107,7 +107,7 @@ const Grid = () => {
                 setBulletCount((prevCount) => Math.min(prevCount + 1, 6)); // Increment bullet count
                 setIsReloading(false);
                 console.log("Reloaded! Bullets: ", bullets + 1);
-            }, 100);
+            },);
         }
     }, [bullets, isReloading, setIsReloading, setBulletCount, isMuted]);
 
