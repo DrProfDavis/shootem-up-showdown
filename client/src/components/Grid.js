@@ -88,7 +88,7 @@ const Grid = () => {
 
     const startMusic = () => {
     const backgroundMusic = new Audio(BackgroundMusic);
-    backgroundMusic.volume = 0.2;
+    backgroundMusic.volume = 0.1;
     backgroundMusicRef.current = backgroundMusic; // Store the reference
     backgroundMusic.play();
     setIsMusicPlaying(true);

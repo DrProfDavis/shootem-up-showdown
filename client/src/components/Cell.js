@@ -50,7 +50,7 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
         if(!isMuted)
         {
             const gunSound = new Audio(gunshotSound);
-            gunSound.volume = .1;
+            gunSound.volume = .05;
             gunSound.play();
         }
     }
@@ -60,23 +60,17 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
         if (!isMuted) {
           const randomIndex = Math.floor(Math.random() * cowgirlHitSounds.length);
           const cowgirlHit = new Audio(cowgirlHitSounds[randomIndex]);
+          cowgirlHit.volume = .5;
           cowgirlHit.play();
         }
       };
-
-    // const playEnemyHit = () => {
-    //     if(!isMuted)
-    //     {
-    //         const enemyHit = new Audio(enemyHitSound);
-    //         enemyHit.play();
-    //     }
-    // }
 
    
       const playEnemyHit = () => {
         if (!isMuted) {
           const randomIndex = Math.floor(Math.random() * enemyHitSounds.length);
           const enemyHit = new Audio(enemyHitSounds[randomIndex]);
+          enemyHit.volume = .5;
           enemyHit.play();
         }
       };

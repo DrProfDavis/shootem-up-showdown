@@ -10,7 +10,7 @@ const FriendlyShot = (i, friendlyLocations, setFriendlyLocation, setTimer, isRel
           ...friendlyLocations,
           [friendlyKey]: null,
         });
-        setTimer((prevTime) => prevTime + 3);
+        setTimer((prevTime) => prevTime + 10);
       }
     }
   }
