@@ -6,6 +6,7 @@ import { EnemyShot } from './EnemyShot';
 import { FriendlyShot } from './FriendlyShot';
 import { HandleClick } from "./HandleClick";
 import gunshotSound from '../audio/gunshot.mp3'
+import cowgirlHitSound from '../audio/Female2.mp3'
 import crosshair from '../images/crosshair.jpg'
 
 
@@ -15,8 +16,17 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
     const playGunshotSound = () => {
         if(!isMuted)
         {
-            const audio = new Audio(gunshotSound);
-            audio.play();
+            const gunSound = new Audio(gunshotSound);
+            gunSound.volume = .05;
+            gunSound.play();
+        }
+    }
+
+    const playCowgirlHit = () => {
+        if(!isMuted)
+        {
+            const cowgirlHit = new Audio(cowgirlHitSound);
+            cowgirlHit.play();
         }
     }
 
@@ -30,7 +40,7 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
 
             HandleClick(bullets, setBulletCount, playGunshotSound, isReloading)
             EnemyShot(i, enemyLocations, setEnemyLocation, setTimer, setScore, isReloading, bullets);
-            FriendlyShot(i, friendlyLocations, setFriendlyLocation, setTimer, isReloading, bullets);
+            FriendlyShot(i, friendlyLocations, setFriendlyLocation, setTimer, isReloading, bullets, playCowgirlHit);
             setClickedTileIndex(i);
             console.log(friendlyLocations)
         }} key={`${i}-${q}-${r}`} q={q} r={r}>
@@ -47,4 +57,4 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
     )
 }
 
-export default Cell
+export default Cell  
