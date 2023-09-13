@@ -20,6 +20,13 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
             require('../audio/Female2.mp3'),
             require('../audio/Female3.mp3'),
             require('../audio/Female4.mp3'),
+            require('../audio/Female5.mp3'),
+            require('../audio/Female6.mp3'),
+            require('../audio/Female7.mp3'),
+            require('../audio/Female8.mp3'),
+            require('../audio/Female9.mp3'),
+            require('../audio/Female10.mp3'),
+            require('../audio/Female11.mp3')
           ];
     
           const enemyHitSounds = [
@@ -27,7 +34,17 @@ const Cell = ({ q, r, i, setScore, score, setEnemyLocation, enemyLocations, setF
             require('../audio/Male2.mp3'),
             require('../audio/Male3.mp3'),
             require('../audio/Male4.mp3'),
-            require('../audio/Male5.mp3')
+            require('../audio/Male5.mp3'),
+            require('../audio/Male6.mp3'),
+            require('../audio/Male7.mp3'),
+            require('../audio/Male8.mp3'),
+            require('../audio/Male9.mp3'),
+            require('../audio/Male10.mp3'),
+            require('../audio/Male11.mp3'),
+            require('../audio/Male12.mp3'),
+            require('../audio/Male13.mp3'),
+            require('../audio/Male14.mp3'),
+            require('../audio/Male15.mp3')
           ];
           
           
