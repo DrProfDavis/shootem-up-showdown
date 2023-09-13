@@ -10,7 +10,8 @@ import reloadSound from '../audio/reload.mp3'
 import GameOverScreen from "./GameOver";
 import DashInfo from "./dashInfo";
 import DashButtons from "./dashButtons";
-import DashRevolver from './dashRevolver'
+import DashRevolver from './dashRevolver';
+import BackgroundMusic from '../audio/background-home.mp3';
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const gridArray = GridArray;
@@ -59,6 +60,8 @@ const Grid = () => {
     //Timer
     const [timer, setTimer] = useState(0.00);
 
+    const [isMusicPlaying, setIsMusicPlaying] = useState(false);
+
     //Determines if you want to mute the sound effects or not
     const [isMuted, setIsMuted] = useState(false);
 
@@ -80,6 +83,16 @@ const Grid = () => {
 
     //Gameover state
     const [gameOver, setGameOver] = useState(false);
+
+    const backgroundMusicRef = useRef(null);
+
+    const startMusic = () => {
+    const backgroundMusic = new Audio(BackgroundMusic);
+    backgroundMusic.volume = 0.2;
+    backgroundMusicRef.current = backgroundMusic; // Store the reference
+    backgroundMusic.play();
+    setIsMusicPlaying(true);
+};
 
     //Reload logic, reload one at a time with a max of six bullets with audio
     const handleReload = useCallback(() => {
@@ -121,6 +134,12 @@ const Grid = () => {
             }, {})
         }));
     };
+
+    useEffect(() => {
+        if (backgroundMusicRef.current) {
+            backgroundMusicRef.current.muted = isMuted;
+        }
+    }, [isMuted]);
 
     useEffect(() => {
         console.log("These are enemy locations: ", enemyLocations);
@@ -188,6 +207,12 @@ const Grid = () => {
     useEffect(() => {
         boardTimerRef.current = boardTimer;
     }, [boardTimer]);
+
+    useEffect(() => {
+        if (boardTimer === 'DRAW' && !isMusicPlaying) {
+          startMusic();
+        }
+      }, [boardTimer, isMusicPlaying]);
 
     useEffect(() => {
         const interval = setInterval(() => {
