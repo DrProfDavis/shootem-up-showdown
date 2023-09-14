@@ -18,7 +18,7 @@ const HowToPlay = () => {
         <h1>HowToPlay</h1>
         {/* <Card className='card-txt'> */}
           <h5>Practice your aim here in the wild west!</h5>
-          <h6>Try to hit as many cowboys as you can! Each cowboy will increase your time! When your time hits 0, it's game over! It's also game over if you hit a cowgirl, so avoid that at all costs! Your score will be tallied up in the end based on the number of cowboys that you hit!</h6>
+          <h6>Try to hit all the cowboys while avoiding the cowgirls or "damsels". Hitting all the cowboys will progress to the next stage. There are five stages total so be quick. Hitting a damsel will increase your time so be sure to avoid them.</h6>
         {/* </Card> */}
       </main>
     </div>
