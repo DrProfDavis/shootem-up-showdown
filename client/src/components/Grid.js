@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from "react"
 import { HexGrid, Layout } from 'react-hexgrid';
 import { EnemySpawn } from './EnemySpawn';
-import { FriendlySpawn} from './FriendlySpawn';
+import { FriendlySpawn } from './FriendlySpawn';
 import { Enemy } from './Enemy' // Import the Enemy component
 import Cell from './Cell'
 import Auth from '../utils/auth';
@@ -87,12 +87,12 @@ const Grid = () => {
     const backgroundMusicRef = useRef(null);
 
     const startMusic = () => {
-    const backgroundMusic = new Audio(BackgroundMusic);
-    backgroundMusic.volume = 0.1;
-    backgroundMusicRef.current = backgroundMusic; // Store the reference
-    backgroundMusic.play();
-    setIsMusicPlaying(true);
-};
+        const backgroundMusic = new Audio(BackgroundMusic);
+        backgroundMusic.volume = 0.1;
+        backgroundMusicRef.current = backgroundMusic; // Store the reference
+        backgroundMusic.play();
+        setIsMusicPlaying(true);
+    };
 
     //Reload logic, reload one at a time with a max of six bullets with audio
     const handleReload = useCallback(() => {
@@ -104,9 +104,9 @@ const Grid = () => {
             setIsReloading(true);
             console.log("Reloading...");
             setTimeout(() => {
-                setBulletCount((prevCount) => Math.min(prevCount + 1, 6)); // Increment bullet count
+                setBulletCount((prevCount) => Math.min(prevCount + 6, 6)); // Increment bullet count
                 setIsReloading(false);
-                console.log("Reloaded! Bullets: ", bullets + 1);
+                console.log("Reloaded! Bullets: ", bullets + 6);
             },);
         }
     }, [bullets, isReloading, setIsReloading, setBulletCount, isMuted]);
@@ -210,9 +210,9 @@ const Grid = () => {
 
     useEffect(() => {
         if (boardTimer === 'DRAW' && !isMusicPlaying) {
-          startMusic();
+            startMusic();
         }
-      }, [boardTimer, isMusicPlaying]);
+    }, [boardTimer, isMusicPlaying]);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -284,11 +284,11 @@ const Grid = () => {
                         level={level}
                         score={score}
                     />
-                    <DashRevolver bullets={bullets}
-                    />
                     <DashButtons
                         toggleMute={toggleMute}
                         isMuted={isMuted}
+                    />
+                    <DashRevolver bullets={bullets}
                     />
                 </div>
                 <div className='gameboard'>

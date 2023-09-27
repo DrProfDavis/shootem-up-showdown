@@ -179,6 +179,7 @@ svg path {
     border-radius: var(--border-radius);
     padding: 1rem;
     overflow: hidden;
+    user-select: none;
 }
 
 .menu-item {
