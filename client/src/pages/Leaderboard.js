@@ -23,8 +23,8 @@ const Home = () => {
 
   return (
      <div className="leaderboard center">
-      <div>
-        <Link to="/"><button class="btn btn-lg btn-light btn-block">🔙 HOME</button></Link>
+      <main>
+        
 
         <br></br>
         <br></br>
@@ -33,14 +33,18 @@ const Home = () => {
 
         <br></br>
 
-        <ul>
-          {topTenLeaderboards.map((user) => (
-            <li key={user._id}>
-              {user.leaderboardUser} ⭐ {user.score}
-            </li>
-          ))}
-        </ul>
-      </div>
+        <div className="content_box longer">
+          <div>
+            {topTenLeaderboards.map((user) => (
+              <li key={user._id}>
+                {user.leaderboardUser} ⭐ {user.score}
+              </li>
+            ))}
+          </div>
+        </div>
+
+        <Link to="/"><button class="button big">🔙 HOME</button></Link>
+      </main>
     </div>
   );
 };

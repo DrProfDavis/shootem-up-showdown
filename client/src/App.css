@@ -211,6 +211,14 @@
   border-radius: 1px;
 }
 
+.center > main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
 .center h1 {
   text-align: center;
   font-weight: bold;
@@ -256,10 +264,11 @@
 .center h5 {
   text-align: center;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 25px;
   color: white;
-  font-family: 'Source Code Pro', monospace;
-  background-color: rgb(172, 121, 79);
+  font-family: var(--font-2P);
+  padding: 30px;
+  /* background-color: rgb(172, 121, 79); */
   opacity: 90%;
   text-transform: uppercase;
 }
@@ -267,26 +276,35 @@
 .center h6 {
   text-align: center;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 25px;
   color: white;
-  font-family: 'Source Code Pro', monospace;
-  background-color: rgb(121, 84, 53);
+  font-family: var(--font-pop);
   opacity: 90%;
   text-transform: uppercase;
 }
 
 .center li {
-  display: block;
-  /* display: flex; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
   font-weight: bolder;
-  font-size: 30px;
+  font-size: 20px;
   color: white;
-
-  font-family: var(--font);
-  background-color: rgb(172, 121, 79);
+  font-family: var(--font-2P);
   opacity: 90%;
   text-transform: uppercase;
+}
+
+.content_box {
+  background-color: rgb(65, 65, 65);
+  border: 2px solid white;
+  padding: 10px;
+  border-radius: 7px;
+}
+
+.longer {
+  width: 100%;
 }
 
 #root {
@@ -425,4 +443,13 @@ a {
 
 .blue:hover {
   background-color: rgb(0, 174, 255);
+}
+
+.big {
+  font-size: 15px;
+  width: 150px;
+}
+
+.yellow {
+  color: yellow;
 }

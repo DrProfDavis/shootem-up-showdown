@@ -27,25 +27,28 @@ const GameOver = ({score}) => {
 
 
 return (
-    <div className="gameover main-container content">
-      <h1>Game Over</h1>
-
-      {currentUser && (
-        <>
-        {/* <p>User ID: {currentUser.data._id}</p> */}
-        <h5>Current User: {currentUser.data.username}</h5>
-        <h5>Score: {score}</h5>
-        </>
-      )}
-      <br></br>
-      
-        <Link to="/leaderboard"><Button
-        className="btn btn-lg btn-warning btn-block btn-style"
-        style={{ cursor: 'pointer' }}
-        type="submit"
-        onClick={handleAddToLeaderboard}>LEADERBOARD</Button></Link>
+    <div className="gameover main-container center content">
+      <main>
+        <h1>Game Over</h1>
+        <div className='content_box'>
+          {currentUser && (
+            <>
+            {/* <p>User ID: {currentUser.data._id}</p> */}
+            <h5>Current User: <span className='yellow'>{currentUser.data.username}</span></h5>
+            <h5>Score: <span className='yellow'>{score}</span></h5>
+            </>
+          )}
+        </div>
+        <br></br>
         
-      
+          <Link to="/leaderboard"><button
+          className="button"
+          style={{ cursor: 'pointer' }}
+          type="submit"
+          onClick={handleAddToLeaderboard}>LEADERBOARD</button></Link>
+        
+        
+      </main>
     </div>
   );
 }
