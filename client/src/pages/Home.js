@@ -40,40 +40,43 @@ const Home = () => {
   return (
 
     <div className="home main-container center">
-      <div>
+      <div className="home_box">
         <h1>SHOWDOWN</h1>
       <br></br>
 
 
-        <div className="d-grid gap-2">
+        <div className="selection_ctn">
           {!isAuthenticated ? (
-            <Link to="/login" className="btn btn-block btn-warning btn-style">LOG IN</Link>
+            <Link to="/login" className="button green">LOG IN</Link>
           ) : (
             <div className='main-container'>
+              <span>&#x25C6;</span>
               <h3>HOWDY {currentUser.data.username}🌵</h3>
+              <span>&#x25C6;</span>
             </div>
           )}
           <br></br>
           <br></br>
           {!isAuthenticated ? (
-            <Link to="/signup" className="btn btn-block btn-warning btn-style">SIGN UP</Link>
+            <Link to="/signup" className="button blue">SIGN UP</Link>
           ) : (
-              <Link to="/game" className="btn btn-block btn-warning">PLAY GAME</Link>
+              <Link to="/game" className="button">PLAY GAME</Link>
           )}
           <br></br>
           <br></br>
-          <Link to="/howtoplay" className="btn btn-block btn-warning btn-style">HOW TO PLAY</Link>
+          <Link to="/howtoplay" className="button">HOW TO PLAY</Link>
           <br></br>
           <br></br>
-          <Link to="/leaderboard" className="btn btn-block btn-warning btn-style">LEADERBOARD</Link>
+          <Link to="/leaderboard" className="button">LEADERBOARD</Link>
           <br></br>
           <nav>
             {isAuthenticated ? (
-              <button class="btn btn-sm btn-danger btn-block btn-style" onClick={userLogout}>LOG OUT</button>
+              <button class="button red" onClick={userLogout}>LOG OUT</button>
               ) : null}
           </nav>
               <br></br>
           </div>
+
           <div>
             {isPlaying ? (
               <button className="btn btn-dark btn-block btn-style" onClick={pauseBackgroundMusic}>

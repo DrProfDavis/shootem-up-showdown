@@ -5,6 +5,7 @@ body, html, #root {
     font-family: roboto;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    user-select: none;
 }
 
 code {

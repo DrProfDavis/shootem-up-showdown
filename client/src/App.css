@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
+
+:root {
+  --font-pop: 'Poppins', monospace;
+  --font-2P: 'Press Start 2P', monospace;
+} 
+
 .positioned-div {
   position: absolute;
   top: 10%;
@@ -26,8 +33,15 @@
   /* background-color: #f0f0f0; Background color for visibility */
 }
 
-Home.css .main-container {
+.main-container {
   position: relative;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.main-container > span {
+  font-size: 25px;
 }
 
 .background-image {
@@ -224,12 +238,10 @@ Home.css .main-container {
   text-align: center;
   font-weight: bold;
   font-size: 30px;
-  color: white;
-  font-family: 'Source Code Pro', monospace;
-  background-color: rgb(224, 160, 107);
-  opacity: 70%;
+  color: rgb(27, 27, 27);
+  font-family: var(--font-2P);
+  opacity: 85%;
   text-transform: uppercase;
-  /* width: 30% */
 }
 .center h4 {
   text-align: center;
@@ -354,4 +366,63 @@ a {
 
 .btn-style{
   opacity: 90%;
+}
+
+.home_box {
+  display: flex;
+  flex-direction: column;
+  gap: 30px
+}
+
+.home_box > h1 {
+  font-family: var(--font-pop);
+}
+
+.selection_ctn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.button {
+  background-color: rgb(65, 65, 65);
+  padding: 15px;
+  border: 2px solid white;
+  width: 300px;
+  color: white;
+  font-family: var(--font-2P);
+  text-decoration: none;
+  border-radius: 7px;
+  font-size: 10px;
+}
+
+.button:hover {
+  background-color: rgb(110, 110, 110);
+
+}
+
+.red {
+  background-color: rgb(155, 0, 0);
+}
+
+.red:hover {
+  background-color: rgb(241, 0, 0);
+}
+
+.green {
+  background-color: green;
+}
+
+.green:hover {
+  background-color: rgb(13, 187, 13);
+}
+
+.blue {
+  background-color: rgb(0, 130, 190);
+}
+
+.blue:hover {
+  background-color: rgb(0, 174, 255);
 }
