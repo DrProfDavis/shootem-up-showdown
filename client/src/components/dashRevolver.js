@@ -8,9 +8,6 @@ import bullets2 from "../images/bullets_2.png"
 import bullets1 from "../images/bullets_1.png"
 
 function DashRevolver({ bullets }) {
-
-
-
   return (
     <div>
       {bullets === 6 ? <img className="bullets" src={bulletsF} alt="Revolver with 6 bullet"></img> : null}
