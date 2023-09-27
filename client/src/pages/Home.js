@@ -80,11 +80,11 @@ const Home = () => {
           <div>
             {isPlaying ? (
               <button className="btn btn-dark btn-block btn-style" onClick={pauseBackgroundMusic}>
-                🔇
+                🔊
               </button>
             ) : (
               <babelutton className="btn btn-dark btn-block btn-style" onClick={startBackgroundMusic}>
-                🔊
+                🔇
               </babelutton>
             )}
           </div>
