@@ -55,6 +55,7 @@ function Signup(props) {
                   </label>
                 </div>
 
+
                 <button class="btn btn-lg btn-warning btn-block" type="submit">SIGN UP</button>
                 <br></br>
                 <br></br>
@@ -62,6 +63,7 @@ function Signup(props) {
                 <p class="mt-2 mb-0 text-muted">&copy; 2023</p>
 
               </form>
+                <h4> Password must be at least 8 characters with Uppercase, Lowercase, and Numbers </h4>
 
             </div>
           {/* </div> */}
